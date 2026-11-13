@@ -1,0 +1,105 @@
+.study-entry { position: absolute; left: 32.5%; top: 39%; width: 11%; height: 23%; border: 1px solid transparent; background: transparent; padding: 0; z-index: 1; }
+.study-entry-label { position: absolute; bottom: calc(100% + 7px); left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 8px; width: max-content; padding: 6px 10px; border: 1px solid #aa947085; background: #f2e8d4ee; color: #75553c; font-size: 12px; letter-spacing: .12em; box-shadow: 0 2px 9px #69523317; }
+.study-entry-label::after { content: ""; position: absolute; height: 8px; top: 100%; left: 50%; border-left: 1px solid #9d7859; }
+.study-entry-seal { display: grid; place-items: center; width: 22px; height: 25px; color: var(--accent); border: 1px solid #8b493975; font-size: 13px; }
+.study-entry:hover, .study-entry:focus-visible { border-color: #8b493980; background: #f9e7bd14; }
+.study-entry:hover .study-entry-label { background: #faf0dc; }
+.scene-panel:not([data-state="loaded"]) .study-entry { visibility: hidden; }
+
+html.is-studying { overflow: hidden; }
+.study-room { display: none; width: calc(100vw - 32px); max-width: 1600px; height: calc(100dvh - 32px); max-height: none; margin: auto; padding: 0; border: 1px solid #a38b67; background: #e9ddc7; color: var(--ink); overflow: hidden; }
+.study-room[open] { display: flex; flex-direction: column; animation: study-arrive .25s ease-out; }
+.study-room::backdrop { background: #2a241ad6; backdrop-filter: blur(3px); }
+.study-header { min-height: 66px; flex: 0 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 10px 22px; border-bottom: 1px solid var(--line); background: #eee3cf; }
+.study-heading { display: flex; align-items: baseline; gap: 13px; }
+.study-heading > p { margin: 0; color: var(--muted); font-size: 10px; letter-spacing: .12em; }
+.study-heading h2 { margin: 0; font-size: 21px; font-weight: 400; letter-spacing: .2em; }
+#studyDescription { margin: 0; font-size: 12px; letter-spacing: .08em; color: #867258; }
+.study-back { display: flex; align-items: center; gap: 7px; min-height: 42px; padding: 8px 0 8px 12px; border: 0; background: transparent; font-size: 12px; white-space: nowrap; }
+.study-back svg { width: 18px; height: 18px; }
+.study-viewport { position: relative; flex: 1 1 auto; min-height: 0; display: grid; align-items: center; justify-items: start; overflow: auto; overscroll-behavior: contain; background: #d5c09c; scrollbar-color: #9b805e #d5c09c; scrollbar-width: thin; }
+.study-stage { position: relative; width: min(100%, calc((100dvh - 184px) * 1.75)); min-width: 800px; aspect-ratio: 1.75; margin: auto; --study-height: 600px; }
+.study-background { position: absolute; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none; user-select: none; }
+.study-books { position: absolute; inset: 0; }
+.study-book { position: absolute; padding: 0; margin: 0; border: 0; background: transparent; transform-origin: 50% 50%; transition: transform .6s cubic-bezier(.22,.65,.25,1); z-index: 1; }
+.book-sprite { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.book-sprite img { position: absolute; top: 0; left: calc(var(--book-index) * -100%); width: 400%; height: 100%; max-width: none; pointer-events: none; user-select: none; }
+.book-cover-title { position: absolute; top: 24%; left: var(--label-x); height: 40%; width: 1.2em; transform: translateX(-50%); writing-mode: vertical-rl; text-orientation: upright; color: #483923; font-size: calc(var(--study-height) * .012); line-height: 1.2; letter-spacing: .05em; pointer-events: none; }
+.book-caption { position: absolute; top: 83%; left: 50%; transform: translateX(-50%); width: max-content; max-width: 124px; padding: 4px 8px; border: 1px solid #94754d80; background: #ede1c9f0; color: #5e432b; font-size: 12px; letter-spacing: .04em; line-height: 1.4; transition: opacity .2s; pointer-events: none; }
+.study-book:hover .book-caption, .study-book:focus-visible .book-caption { color: var(--accent); background: #f9edd5; border-color: var(--accent); }
+.study-book:focus-visible { outline: 1px dashed var(--accent); outline-offset: 4px; }
+.study-book:active:not(:disabled):not(.is-taken) { transform: none; }
+.study-book.is-taken, .study-book.is-taken:active:not(:disabled) { z-index: 2; transform: translate(var(--take-x,0px), var(--take-y,0px)) rotate(-90deg) scale(.6,1.05); }
+.study-book.is-taken .book-caption { opacity: 0; }
+.study-book.is-taken:hover .book-sprite { filter: brightness(1.04); }
+.study-book:disabled { cursor: default; }
+.study-load-state { position: absolute; inset: 0; z-index: 3; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 15px; background: #e9ddc7; color: #8c7657; }
+.study-load-state p { margin: 0; font-size: 15px; letter-spacing: .16em; }
+.study-button { min-height: 40px; padding: 9px 16px; border: 1px solid #9e826351; background: #f3e8d4; color: #6e5138; font-size: 12px; letter-spacing: .08em; }
+.study-button:hover:not(:disabled) { border-color: #8b49398c; background: #fbf0db; }
+.study-button:disabled { opacity: .4; }
+.study-primary { border-color: #8b49397d; background: #8b4939; color: #fff1d9; }
+.study-primary:hover:not(:disabled) { background: #754030; color: #fff1d9; }
+.study-actions { flex: 0 0 auto; min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 15px; padding: 12px 22px; border-top: 1px solid var(--line); background: #eee3cf; }
+#studyActionName { margin: 0 0 6px; font-size: 15px; letter-spacing: .12em; }
+#studyActionHint { margin: 0; font-size: 11px; color: var(--muted); line-height: 1.5; }
+.study-action-buttons { display: flex; gap: 9px; flex-shrink: 0; }
+
+.study-reader { position: absolute; z-index: 4; inset: 76px 40px 92px; max-width: 1000px; margin: auto; display: flex; flex-direction: column; background: #f4ead6; border: 1px solid #ad9166; box-shadow: 0 15px 48px #4c37194a; animation: study-book-open .24s ease-out; }
+.reader-heading { display: flex; flex: 0 0 auto; align-items: center; justify-content: space-between; gap: 16px; padding: 17px 24px 14px; border-bottom: 1px solid #b59a6c4d; }
+.reader-heading p { margin: 0 0 6px; color: var(--muted); font-size: 10px; letter-spacing: .16em; }
+.reader-heading h3 { margin: 0; font-size: 20px; font-weight: 400; letter-spacing: .1em; line-height: 1.5; }
+.reader-heading .study-button { white-space: nowrap; }
+.book-spread { flex: 1 1 auto; min-height: 0; overflow: auto; display: grid; grid-template-columns: 1fr 1fr; background: linear-gradient(90deg, transparent 47.5%, #a1854f12 49.7%, #7a5f3626 50%, #a1854f10 50.5%, transparent 53%); }
+.book-page { padding: 30px clamp(22px,4vw,55px); }
+.book-page-kicker { margin: 0 0 21px; color: #a07e53; font-size: 11px; letter-spacing: .25em; }
+.book-page h4 { margin: 0 0 24px; font-size: 22px; font-weight: 400; letter-spacing: .12em; line-height: 1.5; }
+.book-page blockquote { margin: 0; font-size: clamp(19px,2vw,25px); line-height: 2.1; letter-spacing: .1em; color: #5d432c; }
+.reader-attribution { margin: 24px 0 14px; color: #988161; font-size: 11px; line-height: 1.8; }
+.reader-source { color: #8b4939; text-underline-offset: 4px; font-size: 11px; }
+.reading-page > p:not(.book-page-kicker) { font-size: 15px; line-height: 2; letter-spacing: .04em; }
+.reading-page .reader-observation { margin-top: 28px; padding-top: 16px; border-top: 1px solid #ad91664d; color: #8b7252; font-size: 12px !important; }
+.reader-navigation { flex: 0 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 11px 24px; border-top: 1px solid #b59a6c4d; }
+#readerPageStatus { font-size: 11px; letter-spacing: .12em; color: var(--muted); }
+@keyframes study-arrive { from { opacity: 0; } to { opacity: 1; } }
+@keyframes study-book-open { from { opacity: 0; transform: translateY(12px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+@media (max-width: 767px) {
+  .study-room { width: 100%; max-width: 100%; height: 100dvh; border: 0; }
+  .study-header { min-height: 66px; padding: 9px 14px; gap: 10px; }
+  .study-heading { display: block; }
+  .study-heading > p { font-size: 9px; margin-bottom: 5px; }
+  .study-heading h2 { font-size: 18px; }
+  #studyDescription { display: none; }
+  .study-back { min-height: 44px; font-size: 11px; }
+  .study-stage { width: 800px; margin-inline: 0; }
+  .study-entry-label { font-size: 11px; padding: 4px 7px; }
+  .book-caption { font-size: 11px; max-width: 112px; padding: 4px 6px; }
+  .study-actions { min-height: 100px; padding: 10px 14px; align-items: flex-start; flex-direction: column; gap: 9px; }
+  #studyActionName { font-size: 13px; margin-bottom: 4px; }
+  #studyActionHint { font-size: 10px; }
+  .study-action-buttons { align-self: flex-end; }
+  .study-button { padding: 8px 12px; min-height: 38px; font-size: 11px; }
+  .study-reader { inset: 74px 8px 118px; }
+  .reader-heading { padding: 12px 14px; gap: 10px; }
+  .reader-heading p { font-size: 9px; }
+  .reader-heading h3 { font-size: 16px; }
+  .book-spread { display: block; background: none; }
+  .book-page { padding: 23px 24px; }
+  .original-page { border-bottom: 1px solid #b59a6c4d; }
+  .book-page-kicker { margin-bottom: 13px; font-size: 10px; }
+  .book-page h4 { font-size: 19px; margin-bottom: 16px; }
+  .book-page blockquote { font-size: 20px; }
+  .reading-page > p:not(.book-page-kicker) { font-size: 14px; }
+  .reader-navigation { padding: 9px 12px; gap: 8px; }
+  #readerPageStatus { font-size: 10px; }
+}
+@media (max-height: 560px) {
+  .study-header { min-height: 52px; padding-block: 4px; }
+  .study-actions { min-height: 62px; padding-block: 7px; }
+  .study-stage { width: 800px; }
+  .study-reader { inset-block: 58px 74px; }
+  .reader-heading { padding-block: 8px; }
+  .reader-heading h3 { font-size: 16px; }
+  .reader-navigation { padding-block: 6px; }
+}

@@ -1,0 +1,20 @@
+.scene-motion { position: absolute; inset: 0; display: none; width: 100%; height: 100%; overflow: hidden; pointer-events: none; user-select: none; stroke: none; }
+.scene-motion.is-ready { display: block; }
+.scene-panel:not([data-state="loaded"]) .scene-motion { display: none; }
+.motion-glint { fill: none; stroke: #f4e4c7; stroke-width: 1.15; stroke-linecap: round; }
+.motion-glint-ink { stroke: #776e54; stroke-width: .7; }
+.motion-smoke path { fill: none; stroke: #b8b7aa; stroke-linecap: round; }
+.motion-chimney { fill: #b3a286; stroke: #756850; stroke-width: .8; stroke-linejoin: round; }
+.motion-ripple { fill: none; stroke: #ead9b8; stroke-width: 1.2; }
+.motion-toggle { position: absolute; z-index: 2; right: 17px; bottom: 15px; min-height: 36px; display: flex; align-items: center; gap: 7px; padding: 7px 10px; border: 1px solid #aa94705c; background: #eee3cfeb; color: #6b583e; font-size: 11px; letter-spacing: .08em; box-shadow: 0 2px 9px #69523312; }
+.motion-toggle:hover { border-color: #8b493985; background: #f7ecda; }
+.motion-toggle svg { display: block; width: 16px; height: 16px; stroke-width: 1.3; }
+.motion-toggle[aria-pressed="false"] { color: #8a7b64; }
+.motion-toggle .motion-play-icon { display: none; }
+.motion-toggle[aria-pressed="false"] .motion-pause-icon { display: none; }
+.motion-toggle[aria-pressed="false"] .motion-play-icon { display: block; }
+.painting-frame.has-motion .scroll-help { max-width: calc(100% - 160px); line-height: 1.7; }
+@media (max-width: 767px) {
+  .motion-toggle { right: 11px; bottom: 12px; min-height: 36px; padding: 6px 8px; gap: 5px; font-size: 10px; }
+  .painting-frame.has-motion .scroll-help { max-width: calc(100% - 140px); }
+}

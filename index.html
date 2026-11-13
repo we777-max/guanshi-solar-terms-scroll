@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#eee3cf">
+  <meta name="description" content="沿一幅田园长卷，游历二十四节气中的四季景物。">
+  <title>观时 · 四季长卷</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="study.css">
+  <link rel="stylesheet" href="motion.css">
+  <script src="app.js" defer></script>
+  <script src="study.js" defer></script>
+  <script src="motion.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#scrollViewport">进入长卷</a>
+  <main class="scroll-page">
+    <header class="page-heading">
+      <div class="heading-copy">
+        <p class="eyebrow"><span class="seal" aria-hidden="true">四時</span>二十四节气</p>
+        <h1>观时<span class="title-divider" aria-hidden="true">·</span><span>四季长卷</span></h1>
+      </div>
+      <div class="heading-side">
+        <p>循水而行，随时入画</p>
+        <span>八景相连 · 四时景物</span>
+      </div>
+    </header>
+
+    <section class="scroll-experience" aria-label="四季田园长卷">
+      <div class="scene-toolbar">
+        <nav class="season-nav" aria-label="选择四季">
+          <button type="button" data-season="0" class="is-current" aria-current="true"><span>春</span><small>生</small></button>
+          <button type="button" data-season="1"><span>夏</span><small>长</small></button>
+          <button type="button" data-season="2"><span>秋</span><small>收</small></button>
+          <button type="button" data-season="3"><span>冬</span><small>藏</small></button>
+        </nav>
+        <div class="toolbar-actions">
+          <button id="overviewToggle" class="text-button" type="button" aria-expanded="true" aria-controls="scrollOverview"><span class="overview-toggle-label">全卷总览</span> <span class="toggle-mark" aria-hidden="true">－</span></button>
+          <button id="termsToggle" class="text-button" type="button" aria-expanded="false" aria-controls="termsDrawer">节气目录 <span aria-hidden="true">＋</span></button>
+          <button id="fullscreenToggle" class="icon-button" type="button" aria-label="全屏欣赏" title="全屏欣赏" hidden>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4H4v4m12-4h4v4M4 16v4h4m12-4v4h-4"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <aside id="dialDock" class="dial-dock" aria-label="节气圆盘导航">
+        <button id="dialToggle" class="dial-toggle" type="button" aria-expanded="false" aria-controls="dialPanel" aria-label="当前立春，展开节气圆盘" title="展开节气圆盘">
+          <svg class="mini-dial" viewBox="0 0 64 64" aria-hidden="true">
+            <circle class="mini-dial-paper" cx="32" cy="32" r="29" />
+            <path class="mini-dial-ticks" d="M32 4v4M60 32h-4M32 60v-4M4 32h4M12.2 12.2 15 15M51.8 12.2 49 15M51.8 51.8 49 49M12.2 51.8 15 49" />
+            <g id="miniDialNeedle" class="mini-dial-needle">
+              <path class="mini-dial-tip" d="M32 7l-3 10 3-2 3 2Z" />
+            </g>
+            <circle class="mini-dial-center" cx="32" cy="32" r="18" />
+          </svg>
+          <span id="dialToggleTerm" class="dial-toggle-term">立春</span>
+        </button>
+        <section id="dialPanel" class="dial-panel" aria-labelledby="dialTitle" hidden>
+          <div class="dial-panel-heading"><h2 id="dialTitle">节气圆盘</h2><button id="dialClose" class="text-button" type="button" aria-label="收起节气圆盘">收起 <span aria-hidden="true">×</span></button></div>
+          <figure class="solar-dial">
+            <svg id="seasonDial" class="season-dial" viewBox="0 0 360 360" role="group" aria-label="二十四节气圆盘" aria-describedby="dialHelp">
+              <circle class="dial-paper" cx="180" cy="180" r="174" />
+              <circle class="dial-border" cx="180" cy="180" r="170" />
+              <g id="dialSeasons" aria-hidden="true"></g>
+              <circle class="dial-guide" cx="180" cy="180" r="117" />
+              <circle class="dial-guide dial-guide-inner" cx="180" cy="180" r="65" />
+              <g id="dialNeedle" class="dial-needle" aria-hidden="true">
+                <path class="dial-needle-line" d="M180 183V78" />
+                <path class="dial-needle-tip" d="M180 65l-5 18 5-3 5 3Z" />
+                <path class="dial-needle-tail" d="M180 184v24" />
+              </g>
+              <circle class="dial-center" cx="180" cy="180" r="54" />
+              <circle class="dial-center-border" cx="180" cy="180" r="49" />
+              <g class="dial-center-copy" aria-hidden="true">
+                <text class="dial-eyebrow" x="180" y="160">此刻行至</text>
+                <text id="dialCurrentTerm" class="dial-current-term" x="180" y="185">立春</text>
+                <text id="dialCurrentSeason" class="dial-current-season" x="180" y="207">春 · 生</text>
+              </g>
+              <g id="dialTerms" role="group" aria-label="选择节气"></g>
+            </svg>
+            <figcaption id="dialHelp">点节气入卷<span aria-hidden="true"> · </span>随画卷指时</figcaption>
+          </figure>
+        </section>
+      </aside>
+
+      <div class="painting-frame">
+        <div id="scrollViewport" class="scroll-viewport" tabindex="0" role="region" aria-label="可横向浏览的四季长卷" aria-describedby="scrollHelp" aria-busy="true">
+          <div id="scrollWorld" class="scroll-world">
+            <figure class="scene-panel" data-panel="0" data-season="0" data-title="村落田园" data-state="loading">
+              <img src="assets/scroll/spring.png" alt="春日田园：田地、疏枝、村路和庭院沿着河岸展开" width="2172" height="724" draggable="false" fetchpriority="high">
+              <button id="studyEntry" class="study-entry" type="button" aria-haspopup="dialog" aria-controls="studyRoom" aria-label="走进书斋，从书架取书阅读"><span class="study-entry-label"><span class="study-entry-seal" aria-hidden="true">书</span>入室阅书</span></button>
+              <figcaption class="panel-state"><span>春卷正在展开</span><button type="button" class="retry-button" hidden>重新载入春卷</button></figcaption>
+            </figure>
+            <figure class="scene-panel" data-panel="1" data-season="0" data-title="溪桥水磨" data-state="loading">
+              <img src="assets/scroll/spring-bridge.png" alt="春日溪桥水磨：溪流、小桥、水磨与春日村路" width="2172" height="724" draggable="false">
+              <figcaption class="panel-state"><span>溪桥水磨正在展开</span><button type="button" class="retry-button" hidden>重新载入溪桥水磨</button></figcaption>
+            </figure>
+            <figure class="scene-panel" data-panel="2" data-season="1" data-title="荷塘亭榭" data-state="loading">
+              <img src="assets/scroll/summer.png" alt="夏日田园：绿树、田畦与水岸相接的村落" width="2172" height="724" draggable="false">
+              <figcaption class="panel-state"><span>夏卷正在展开</span><button type="button" class="retry-button" hidden>重新载入夏卷</button></figcaption>
+            </figure>
+            <figure class="scene-panel" data-panel="3" data-season="1" data-title="水乡长街" data-state="loading">
+              <img src="assets/scroll/summer-street.png" alt="夏日水乡长街：沿河街巷、临水屋舍和夏日绿荫" width="2172" height="724" draggable="false">
+              <figcaption class="panel-state"><span>水乡长街正在展开</span><button type="button" class="retry-button" hidden>重新载入水乡长街</button></figcaption>
+            </figure>
+            <figure class="scene-panel" data-panel="4" data-season="2" data-title="秋收晒场" data-state="loading">
+              <img src="assets/scroll/autumn.png" alt="秋日田园：秋色树木、田地和沿河院落" width="2172" height="724" draggable="false">
+              <figcaption class="panel-state"><span>秋卷正在展开</span><button type="button" class="retry-button" hidden>重新载入秋卷</button></figcaption>
+            </figure>
+            <figure class="scene-panel" data-panel="5" data-season="2" data-title="山麓梯田" data-state="loading">
+              <img src="assets/scroll/autumn-terraces.png" alt="秋日山麓梯田：层叠田地、山路和秋色村舍" width="2172" height="724" draggable="false">
+              <figcaption class="panel-state"><span>山麓梯田正在展开</span><button type="button" class="retry-button" hidden>重新载入山麓梯田</button></figcaption>
+            </figure>
+            <figure class="scene-panel" data-panel="6" data-season="3" data-title="冬日庭院" data-state="loading">
+              <img src="assets/scroll/winter.png" alt="冬日田园：疏林、冬田和安静的河岸屋舍" width="2172" height="724" draggable="false">
+              <figcaption class="panel-state"><span>冬卷正在展开</span><button type="button" class="retry-button" hidden>重新载入冬卷</button></figcaption>
+            </figure>
+            <figure class="scene-panel" data-panel="7" data-season="3" data-title="古渡雪岸" data-state="loading">
+              <img src="assets/scroll/winter-ferry.png" alt="冬日古渡雪岸：古渡、雪岸、疏林和远处屋舍" width="2172" height="724" draggable="false">
+              <figcaption class="panel-state"><span>古渡雪岸正在展开</span><button type="button" class="retry-button" hidden>重新载入古渡雪岸</button></figcaption>
+            </figure>
+          </div>
+        </div>
+        <span class="frame-shade frame-shade-left" aria-hidden="true"></span>
+        <span class="frame-shade frame-shade-right" aria-hidden="true"></span>
+        <div class="scene-caption" aria-hidden="true"><span id="seasonCaption">春</span><span class="caption-line"></span><span id="termCaption">立春</span><span id="sceneCaption" class="caption-location">村落田园</span></div>
+        <p id="scrollHelp" class="scroll-help">左右拖动画卷<span aria-hidden="true"> · </span>滚轮与方向键亦可浏览</p>
+        <button id="motionToggle" class="motion-toggle" type="button" aria-label="暂停春卷动景" aria-pressed="true" aria-describedby="motionHelp" hidden><svg class="motion-pause-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14"/></svg><svg class="motion-play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7Z"/></svg><span id="motionToggleLabel">动景已启</span></button>
+        <p id="motionHelp" class="sr-only">春卷第一景的流水与炊烟动态示范。树木和建筑保持静止。开启时点击水面可泛涟漪，拖动仍用于浏览画卷。</p>
+        <button id="previousView" class="edge-button previous-view" type="button" aria-label="向左浏览长卷" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 5-7 7 7 7"/></svg></button>
+        <button id="nextView" class="edge-button next-view" type="button" aria-label="向右浏览长卷"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10 5 7 7-7 7"/></svg></button>
+      </div>
+
+      <div class="scroll-navigation">
+        <div class="position-label"><span class="label-note">此刻行至</span><strong id="currentTerm">立春</strong></div>
+        <div class="position-control">
+          <label for="positionRange" class="sr-only">画卷位置</label>
+          <input id="positionRange" type="range" min="0" max="1000" value="0" step="1" aria-valuetext="春卷，立春">
+          <div class="season-scale" aria-hidden="true"><span>春</span><span>夏</span><span>秋</span><span>冬</span></div>
+        </div>
+        <p class="navigation-note"><span id="scenePosition">一 / 八景</span><strong id="currentScene">村落田园</strong></p>
+      </div>
+
+      <section id="scrollOverview" class="scroll-overview" aria-label="八景长卷总览">
+        <div class="overview-heading"><span>全卷八景</span><p>点景入卷<span aria-hidden="true"> · </span>方框为当前视窗</p></div>
+        <div id="overviewMap" class="overview-map">
+          <div id="overviewScenes" class="overview-scenes"></div>
+          <span id="overviewWindow" class="overview-window" aria-hidden="true"></span>
+        </div>
+      </section>
+
+      <nav id="termsDrawer" class="terms-drawer" aria-label="二十四节气场景导航" hidden>
+        <div class="drawer-heading"><p>循节气，游四时</p><button id="termsClose" class="text-button" type="button" aria-label="收起节气目录">收起 <span aria-hidden="true">－</span></button></div>
+        <div id="termsList" class="terms-list"></div>
+        <p class="drawer-note">节气节点用于浏览场景，画中景物为四时意象。</p>
+      </nav>
+    </section>
+
+    <footer class="page-footer"><span>二十四节气 · 四季长卷</span><span>入春卷书斋，择书而读</span></footer>
+    <p id="viewStatus" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
+  </main>
+
+  <dialog id="studyRoom" class="study-room" aria-labelledby="studyTitle" aria-describedby="studyDescription">
+    <header class="study-header">
+      <div class="study-heading"><p>卷中一室</p><h2 id="studyTitle">节气书斋</h2></div>
+      <p id="studyDescription">择一册书，置于案上，读四时之变。</p>
+      <button id="studyBack" class="study-back" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10 5-7 7 7 7M3 12h18" /></svg>返回长卷</button>
+    </header>
+
+    <div id="studyViewport" class="study-viewport" tabindex="0" aria-label="书斋室内，窄屏可左右移动查看书架">
+      <div id="studyStage" class="study-stage">
+        <img id="studyBackground" class="study-background" data-src="assets/study/interior-v1.png" alt="书斋室内，四格木书架位于后墙，前方为宽阔书案，侧窗可见庭院" width="1659" height="948" draggable="false">
+        <div id="studyBooks" class="study-books" hidden></div>
+      </div>
+      <div id="studyLoadState" class="study-load-state" role="status"><p id="studyLoadText">书斋正在展开……</p><button id="studyRetry" class="study-button" type="button" hidden>重新展开</button></div>
+    </div>
+
+    <section id="studyReader" class="study-reader" aria-labelledby="readerTitle" hidden>
+      <header class="reader-heading"><div><p>案上展卷 · 原典摘读</p><h3 id="readerTitle"></h3></div><button id="readerClose" class="study-button" type="button">合上书</button></header>
+      <div class="book-spread">
+        <article class="book-page original-page"><p class="book-page-kicker">原文节录</p><h4 id="readerChapter"></h4><blockquote id="readerOriginal"></blockquote><p id="readerAttribution" class="reader-attribution"></p><a id="readerSource" class="reader-source" target="_blank" rel="noopener noreferrer">查阅原典 ↗</a></article>
+        <article class="book-page reading-page"><p class="book-page-kicker">读古知时</p><h4 id="readerNoteTitle"></h4><p id="readerExplanation"></p><p id="readerObservation" class="reader-observation"></p></article>
+      </div>
+      <footer class="reader-navigation"><button id="readerPrevious" class="study-button" type="button">上一页</button><span id="readerPageStatus" aria-live="polite"></span><button id="readerNext" class="study-button" type="button">下一页</button></footer>
+    </section>
+
+    <footer class="study-actions"><div><p id="studyActionName">书架藏四时</p><p id="studyActionHint">点击书籍取下；窄屏可左右移步。</p></div><div class="study-action-buttons"><button id="studyOpenBook" class="study-button study-primary" type="button" hidden>翻开此书</button><button id="studyReturnBook" class="study-button" type="button" hidden>放回书架</button></div></footer>
+    <p id="studyStatus" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
+  </dialog>
+</body>
+</html>
