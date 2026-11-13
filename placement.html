@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#eee3cf">
+  <title>道具试摆 · 观时</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="placement.css?v=2">
+  <script src="placement.js?v=2" defer></script>
+</head>
+<body>
+  <header class="site-header"><a href="index.html">← 返回长卷</a><span>观时 · 道具试摆 01</span></header>
+  <main>
+    <section class="intro"><div><p class="eyebrow">先看入画，再定交互</p><h1>让器物落在画里</h1></div><p>沿现有八景找空位，保留道路、门洞与水岸。<br>首批新增三组二维道具，圭表沿用现有素材。</p></section>
+    <nav id="sceneTabs" class="scene-tabs" aria-label="选择试摆场景"></nav>
+    <div class="workbench">
+      <section class="scene-section" aria-labelledby="sceneTitle">
+        <div class="scene-heading"><div><h2 id="sceneTitle"></h2><p id="sceneDescription"></p></div><span id="sceneCount"></span></div>
+        <div class="view-tools"><button id="compareOriginal" type="button" aria-pressed="false">对照原图</button><button id="showZones" type="button" aria-pressed="false">显示试摆范围</button><label>画面倍率<select id="zoomSelect"><option value="1">100%</option><option value="1.5">150%</option><option value="2">200%</option></select></label></div>
+        <div id="canvasViewport" class="canvas-viewport"><div id="sceneCanvas" class="scene-canvas"><img id="sceneImage" class="scene-image" alt="" draggable="false"><div id="fixedLayer" class="fixed-layer"></div><div id="zoneLayer" class="zone-layer" hidden></div><div id="propLayer" class="prop-layer"></div></div></div>
+        <p class="scene-help">可选择道具后拖动微调；方向键移动，Shift＋方向键细调。触屏也可用右侧滑杆调整。</p>
+        <p id="placementStatus" class="placement-status" role="status" aria-live="polite"></p>
+      </section>
+      <aside class="inspector" aria-label="道具位置与尺寸"><p class="eyebrow">这一景放什么</p><div id="instanceList" class="instance-list"></div><p id="emptyReason" class="empty-reason" hidden></p><section id="positionControls"><h3 id="selectedPropName"></h3><label>横向位置 <output id="xOutput"></output><input id="xRange" type="range" min="0" max="100" step="0.1"></label><label>纵向位置 <output id="yOutput"></output><input id="yRange" type="range" min="0" max="100" step="0.1"></label><label>道具宽度 <output id="sizeOutput"></output><input id="sizeRange" type="range" min="1" max="30" step="0.1"></label><p id="placementAdvice" class="placement-advice"></p></section><div class="inspector-actions"><button id="resetScene" type="button">恢复建议摆位</button><button id="downloadLayout" type="button">下载布置记录</button></div><p class="draft-note">此页用于比较尺寸和位置。主长卷保持当前版本，合适的摆位再接入。</p></aside>
+    </div>
+    <section class="assets-section" aria-labelledby="assetsTitle"><div class="section-heading"><h2 id="assetsTitle">首批二维素材</h2><p>按组制作，减少散件数量与重复摆放。</p></div><div id="assetCards" class="asset-cards"></div></section>
+    <section class="allocation" aria-labelledby="allocationTitle"><h2 id="allocationTitle">八景的疏密安排</h2><div id="allocationRows" class="allocation-rows"></div></section>
+    <footer><p>文物大件待场所确定后再做；文具集中在书房。保留不放新道具的景色。</p><a href="docs/道具试摆-v1-制作记录.md">查看素材与制作记录 ↗</a></footer>
+  </main>
+</body>
+</html>
