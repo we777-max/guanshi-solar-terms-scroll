@@ -95,9 +95,14 @@ h1 > span:last-child { font-size: .62em; letter-spacing: .2em; }
 .season-nav button.is-current::after { transform: scaleX(1); }
 .toolbar-actions { display: flex; gap: 13px; align-items: center; }
 .gnomon-portal { display: inline-flex; align-items: center; gap: 5px; min-height: 40px; font-size: 11px; letter-spacing: .08em; text-decoration: none; color: var(--accent); white-space: nowrap; }
-.gnomon-entry { position: absolute; z-index: 1; left: 58%; top: 49%; width: 12%; height: 18%; border: 1px solid transparent; color: var(--accent); text-decoration: none; }
-.gnomon-entry > span { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); width: max-content; padding: 7px 10px; background: #f2e8d4ed; border: 1px solid #aa94707a; font-size: 12px; letter-spacing: .12em; }
-.gnomon-entry:hover, .gnomon-entry:focus-visible { border-color: #8b493980; background: #f9e7bd14; }
+.gnomon-entry { position: absolute; z-index: 1; left: 69%; top: 53%; width: 16%; aspect-ratio: 3 / 1; color: var(--ink); text-decoration: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.gnomon-entry .gnomon-illustration { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: fill; pointer-events: none; transition: filter .2s; }
+.gnomon-entry-hint { position: absolute; left: 20%; bottom: 81%; display: flex; gap: 5px; flex-direction: column; width: max-content; padding: 8px 11px; border-left: 1px solid #8b493977; background: #f2e8d4ed; font-size: 12px; letter-spacing: .14em; opacity: 0; transform: translateY(4px); pointer-events: none; transition: opacity .2s, transform .2s; }
+.gnomon-entry-hint small { font-size: 9px; letter-spacing: .08em; color: var(--muted); }
+.gnomon-entry:hover .gnomon-illustration, .gnomon-entry:focus-visible .gnomon-illustration { filter: brightness(1.08); }
+.gnomon-entry:hover .gnomon-entry-hint, .gnomon-entry:focus-visible .gnomon-entry-hint { opacity: 1; transform: translateY(0); }
+.gnomon-entry:focus-visible { outline-offset: 0; }
+@media (hover: none) { .gnomon-entry-hint { opacity: 1; transform: none; font-size: 10px; padding: 5px 7px; } .gnomon-entry-hint small { font-size: 8px; } }
 .scene-panel:not([data-state="loaded"]) .gnomon-entry { visibility: hidden; }
 .text-button, .icon-button { border: 0; background: none; }
 .text-button { min-height: 40px; padding: 6px 4px; font-size: 12px; letter-spacing: .12em; }
@@ -113,8 +118,8 @@ h1 > span:last-child { font-size: .62em; letter-spacing: .2em; }
 .scroll-world { width: max-content; height: 100%; display: flex; position: relative; }
 .scene-panel { position: relative; flex: 0 0 var(--panel-width); width: var(--panel-width); height: 100%; margin: 0; overflow: hidden; background: #e9ddc7; }
 .scene-panel + .scene-panel { margin-left: calc(var(--panel-overlap) * -1); -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 6%, #000 100%); mask-image: linear-gradient(to right, transparent 0%, #000 6%, #000 100%); }
-.scene-panel img { position: absolute; display: block; width: 100%; height: 100%; object-fit: fill; pointer-events: none; opacity: 0; transition: opacity .6s; }
-.scene-panel[data-state="loaded"] img { opacity: 1; }
+.scene-panel > img { position: absolute; display: block; width: 100%; height: 100%; object-fit: fill; pointer-events: none; opacity: 0; transition: opacity .6s; }
+.scene-panel[data-state="loaded"] > img { opacity: 1; }
 .panel-state { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 18px; color: #8b785a; font-size: 13px; letter-spacing: .2em; }
 .scene-panel[data-state="loaded"] .panel-state { display: none; }
 .retry-button { border: 1px solid #9c805a70; padding: 10px 15px; background: #eee3cfa8; font-size: 12px; letter-spacing: .12em; }
@@ -248,7 +253,7 @@ input[type="range"]::-moz-range-thumb { width: 9px; height: 9px; border-radius: 
 .is-immersive .painting-frame { border: 0; }
 .is-immersive .scene-toolbar { position: absolute; right: 18px; bottom: 18px; z-index: 5; display: block; min-height: 0; border: 0; }
 .is-immersive .toolbar-actions { display: block; }
-.is-immersive #overviewToggle, .is-immersive #termsToggle { display: none; }
+.is-immersive #overviewToggle, .is-immersive #termsToggle, .is-immersive .gnomon-portal { display: none; }
 .is-immersive #fullscreenToggle { width: 44px; height: 44px; border: 1px solid var(--line); background: #eee3cfd9; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; scroll-behavior: auto !important; }

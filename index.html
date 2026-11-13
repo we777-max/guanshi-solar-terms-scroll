@@ -7,7 +7,7 @@
   <meta name="description" content="沿一幅田园长卷，游历二十四节气中的四季景物。">
   <title>观时 · 四季长卷</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=0.2.1">
   <link rel="stylesheet" href="study.css">
   <link rel="stylesheet" href="motion.css">
   <script src="app.js" defer></script>
@@ -37,7 +37,7 @@
           <button type="button" data-season="3"><span>冬</span><small>藏</small></button>
         </nav>
         <div class="toolbar-actions">
-          <a class="gnomon-portal" href="gnomon.html?v=0.2.0">圭表测影 <span aria-hidden="true">↗</span></a>
+          <a class="gnomon-portal" href="#gnomonEntry">寻圭表 <span aria-hidden="true">↘</span></a>
           <button id="overviewToggle" class="text-button" type="button" aria-expanded="true" aria-controls="scrollOverview"><span class="overview-toggle-label">全卷总览</span> <span class="toggle-mark" aria-hidden="true">－</span></button>
           <button id="termsToggle" class="text-button" type="button" aria-expanded="false" aria-controls="termsDrawer">节气目录 <span aria-hidden="true">＋</span></button>
           <button id="fullscreenToggle" class="icon-button" type="button" aria-label="全屏欣赏" title="全屏欣赏" hidden>
@@ -92,7 +92,10 @@
             <figure class="scene-panel" data-panel="0" data-season="0" data-title="村落田园" data-state="loading">
               <img src="assets/scroll/spring.png" alt="春日田园：田地、疏枝、村路和庭院沿着河岸展开" width="2172" height="724" draggable="false" fetchpriority="high">
               <button id="studyEntry" class="study-entry" type="button" aria-haspopup="dialog" aria-controls="studyRoom" aria-label="走进书斋，从书架取书阅读"><span class="study-entry-label"><span class="study-entry-seal" aria-hidden="true">书</span>入室阅书</span></button>
-              <a id="gnomonEntry" class="gnomon-entry" href="gnomon.html?v=0.2.0" aria-label="进入三维圭表测影庭院"><span>圭表测影 <span aria-hidden="true">↗</span></span></a>
+              <a id="gnomonEntry" class="gnomon-entry" href="gnomon.html?v=0.2.0" aria-label="走近画中圭表，进入测影交互">
+                <img class="gnomon-illustration" src="assets/gnomon/gnomon-scroll-v1.png" alt="庭院里的圭表，青铜竖表立在石质刻度尺的一端" width="1536" height="1024" draggable="false">
+                <span class="gnomon-entry-hint"><span>圭表测影</span><small>走近观影 <span aria-hidden="true">↗</span></small></span>
+              </a>
               <figcaption class="panel-state"><span>春卷正在展开</span><button type="button" class="retry-button" hidden>重新载入春卷</button></figcaption>
             </figure>
             <figure class="scene-panel" data-panel="1" data-season="0" data-title="溪桥水磨" data-state="loading">
