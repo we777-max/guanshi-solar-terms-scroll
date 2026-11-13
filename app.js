@@ -331,7 +331,7 @@
   }
 
   viewport.addEventListener('pointerdown', event => {
-    if (event.target.closest('button')) return;
+    if (event.target.closest('button') || event.target.closest('a')) return;
     if (!event.isPrimary) { stopDrag(); return; }
     if (event.pointerType === 'mouse' && event.button !== 0) return;
     stopDrag();

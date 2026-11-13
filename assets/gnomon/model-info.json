@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "heightM": 2.0,
+  "datumY": 0.3,
+  "rulerLengthM": 6.0,
+  "axes": "glTF: +X east, +Y up, -Z north",
+  "meshCount": 160,
+  "triangles": 32664,
+  "blender": "5.3.0",
+  "educationalModel": true
+}

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#eee8dc">
+  <title>圭表测影 · 观时</title>
+  <meta name="description" content="转动一座三维圭表，在二十四节气中比较当地正午日影与昼长。">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="gnomon.css?v=0.2.0">
+  <script type="importmap">{"imports":{"three":"./vendor/three/build/three.module.js","three/addons/":"./vendor/three/examples/jsm/"}}</script>
+  <script type="module" src="gnomon.js?v=0.2.0.1"></script>
+</head>
+<body>
+  <a class="skip-link" href="#termRail">选择节气</a>
+  <header class="lab-header">
+    <a class="lab-brand" href="index.html#gnomonEntry" aria-label="返回观时长卷"><span class="brand-seal" aria-hidden="true">观时</span><span>四时有序<span class="brand-dot"> · </span>观象授时</span></a>
+    <a class="return-link" href="index.html#gnomonEntry"><span aria-hidden="true">←</span> 返回长卷</a>
+  </header>
+  <main class="lab-page">
+    <div class="lab-intro"><div><p class="eyebrow">卷中一景 · 立表知时</p><h1>圭表测影</h1></div><p class="intro-copy">立一表，量一影。<br>看太阳与四时，如何落在一把尺上。</p></div>
+    <section class="lab-grid" aria-label="三维圭表测影交互">
+      <div id="modelStage" class="model-stage" data-state="loading" aria-busy="true">
+        <div id="modelCanvas" class="model-canvas" role="img" aria-label="可旋转的三维圭表，表高两米，圭面刻度六米"></div>
+        <div class="stage-heading"><span class="stage-seal" aria-hidden="true">测影</span><div><p id="stageTerm">春分 · 正午</p><span id="stagePlace">洛阳 · 北纬34.6°</span></div></div>
+        <span class="north-note" aria-hidden="true">圭面循南北向展开</span>
+        <div id="gnomonLabel" class="model-callout" hidden><span>表</span><small>高 2.00 米</small></div>
+        <div id="shadowLabel" class="model-callout shadow-callout" hidden><span>影端</span><small id="shadowCalloutValue"></small></div>
+        <div id="modelLoadState" class="model-load-state" role="status"><img src="assets/gnomon/gnomon-preview.png" alt="石质圭面与青铜竖表的模型静帧" width="1400" height="1120"><div><p id="modelLoadText">观象台正在展开……</p><button id="modelRetry" type="button" hidden>重新展开</button></div></div>
+        <div class="stage-bottom"><p id="viewHelp">拖动旋转 · 滚轮或双指缩放</p><div class="camera-buttons" aria-label="选择观察视角"><button id="cameraOblique" type="button" aria-pressed="true">斜看</button><button id="cameraTop" type="button" aria-pressed="false">俯看</button><button id="cameraReset" type="button" aria-label="恢复初始观察视角">复位 <span aria-hidden="true">↺</span></button></div></div>
+      </div>
+      <aside class="observation" aria-label="观测数据与选项">
+        <div class="observation-heading"><p id="seasonLabel">春 · 第四气</p><span id="longitudeValue">黄经 0°</span></div>
+        <div class="term-heading"><h2 id="selectedTerm">春分</h2><span>当地正午测影</span></div>
+        <div class="shadow-reading"><p>表顶中心投影距表脚</p><div><strong id="shadowValue">—</strong><span>米</span></div><p id="shadowDescription">—</p></div>
+        <dl class="minor-readings"><div><dt>太阳高度</dt><dd><span id="altitudeValue">—</span><small>°</small></dd></div><div><dt>日出至日落</dt><dd id="daylightValue">—</dd></div></dl>
+        <div class="observation-settings"><label>观测地点<select id="placeSelect" aria-label="选择观测地点"><option value="luoyang">洛阳 · 北纬34.6°</option><option value="beijing">北京 · 北纬39.9°</option><option value="hangzhou">杭州 · 北纬30.3°</option></select></label><label>节气循环<select id="yearSelect" aria-label="选择从哪一年立春开始的节气循环"></select></label></div>
+        <dl class="time-readings"><div><dt>交节时刻</dt><dd id="termInstant">—</dd></div><div><dt>当日当地正午</dt><dd id="noonInstant">—</dd></div></dl>
+        <p class="time-note">以上钟表时间均为北京时间。画面演示交节当日的当地太阳正午，与交节瞬间分开计算。</p>
+        <button id="compareToggle" class="compare-toggle" type="button" aria-pressed="false" aria-controls="compareReadings"><span class="compare-symbol" aria-hidden="true">＋</span> 显示冬夏日影对照</button>
+        <div id="compareReadings" class="compare-readings" hidden><p><span class="summer-dot"></span>夏至 <strong id="summerShadow"></strong></p><p><span class="winter-dot"></span>冬至 <strong id="winterShadow"></strong></p></div>
+      </aside>
+    </section>
+    <section class="term-navigation" aria-labelledby="termNavigationTitle"><div class="term-navigation-heading"><div><h2 id="termNavigationTitle">循节气，看日影</h2><p>每一刻，太阳各有其位</p></div><button id="cyclePlay" class="cycle-play" type="button" aria-pressed="false"><span id="playSymbol" aria-hidden="true">▷</span><span id="playLabel">巡览四时</span></button></div><div id="termRail" class="term-rail" role="group" aria-label="选择二十四节气"></div><div class="rail-caption" aria-hidden="true"><span>春生</span><span>夏长</span><span>秋收</span><span>冬藏</span></div></section>
+    <details class="science-note"><summary>影长是怎样算出来的？<span aria-hidden="true">＋</span></summary><div><p>竖表立直、圭面水平时，影长 = 表高 ÷ tan（太阳高度角）。这里的表高为2米，阴影方向与太阳所在方向相反。拖动视角只改变观察角度，不改变数据。</p><p>交节时刻由太阳视黄经搜索得到，每隔15°为一个节气。测影取交节所在北京时间日期的当地太阳上中天时刻；它通常不等于北京时间12:00。影长使用太阳中心的几何高度，不计大气折射；日出日落使用标准折射模型。地点坐标为城市近似坐标。</p><p>此圭表为科普示意模型，刻度以米表示。<a href="https://www.hko.gov.hk/sc/gts/time/24solarterms.htm" target="_blank" rel="noopener noreferrer">节气与黄经依据 ↗</a><a href="https://github.com/cosinekitty/astronomy" target="_blank" rel="noopener noreferrer">天文计算引擎 ↗</a></p></div></details>
+  </main>
+  <footer class="lab-footer"><span>观时 · 二十四节气交互长卷</span><span>以器观天，以影知时</span></footer>
+  <p id="labStatus" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
+  <noscript><p class="noscript-note">请启用 JavaScript 以操作三维模型和节气计算。</p></noscript>
+</body>
+</html>

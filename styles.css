@@ -94,6 +94,11 @@ h1 > span:last-child { font-size: .62em; letter-spacing: .2em; }
 .season-nav button:hover, .season-nav button.is-current { opacity: 1; color: var(--accent); }
 .season-nav button.is-current::after { transform: scaleX(1); }
 .toolbar-actions { display: flex; gap: 13px; align-items: center; }
+.gnomon-portal { display: inline-flex; align-items: center; gap: 5px; min-height: 40px; font-size: 11px; letter-spacing: .08em; text-decoration: none; color: var(--accent); white-space: nowrap; }
+.gnomon-entry { position: absolute; z-index: 1; left: 58%; top: 49%; width: 12%; height: 18%; border: 1px solid transparent; color: var(--accent); text-decoration: none; }
+.gnomon-entry > span { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); width: max-content; padding: 7px 10px; background: #f2e8d4ed; border: 1px solid #aa94707a; font-size: 12px; letter-spacing: .12em; }
+.gnomon-entry:hover, .gnomon-entry:focus-visible { border-color: #8b493980; background: #f9e7bd14; }
+.scene-panel:not([data-state="loaded"]) .gnomon-entry { visibility: hidden; }
 .text-button, .icon-button { border: 0; background: none; }
 .text-button { min-height: 40px; padding: 6px 4px; font-size: 12px; letter-spacing: .12em; }
 .text-button > span { margin-left: 7px; color: var(--accent); }
