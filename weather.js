@@ -1,5 +1,8 @@
 import { WeatherModel } from './src/weather-model.js?v=2';
 import { WeatherAudio } from './src/weather-audio.js?v=2';
+import { createWorldAtmosphere } from './src/weather-world.js?v=7';
+import { getMoonAppearance, MOON_ANCHORS } from './src/sky-model.js?v=7';
+import { getCycle, TERMS } from './src/solar-model.js';
 
 const motion = window.ScrollMotion;
 const frame = document.querySelector('.painting-frame');
@@ -13,7 +16,8 @@ function init() {
   const canvas = document.createElement('canvas'); canvas.className = 'weather-canvas'; canvas.setAttribute('aria-hidden','true'); frame.append(canvas);
   const ctx = canvas.getContext('2d');
   const fract = x => x-Math.floor(x), random = n => fract(Math.sin(n*127.1+311.7)*43758.5453);
-  let width = 1, height = 1, layouts = [], rings = [], eaves = [], active = false;
+  let width = 1, height = 1, layouts = [], active = false;
+  let currentScene=0, rainbowOwner=null, moonOwner=0, moonAppearance, manualMoonDate=false;
   let raf = 0, previous = 0, lastDraw = 0, uiAge = 0, stormAge = 0, strikeAt = 4, flashAge = 9, flashX = .72, lightning = true, layoutTimer;
   let river = { level: 0, pan: 0, scene: -1 };
   const eaveLines = [
@@ -41,7 +45,10 @@ function init() {
       const output=document.createElementNS('http://www.w3.org/2000/svg','g');output.setAttribute('class','weather-smoke-output');
       [...stack.children].filter(node=>!node.classList.contains('life-chimney')).forEach(node=>output.append(node));stack.append(output);
     });
-    const actors = [...scene.svg.querySelectorAll('[data-rural-actor]')].map((node,i) => ({node, story:node.dataset.ruralStory, i, targets:[...node.querySelectorAll('[role="button"]')]}));
+    const actors = [...scene.svg.querySelectorAll('[data-rural-actor]')].map((node,i) => {
+      const targets=[...node.querySelectorAll('[role="button"]')];targets.forEach(target=>{target.dataset.dayLabel=target.getAttribute('aria-label');target.dataset.dayTitle=target.querySelector('title')?.textContent||'';});
+      return {node,story:node.dataset.ruralStory,i,targets};
+    });
     const wildlife = [...scene.svg.querySelectorAll('.weather-wildlife,.weather-duck')].map(node => ({node,duck:node.classList.contains('weather-duck'),targets:[...node.querySelectorAll('[role="button"]')]}));
     const water = (scene.waterAnimations || []).map(node => ({node, duration:parseFloat(node.getAttribute('dur'))}));
     const shops = [...scene.svg.querySelectorAll('[data-market-shop]')];
@@ -63,8 +70,25 @@ function init() {
     const rect = document.createElementNS(ns,'rect'); rect.setAttribute('width',size); rect.setAttribute('height',size); clip.append(rect); scene.svg.querySelector('defs').append(clip);
     const box = document.createElementNS(ns,'g'); box.setAttribute('transform',`translate(${site[0]-size/2} ${site[1]-size*.965})`); box.setAttribute('clip-path',`url(#${clip.id})`);
     const img = document.createElementNS(ns,'image'); img.setAttribute('href','assets/villagers/market-shopkeeper-v1.png'); img.setAttribute('width',size*2); img.setAttribute('height',size); img.setAttribute('class','rural-art'); box.append(img); shelter.append(box); scene.svg.append(shelter);
-    return {scene,index,actors,wildlife,water,shops,shelter,waterBand:-1};
+    const world=createWorldAtmosphere(scene,index,{windows:windows[index],eaves:eaveLines[index]});
+    return {scene,index,actors,wildlife,water,shops,shelter,world,waterBand:-1};
   });
+
+  function updateMoon() {
+    const year=Math.max(2024,Math.min(2030,new Date().getFullYear()));
+    const term=Math.max(0,TERMS.indexOf($('currentTerm').textContent.trim()));
+    if(!manualMoonDate) {
+      const date=new Date(getCycle(year)[term].instant.getTime()+8*3600000);
+      $('moonDate').value=date.toISOString().slice(0,10);
+    }
+    const value=$('moonDate').value;
+    if(!/^\d{4}-\d{2}-\d{2}$/.test(value))return;
+    moonAppearance=getMoonAppearance(`${value}T20:00:00+08:00`);
+    $('moonDateMode').textContent=manualMoonDate?'自选日期':'随节气';
+    $('moonDescription').textContent=`${moonAppearance.label} · 亮面 ${Math.round(moonAppearance.illumination*100)}% · 视直径 ${moonAppearance.angularDiameter.toFixed(1)}′ · 月地 ${(moonAppearance.distanceKm/10000).toFixed(1)}万公里`;
+    sceneNodes.forEach(item=>item.world.setMoon(moonAppearance));
+    if(moonAppearance)draw(model.snapshot());
+  }
 
   function hidden(node, value, targets = []) {
     if (node.dataset.weatherHidden === String(value)) return;
@@ -78,12 +102,17 @@ function init() {
       const raining = state.amount > .055 && season !== 3;
       scene.svg.dataset.precipitating = String(state.amount > .055);
       scene.svg.dataset.wetHarvest = String(season === 2 && state.amount > .08);
+      scene.svg.dataset.nightOuting=String(state.dark>.45);
       actors.forEach(({node,story,i,targets}) => {
         const field = ['hoe','plough','plant','harvest','winnow','chop'].includes(story);
         const rest = state.dark > .5 || (season === 1 && state.amount > .48) || (season === 2 && state.amount > .16) || (story === 'chop' && state.amount > .25);
         const covered = story === 'winnow' && state.amount > .055;
-        const nightStreet = !field && state.dark > .6 && i%2 === 0;
+        const nightStreet = !field && state.dark > .6 && ['buyer','carry'].includes(story);
         hidden(node,(field && rest)||covered||nightStreet,targets);
+        if(['walk','winterWalk'].includes(story))targets.forEach(target=>{
+          target.setAttribute('aria-label',state.dark>.45?'夜行 · 提灯归家，点击了解':target.dataset.dayLabel);
+          const title=target.querySelector('title');if(title)title.textContent=state.dark>.45?'夜行 · 提灯归家':target.dataset.dayTitle;
+        });
       });
       wildlife.forEach(({node,duck,targets}) => hidden(node,duck ? state.dark>.45||(season===1&&state.amount>.48) : state.birdShelter,targets));
       shops.forEach(node => hidden(node,state.dark > .62,[node]));
@@ -106,17 +135,13 @@ function init() {
     const rects = motion.scenes.map(scene => ({scene,rect:scene.panel.getBoundingClientRect()}));
     width = Math.max(1,bounds.width); height = Math.max(1,bounds.height);
     const pixelRatio = Math.min(devicePixelRatio || 1,1.5);
-    canvas.width = Math.round(width*pixelRatio); canvas.height = Math.round(height*pixelRatio); ctx.setTransform(pixelRatio,0,0,pixelRatio,0,0);
+    const cw=Math.round(width*pixelRatio),ch=Math.round(height*pixelRatio);
+    if(canvas.width!==cw||canvas.height!==ch){canvas.width=cw;canvas.height=ch;ctx.setTransform(pixelRatio,0,0,pixelRatio,0,0);}
     layouts = rects.filter(({rect}) => rect.right > bounds.left && rect.left < bounds.right).map(({scene,rect}) => ({scene,index:Number(scene.panel.dataset.panel),x:rect.left-bounds.left,w:rect.width,h:rect.height}));
     const dominant = [...layouts].sort((a,b) => visible(b)-visible(a))[0];
-    if (dominant) model.setSeason(Math.floor(dominant.index/2));
-    rings = [];
-    for (let i=0;i<95;i++) {
-      const x = random(i+8)*width, y = (.37+random(i+301)*.62)*height;
-      const local = [...layouts].reverse().find(item => x >= item.x && x <= item.x+item.w);
-      if (local?.scene.onWater({x:(x-local.x)/local.w*2172,y:y/local.h*724})) rings.push({x,y,seed:i});
-    }
-    eaves = layouts.flatMap(item => eaveLines[item.index].flatMap(([x1,y1,x2,y2],row) => Array.from({length:9},(_,i)=>({x:item.x+(x1+(x2-x1)*(i+.5)/9)/2172*item.w,y:(y1+(y2-y1)*(i+.5)/9)/724*item.h,seed:i+row*13+item.index*29})))).filter(p=>p.x>0&&p.x<width);
+    if (dominant) {currentScene=dominant.index;model.setSeason(Math.floor(dominant.index/2));}
+    const moonCandidates=layouts.map(item=>({index:item.index,x:item.x+MOON_ANCHORS[item.index][0]/2172*item.w})).filter(item=>item.x>=0&&item.x<=width);
+    if(!moonCandidates.some(item=>item.index===moonOwner))moonOwner=moonCandidates.sort((a,b)=>Math.abs(a.x-width/2)-Math.abs(b.x-width/2))[0]?.index??currentScene;
     // The nearest on-screen water source wins; no offscreen painting owns a
     // second ambience loop. Distance pans and attenuates this shared source.
     const candidates = layouts.map(item => {
@@ -153,34 +178,16 @@ function init() {
   }
   function draw(state) {
     ctx.clearRect(0,0,width,height);
-    // A translucent ink wash changes the illumination without recolouring or
-    // filtering every large painting on every frame.
-    if (state.dark > 0) { ctx.fillStyle = `rgba(14,25,43,${state.dark*.76})`; ctx.fillRect(0,0,width,height); }
+    if(model.rainbowAge===null)rainbowOwner=null;
+    else if(rainbowOwner===null)rainbowOwner=currentScene;
+    if(moonAppearance)sceneNodes.forEach(item=>item.world.update(state,rainbowOwner,moonAppearance,moonOwner));
+    frame.dataset.rainbowScene=rainbowOwner===null?'':String(rainbowOwner);
+    // Only free-falling rain/snow and lightning are screen effects. All
+    // objects attached to the artwork are native scene-coordinate SVG nodes.
     if (state.amount > 0) {
       const shade = ctx.createLinearGradient(0,0,0,height);
       shade.addColorStop(0,`rgba(46,58,68,${state.amount*(state.season===1?.5:.25)})`); shade.addColorStop(1,`rgba(64,77,81,${state.amount*.09})`);
       ctx.fillStyle = shade; ctx.fillRect(0,0,width,height);
-    }
-    if (state.dark > .05) {
-      ctx.globalAlpha = state.dark*(1-state.amount*.97);
-      for (let i=0;i<38;i++) { ctx.beginPath(); ctx.fillStyle='#e9e0bf'; ctx.arc(random(i+22)*width,random(i+82)*height*.2,random(i+2)*.85+.35,0,Math.PI*2);ctx.fill(); }
-      ctx.fillStyle='#e9dec3'; ctx.beginPath();ctx.arc(width*.75,height*.105,Math.max(5,height*.022),0,Math.PI*2);ctx.fill();
-      ctx.globalAlpha=1;
-      layouts.forEach(item=>windows[item.index].forEach(([x,y,w,h])=>{
-        const px=item.x+x/2172*item.w, py=y/724*height, pw=w/2172*item.w, ph=h/724*height;
-        const glow=ctx.createRadialGradient(px+pw*.5,py+ph*.5,0,px+pw*.5,py+ph*.5,Math.max(pw,ph)*.7);
-        glow.addColorStop(0,`rgba(239,174,83,${state.dark*.32})`);glow.addColorStop(1,`rgba(239,174,83,${state.dark*.06})`);
-        ctx.fillStyle=glow;ctx.fillRect(px,py,pw,ph);
-      }));
-    }
-    if (state.rainbow > 0) {
-      const cx=width*.61, cy=height*.49, radius=Math.min(width*.29,height*.46), colors=['#c88675','#cfaa72','#d4c58b','#9fb090','#8faeaa','#939eb3','#aaa0b6'];
-      ctx.save();ctx.globalAlpha=state.rainbow*.36;ctx.lineWidth=Math.max(2,height*.007);
-      colors.forEach((color,i)=>{
-        const sky=ctx.createLinearGradient(0,0,0,height*.39);
-        sky.addColorStop(0,color);sky.addColorStop(.6,color);sky.addColorStop(1,`${color}00`);
-        ctx.strokeStyle=sky;ctx.beginPath();ctx.arc(cx,cy,radius-i*ctx.lineWidth,Math.PI*1.08,Math.PI*1.92);ctx.stroke();
-      });ctx.restore();
     }
     if (state.amount > .001) {
       const count=Math.ceil(state.profile.drops*state.amount*Math.min(1.5,width/1150));
@@ -196,19 +203,6 @@ function init() {
           ctx.strokeStyle=state.dark>.4 ? `rgba(213,222,218,${.24+state.rain*.33})` : `rgba(58,78,86,${.3+state.rain*.16})`;
           ctx.lineWidth=(state.season===1?.85:.7)*depth;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x-length*.27,y+length);ctx.stroke();
         }
-      }
-      if (state.season!==3) {
-        rings.slice(0,Math.ceil(rings.length*state.amount)).forEach(({x,y,seed})=>{
-          const age=fract(state.time*(.7+state.rain*.8)+random(seed+501)), radius=(3+12*state.rain)*age;
-          ctx.strokeStyle=`rgba(225,230,211,${(1-age)*state.amount*.55})`;ctx.lineWidth=.7;ctx.beginPath();ctx.ellipse(x,y,radius,radius*.25,0,0,Math.PI*2);ctx.stroke();
-        });
-        // Drops begin exactly at authored eave edges, not at the sky or roof ridge.
-        eaves.forEach(({x,y,seed})=>{
-          const age=fract(state.time*(1.1+state.rain)+random(seed+981));
-          if (random(seed+93)>state.amount*.87) return;
-          const distance=age*age*(17+state.rain*30);
-          ctx.strokeStyle=`rgba(224,231,219,${state.amount*(1-age)*.8})`;ctx.lineWidth=.9;ctx.beginPath();ctx.moveTo(x,y+distance);ctx.lineTo(x-.6,y+distance+2+age*3);ctx.stroke();
-        });
       }
     }
     if (flashAge < .8 && lightning && !reduced.matches) {
@@ -243,6 +237,9 @@ function init() {
     refresh();
   }
   $('weatherDay').addEventListener('click',()=>choose(instant=>model.setNight(false,instant)));
+  $('moonDate').addEventListener('change',()=>{manualMoonDate=Boolean($('moonDate').value);updateMoon();});
+  $('moonFollowTerm').addEventListener('click',()=>{manualMoonDate=false;updateMoon();});
+  new MutationObserver(()=>{if(!manualMoonDate)updateMoon();}).observe($('currentTerm'),{childList:true,characterData:true,subtree:true});
   $('weatherNight').addEventListener('click',()=>choose(instant=>model.setNight(true,instant)));
   $('weatherWet').addEventListener('click',()=>choose(instant=>model.setWet(true,instant)));
   $('weatherClear').addEventListener('click',()=>choose(instant=>model.setWet(false,instant)));
@@ -266,5 +263,5 @@ function init() {
   const observer=new IntersectionObserver(()=>measure());observer.observe(viewport);
   reduced.addEventListener('change',()=>{flashAge=9;measure();});
   window.addEventListener('pagehide',()=>{active=false;if(raf)cancelAnimationFrame(raf);sound.close();});
-  measure();
+  updateMoon();measure();
 }

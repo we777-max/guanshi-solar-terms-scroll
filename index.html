@@ -10,14 +10,14 @@
   <link rel="stylesheet" href="styles.css?v=0.2.1">
   <link rel="stylesheet" href="study.css">
   <link rel="stylesheet" href="motion.css?v=6">
-  <link rel="stylesheet" href="weather.css?v=1">
+  <link rel="stylesheet" href="weather.css?v=7">
   <script src="app.js" defer></script>
   <script src="study.js" defer></script>
   <script src="water-motion.js?v=1" defer></script>
   <script src="season-life.js?v=3" defer></script>
-  <script src="rural-life.js?v=2" defer></script>
+  <script src="rural-life.js?v=7" defer></script>
   <script src="motion.js?v=6" defer></script>
-  <script src="weather.js?v=2" type="module"></script>
+  <script src="weather.js?v=7" type="module"></script>
   <script src="courtyard-portal.js?v=1" defer></script>
 </head>
 <body>
@@ -56,6 +56,7 @@
       <aside id="weatherControls" class="weather-controls" aria-label="昼夜与天气" hidden>
         <div class="weather-heading"><strong>观天候</strong><button id="weatherClose" class="weather-close" type="button" aria-label="收起天气设置">×</button></div>
         <fieldset class="weather-group"><legend>昼夜</legend><div class="weather-options"><button id="weatherDay" type="button" aria-pressed="true">白天</button><button id="weatherNight" type="button" aria-pressed="false">夜晚</button></div></fieldset>
+        <fieldset class="weather-group moon-observation"><legend>观月日期 · <span id="moonDateMode">随节气</span></legend><div class="moon-date-row"><input id="moonDate" type="date" min="1900-01-01" max="2100-12-31" aria-label="观月日期"><button id="moonFollowTerm" type="button">随节气</button></div><p id="moonDescription"></p><p class="moon-note">月相与视大小随日期变化，天空位置为画卷示意。</p></fieldset>
         <fieldset class="weather-group"><legend>随四时而变</legend><div class="weather-options"><button id="weatherClear" type="button" aria-pressed="true">晴 / 渐停</button><button id="weatherWet" type="button" aria-pressed="false">下春雨</button></div></fieldset>
         <div class="weather-audio"><button id="weatherSound" type="button" aria-pressed="true">环境声 · 开</button><button id="weatherLightning" type="button" aria-pressed="true">闪电 · 开</button></div>
         <label class="weather-volume" for="weatherVolume">音量<input id="weatherVolume" type="range" min="0" max="100" value="45" aria-label="环境声音量"></label>

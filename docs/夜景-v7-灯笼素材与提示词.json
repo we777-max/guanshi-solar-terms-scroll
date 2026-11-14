@@ -1,0 +1,32 @@
+{
+  "generator": "内置 image_gen",
+  "assets": [
+    {
+      "key": "village-walker-lantern-v1",
+      "input": "village-walker-v1",
+      "extra": "In BOTH frames replace his small cloth bundle with a SMALL warm cream paper-and-bamboo handheld candle lantern. His forward RIGHT hand holds a short wooden carrying stick with a cord; the lantern hangs firmly from it in front of his right thigh/knee, not behind his body, exactly at 69 percent cell width and 68 percent cell height. Other arm walks naturally. Lantern is about 13 percent of cell width, subtle amber inner paper illumination, thin dark bamboo ribs, subdued brown trim, no tassel festival giant lantern. Do not resize his body. Keep lantern clear of legs and fully within each cell.",
+      "prompt": "Use case: precise-object-edit, historical-scene. Exact supplied transparent two-frame sprite is the EDIT TARGET. Preserve its 2:1 strip, two equal square cells, identity, facial likeness, plain ancient clothes, fine sepia ink outlines, muted ochre/indigo pigment and aged silk grain INSIDE the subjects only. Maintain original body size, foot baseline, positions, camera and both walking leg phases. True transparent alpha background. NO night backdrop, ground, text, watermark, extra arms, extra people, electrical light or LED. In BOTH frames replace his small cloth bundle with a SMALL warm cream paper-and-bamboo handheld candle lantern. His forward RIGHT hand holds a short wooden carrying stick with a cord; the lantern hangs firmly from it in front of his right thigh/knee, not behind his body, exactly at 69 percent cell width and 68 percent cell height. Other arm walks naturally. Lantern is about 13 percent of cell width, subtle amber inner paper illumination, thin dark bamboo ribs, subdued brown trim, no tassel festival giant lantern. Do not resize his body. Keep lantern clear of legs and fully within each cell.",
+      "original": "C:\\Users\\魏志宇\\.codex\\generated_images\\01a1ced6-33da-7253-9636-e503972d7f9d\\exec-0f1acebf-b60f-49a6-a2cd-171108a738a6.png",
+      "workspacePath": "D:/杂/项目/计算机设计大赛/assets/villagers/village-walker-lantern-v1.png",
+      "editTarget": "D:/杂/项目/计算机设计大赛/assets/villagers/village-walker-v1.png"
+    },
+    {
+      "key": "village-walker-lantern-rain-v1",
+      "input": "village-walker-rain-v1",
+      "extra": "In BOTH frames keep the umbrella overhead with its shaft visibly held in his right hand. Replace the small bundle in his OTHER left hand with a SMALL waterproof oil-paper-and-bamboo candle lantern held on a short carrying stick, hanging in front of his left hip at about 27 percent cell width and 68 percent cell height. Exactly two arms: one umbrella hand and one lantern hand. Lantern about 13 percent cell width, subtle warm amber paper interior with thin dark ribs. Preserve body, umbrella, feet and walking poses. No added glow cloud or background.",
+      "prompt": "Use case: precise-object-edit, historical-scene. Exact supplied transparent two-frame sprite is the EDIT TARGET. Preserve its 2:1 strip, two equal square cells, identity, facial likeness, plain ancient clothes, fine sepia ink outlines, muted ochre/indigo pigment and aged silk grain INSIDE the subjects only. Maintain original body size, foot baseline, positions, camera and both walking leg phases. True transparent alpha background. NO night backdrop, ground, text, watermark, extra arms, extra people, electrical light or LED. In BOTH frames keep the umbrella overhead with its shaft visibly held in his right hand. Replace the small bundle in his OTHER left hand with a SMALL waterproof oil-paper-and-bamboo candle lantern held on a short carrying stick, hanging in front of his left hip at about 27 percent cell width and 68 percent cell height. Exactly two arms: one umbrella hand and one lantern hand. Lantern about 13 percent cell width, subtle warm amber paper interior with thin dark ribs. Preserve body, umbrella, feet and walking poses. No added glow cloud or background.",
+      "original": "C:\\Users\\魏志宇\\.codex\\generated_images\\01a1ced6-33da-7253-9636-e503972d7f9d\\exec-0a0d1394-a0b6-42b2-a05a-50554e04291a.png",
+      "workspacePath": "D:/杂/项目/计算机设计大赛/assets/villagers/village-walker-lantern-rain-v1.png",
+      "editTarget": "D:/杂/项目/计算机设计大赛/assets/villagers/village-walker-rain-v1.png"
+    },
+    {
+      "key": "winter-villager-lantern-v1",
+      "input": "winter-villager-v1",
+      "extra": "In BOTH frames keep the little bundle of firewood held in his left arm. His forward RIGHT hand now grips a short wooden lantern carrying stick. A SMALL old cream oil-paper bamboo candle lantern hangs from its short cord near his right thigh/knee, about 69 percent cell width and 68 percent cell height. Lantern about 13 percent cell width, thin brown bamboo ribs and subtle warm amber inner paper illumination. Thick winter cape and wrapped legs unchanged, no modern shoes. Exactly two hands, no extra wood or people. Keep both original feet positions and body size.",
+      "prompt": "Use case: precise-object-edit, historical-scene. Exact supplied transparent two-frame sprite is the EDIT TARGET. Preserve its 2:1 strip, two equal square cells, identity, facial likeness, plain ancient clothes, fine sepia ink outlines, muted ochre/indigo pigment and aged silk grain INSIDE the subjects only. Maintain original body size, foot baseline, positions, camera and both walking leg phases. True transparent alpha background. NO night backdrop, ground, text, watermark, extra arms, extra people, electrical light or LED. In BOTH frames keep the little bundle of firewood held in his left arm. His forward RIGHT hand now grips a short wooden lantern carrying stick. A SMALL old cream oil-paper bamboo candle lantern hangs from its short cord near his right thigh/knee, about 69 percent cell width and 68 percent cell height. Lantern about 13 percent cell width, thin brown bamboo ribs and subtle warm amber inner paper illumination. Thick winter cape and wrapped legs unchanged, no modern shoes. Exactly two hands, no extra wood or people. Keep both original feet positions and body size.",
+      "original": "C:\\Users\\魏志宇\\.codex\\generated_images\\01a1ced6-33da-7253-9636-e503972d7f9d\\exec-ce1912a4-987d-433c-a510-005df50da777.png",
+      "workspacePath": "D:/杂/项目/计算机设计大赛/assets/villagers/winter-villager-lantern-v1.png",
+      "editTarget": "D:/杂/项目/计算机设计大赛/assets/villagers/winter-villager-v1.png"
+    }
+  ]
+}

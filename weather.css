@@ -1,5 +1,23 @@
 .weather-controls { position: absolute; right: 34px; top: 45px; z-index: 8; width: min(330px,calc(100% - 20px)); padding: 19px; border: 1px solid #aa947070; background: #f0e6d4fa; box-shadow: 0 12px 30px #69523320; }
 .weather-controls[hidden] { display: none; }
+.weather-controls { max-height: min(600px,calc(100dvh - 260px)); overflow-y: auto; overscroll-behavior: contain; }
+.moon-date-row { display: flex; gap: 8px; }
+.moon-date-row input { min-width: 0; flex: 1; width: 170px; min-height: 34px; border: 1px solid #aa947050; background: #eee3cf70; padding: 5px 8px; color: #68533e; font-size: 12px; }
+.moon-date-row button { min-height: 34px; border: 1px solid #aa947050; background: transparent; padding: 5px 8px; font-size: 11px; }
+#moonDescription { margin: 8px 0 0; font-size: 11px; line-height: 1.7; color: #7b6449; }
+.moon-note { margin: 4px 0 0; font-size: 10px; line-height: 1.6; color: #9a8668; }
+.world-atmosphere { pointer-events: none; }
+.life-window-glow { display: none; }
+.weather-night-art, .weather-night-rain-art { opacity: 0; transition: opacity 1.5s ease; }
+.scene-motion[data-night-outing="true"] .weather-day-figure { opacity: 0 !important; }
+.scene-motion[data-night-outing="true"] .weather-night-art { opacity: 1; }
+.scene-motion[data-night-outing="true"][data-precipitating="true"] .weather-night-art:not(.weather-winter-lantern) { opacity: 0; }
+.scene-motion[data-night-outing="true"][data-precipitating="true"] .weather-night-rain-art { opacity: 1; }
+.scene-motion[data-night-outing="true"] .rural-art { filter: brightness(.43) sepia(.15) saturate(.65); }
+.scene-motion[data-night-outing="true"] .weather-night-art .rural-art, .scene-motion[data-night-outing="true"] .weather-night-rain-art .rural-art { filter: brightness(.7) sepia(.07) saturate(.8); }
+.rural-foreground { transition: opacity 1.5s ease; }
+.scene-motion[data-night-outing="true"] .rural-foreground { opacity: 0; }
+.scene-panel:has(.scene-motion[data-night-outing="true"]) .gnomon-illustration { filter: brightness(.35); }
 .weather-heading { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
 .weather-heading strong { font-weight: 400; font-size: 16px; letter-spacing: .18em; }
 .weather-close { width: 30px; height: 30px; border: 0; background: transparent; font-size: 20px; }
@@ -40,7 +58,7 @@
   .toolbar-actions .text-button { font-size: 11px; letter-spacing: .04em; }
 }
 @media (max-width: 480px) { .toolbar-actions .gnomon-portal { display: none; } }
-.is-immersive .weather-controls { top: auto; bottom: 80px; right: 18px; }
+.is-immersive .weather-controls { top: auto; bottom: 80px; right: 18px; max-height: calc(100dvh - 100px); }
 .is-immersive #weatherToggle { display: block; padding: 8px; background: #eee3cfd9; }
 @media (prefers-reduced-motion: reduce) {
   .weather-smoke-cover, .weather-wildlife, .weather-duck, [data-rural-actor], [data-weather-person], [data-smoke-stack] > :not(.life-chimney), [data-painted-smoke], .life-prop-art,

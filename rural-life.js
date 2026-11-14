@@ -84,7 +84,8 @@
     let sequence = 0;
     function makeId(name) { return `rural-${index}-${name}-${sequence++}`; }
     function explain(button, story) {
-      const details = stories[story];
+      const night=scene.svg.dataset.nightOuting==='true'&&['walk','winterWalk'].includes(story);
+      const details = night?{title:'夜行 · 提灯归家',text:story==='winterWalk'?'村人披着厚布衣，抱好柴薪，提着纸灯笼沿岸上村路归家。灯光只照亮身边一小段路。':'村人手提纸灯笼照看脚下石路。雨夜一手撑油纸伞，一手提灯，沿村路慢行归家。'}:stories[story];
       window.ScrollSeasonLife.showNote(button, season, details);
       const status = document.querySelector('#viewStatus');
       if (status) status.textContent = details.text;
@@ -107,11 +108,11 @@
       const id = makeId('foreground');
       const clip = element('clipPath', { id, clipPathUnits: 'userSpaceOnUse' });
       clip.append(element('path', { d })); defs.append(clip);
-      parent.append(element('image', { href: source, width: 2172, height: 724, preserveAspectRatio: 'none', 'clip-path': `url(#${id})`, 'aria-hidden': 'true', 'pointer-events': 'none' }));
+      parent.append(element('image', { class:'rural-foreground', href: source, width: 2172, height: 724, preserveAspectRatio: 'none', 'clip-path': `url(#${id})`, 'aria-hidden': 'true', 'pointer-events': 'none' }));
     }
     function sprite(parent, config) {
       const rainy = new Set(['field-hoeing','spring-ox-plough','summer-rice-planter','autumn-rice-harvester','grain-carrier','village-walker','market-shopper']);
-      function frame(file, scale, foot, className) {
+      function frame(file, scale, foot, className, lantern=null) {
         const width = (config.width || config.size)*scale, height = (config.height || config.size)*scale;
         const id = makeId('frame');
         const clip = element('clipPath', { id, clipPathUnits: 'userSpaceOnUse' });
@@ -119,17 +120,36 @@
         const anchor = element('g', { class: className, transform: `translate(${-width/2} ${-height*foot})`, 'aria-hidden': 'true' });
         const window = element('g', { 'clip-path': `url(#${id})` });
         const image = element('image', { class: 'rural-art', href: `assets/villagers/${file}.png`, width: width*2, height, preserveAspectRatio: 'none' });
+        if(lantern) {
+          const glowId=makeId('lantern-glow');
+          const gradient=element('radialGradient',{id:glowId});
+          gradient.append(element('stop',{offset:0,'stop-color':'#f1bc68','stop-opacity':.55}),element('stop',{offset:1,'stop-color':'#e8b56a','stop-opacity':0}));defs.append(gradient);
+          const glow=element('g',{'data-lantern-glow':''});
+          const halo=element('g'),ground=element('g');
+          halo.append(element('circle',{r:width*.15,fill:`url(#${glowId})`}));
+          ground.append(element('ellipse',{cx:0,cy:height*foot+2,rx:width*.42,ry:width*.09,fill:`url(#${glowId})`,opacity:.58}));
+          const begin=`${-(config.phase||0)}s`,dur=`${config.period||3.5}s`;
+          const points=lantern.map(([x,y])=>`${x*width} ${y*height}`);
+          animate(halo,{attributeName:'transform',type:'translate',values:`${points[0]};${points[1]};${points[0]}`,keyTimes:'0;.5;1',calcMode:'discrete',dur,begin},true);
+          animate(ground,{attributeName:'transform',type:'translate',values:`${lantern[0][0]*width} 0;${lantern[1][0]*width} 0;${lantern[0][0]*width} 0`,keyTimes:'0;.5;1',calcMode:'discrete',dur,begin},true);
+          glow.append(ground,halo);anchor.append(glow);
+        }
         animate(image, { attributeName: 'x', values: `0;${-width};0`, keyTimes: '0;.5;1', calcMode: 'discrete', dur: `${config.period || 3.5}s`, begin: `${-(config.phase || 0)}s` });
         window.append(image); anchor.append(window); parent.append(anchor);
       }
       const width = config.width || config.size;
       const height = config.height || config.size;
       const foot = config.foot || footAnchors[config.key] || .9;
-      frame(`${config.key}-v1`, 1, foot, rainy.has(config.key) ? 'weather-dry-art' : '');
+      frame(`${config.key}-v1`, 1, foot, `weather-day-figure ${rainy.has(config.key)?'weather-dry-art':''}`);
       if (rainy.has(config.key)) {
         const umbrella = config.key === 'village-walker' || config.key === 'market-shopper';
-        frame(`${config.key}-rain-v1`, umbrella ? config.key==='market-shopper'?1.08:1.1 : 1, umbrella ? config.key==='market-shopper'?.967:.98 : foot, 'weather-rain-art');
+        frame(`${config.key}-rain-v1`, umbrella ? config.key==='market-shopper'?1.08:1.1 : 1, umbrella ? config.key==='market-shopper'?.967:.98 : foot, 'weather-day-figure weather-rain-art');
       }
+      if(config.key==='village-walker') {
+        frame('village-walker-lantern-v1',1,foot,'weather-night-art',[[.767,.658],[.685,.666]]);
+        frame('village-walker-lantern-rain-v1',1.1,.98,'weather-night-rain-art',[[.471,.705],[.383,.705]]);
+      }
+      if(config.key==='winter-villager')frame('winter-villager-lantern-v1',1,foot,'weather-night-art weather-winter-lantern',[[.738,.705],[.761,.708]]);
       return { width, height };
     }
     function actor(config) {
