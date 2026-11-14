@@ -44,11 +44,9 @@
   ['still-field', 'water-field'].forEach(name => merged.append(element('feMergeNode', { in: name })));
   const displaced = element('feDisplacementMap', { in: 'SourceGraphic', in2: 'live-field', scale: '14', xChannelSelector: 'R', yChannelSelector: 'G' });
   filter.append(neutral, waterMask, noise, water, maskedWater, merged, displaced);
-  const smokeBlur = element('filter', { id: 'spring-smoke-soft', x: '-100%', y: '-40%', width: '300%', height: '180%' });
-  smokeBlur.append(element('feGaussianBlur', { stdDeviation: '1.8' }));
   const waterClip = element('clipPath', { id: 'spring-river-clip', clipPathUnits: 'userSpaceOnUse' });
   waterClip.append(element('path', { d: `M${bank.map(point => point.join(' ')).join(' ')}V724H0Z`, fill: 'white', stroke: 'none' }));
-  defs.append(filter, smokeBlur, waterClip);
+  defs.append(filter, waterClip);
   // Only the river is redrawn. Trees, architecture and land remain the original static image.
   const painting = element('image', { href: 'assets/scroll/spring.png', width: 2172, height: 724, preserveAspectRatio: 'none', filter: 'url(#spring-live-field)', 'clip-path': 'url(#spring-river-clip)', 'aria-hidden': 'true' });
   const river = element('g', { 'clip-path': 'url(#spring-river-clip)', 'aria-hidden': 'true' });
@@ -64,19 +62,6 @@
   });
   const ripples = element('g');
   river.append(ripples);
-  const hearth = element('g', { transform: 'translate(615 292)', 'aria-hidden': 'true' });
-  hearth.append(element('path', { class: 'motion-chimney', d: 'M-5 1V-14H4V1M-7-14H6V-17H-7Z' }));
-  for (let index = 0; index < 3; index += 1) {
-    const plume = element('g', { class: 'motion-smoke', opacity: 0, filter: 'url(#spring-smoke-soft)' });
-    const swelling = element('g');
-    swelling.append(element('path', { d: 'M0-17C-8-32 9-40 0-54S-4-78 3-93', 'stroke-width': index === 1 ? 8 : 5 }));
-    const begin = `${-index * 3.2}s`;
-    animate(plume, { attributeName: 'opacity', values: '0;.38;.24;0', keyTimes: '0;.2;.65;1', dur: '9.6s', begin });
-    animate(plume, { attributeName: 'transform', type: 'translate', values: '0 0;9 -17;28 -42', dur: '9.6s', begin }, true);
-    animate(swelling, { attributeName: 'transform', type: 'scale', values: '.6 .65;1 1.1;1.45 1.4', dur: '9.6s', begin }, true);
-    plume.append(swelling);
-    hearth.append(plume);
-  }
   const wildlife = element('g', { class: 'motion-wildlife' });
   const swimArea = element('g', { 'clip-path': 'url(#spring-river-clip)' });
   wildlife.append(swimArea);
@@ -166,7 +151,7 @@
   duck(1495, 650, 1, '-6s');
   duck(540, 656, .84, '-19s');
 
-  svg.append(defs, painting, river, hearth, wildlife);
+  svg.append(defs, painting, river, wildlife);
   panel.insertBefore(svg, panel.querySelector('.study-entry'));
   svg.pauseAnimations();
   const scenes = [
@@ -176,6 +161,19 @@
       .map(item => window.ScrollWaterMotion?.create(item, { element, animate }))
       .filter(Boolean)
   ];
+  scenes.forEach(scene => {
+    scene.life = window.ScrollSeasonLife?.decorate(scene, {
+      element, animate,
+      cancelPress() { press = null; },
+      ripple(node) {
+        const matrix = node.getScreenCTM();
+        if (!matrix) return;
+        const current = new DOMPoint(0, 0).matrixTransform(matrix);
+        const location = point(current.x, current.y, scene.panel);
+        if (scene.onWater(location)) addRipple(location, scene);
+      }
+    });
+  });
 
   function removeRipples() {
     rippleTimers.forEach(timer => window.clearTimeout(timer));
@@ -191,6 +189,7 @@
       const visible = scene.inView && scene.panel.dataset.state === 'loaded';
       const nextPlaying = enabled && visible && !studying && document.visibilityState !== 'hidden';
       anyVisible ||= visible;
+      scene.life?.update(nextPlaying, visible);
       scene.svg.classList.toggle('is-ready', visible);
       scene.svg.dataset.motionState = nextPlaying ? 'playing' : studying ? 'study' : !visible ? 'offscreen' : document.visibilityState === 'hidden' ? 'background' : 'paused';
       if (scene.playing === nextPlaying) return;
@@ -206,7 +205,7 @@
     frame.classList.toggle('has-motion', anyVisible);
     toggle.setAttribute('aria-pressed', String(enabled));
     toggle.setAttribute('aria-label', enabled ? '暂停画卷动景' : '播放画卷动景');
-    toggle.title = enabled ? '暂停流水、跌水、炊烟与小鸟动景' : '播放画卷动景；冬季冰面保持静止';
+    toggle.title = enabled ? '暂停流水、炊烟、虫鸟、落叶与细雪' : '播放四季动景；冬季冰面保持静止';
     label.textContent = enabled ? '动景已启' : '动景已停';
     creatures.forEach(creature => creature.setAttribute('aria-disabled', String(!playing)));
   }
@@ -282,6 +281,6 @@
     window.addEventListener('resize', checkView);
     checkView();
   }
-  if (help) help.setAttribute('aria-label', '左右拖动画卷，滚轮与方向键亦可浏览；动景开启时点击未结冰的水面可泛起涟漪，春卷第一景的水鸭与墙头麻雀可点击互动。');
+  if (help) help.setAttribute('aria-label', '左右拖动画卷，滚轮与方向键亦可浏览；点击屋旁陈设了解四时生活，点击蝴蝶、蜻蜓与小鸟看回应，未结冰的水面可泛起涟漪。');
   sync();
 })();

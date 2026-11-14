@@ -3,8 +3,6 @@
 .scene-panel:not([data-state="loaded"]) .scene-motion { display: none; }
 .motion-glint { fill: none; stroke: #f4e4c7; stroke-width: 1.15; stroke-linecap: round; }
 .motion-glint-ink { stroke: #776e54; stroke-width: .7; }
-.motion-smoke path { fill: none; stroke: #b8b7aa; stroke-linecap: round; }
-.motion-chimney { fill: #b3a286; stroke: #756850; stroke-width: .8; stroke-linejoin: round; }
 .motion-ripple { fill: none; stroke: #ead9b8; stroke-width: 1.2; }
 .motion-current { fill: none; stroke: #eee4cc; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
 .motion-current-flat { stroke-width: 1.1; }
@@ -20,6 +18,25 @@
 .motion-creature:focus-visible .motion-hit { fill: #f3e6cb30; stroke: #99734a; stroke-width: 1; }
 .motion-bird-art { pointer-events: none; filter: sepia(.12) saturate(.72); }
 .motion-duck-wake { fill: none; stroke: #e9dbc1; stroke-width: .9; stroke-linecap: round; }
+.life-chimney { fill: #a99b80; stroke: #6d6654; stroke-width: .85; stroke-linejoin: round; }
+.life-smoke-stem { fill: none; stroke: #a5a394; stroke-width: 5; opacity: .38; stroke-linecap: round; }
+.life-smoke-shadow { fill: none; stroke: #777a6e; stroke-width: 11; opacity: .45; stroke-linecap: round; }
+.life-smoke-light { fill: none; stroke: #e8e2d1; stroke-width: 8; opacity: .8; stroke-linecap: round; }
+.life-smoke-cloud { fill: #ddd9cb; stroke: none; opacity: .55; }
+.life-window-glow { fill: #eab267; pointer-events: none; }
+.life-target { pointer-events: auto; cursor: pointer; outline: none; }
+.life-target[aria-disabled="true"] { cursor: default; }
+.life-hit { fill: transparent; stroke: none; pointer-events: all; }
+.life-target:focus-visible > .life-hit { fill: #f3e6cb20; stroke: #99734a; stroke-width: 1; }
+.life-prop-art, .life-sprite { pointer-events: none; filter: sepia(.1) saturate(.78); }
+.life-leaf { fill: #a87c48; stroke: #736247; stroke-width: .6; }
+.life-petal { fill: #d6a797; stroke: #a78171; stroke-width: .4; }
+.life-snow { fill: #f9f5e8; stroke: #e6dfcb; stroke-width: .25; }
+.season-life-note { position: absolute; z-index: 5; left: 25px; bottom: 62px; width: min(310px, calc(100% - 50px)); padding: 15px 34px 14px 16px; border: 1px solid #aa947070; background: #f1e7d4f7; box-shadow: 0 6px 20px #69523318; color: #6b583e; }
+.season-life-note[hidden] { display: none; }
+.season-life-note strong { font-size: 13px; font-weight: 500; letter-spacing: .14em; color: #8b4939; }
+.season-life-note p { margin: 8px 0 0; font-size: 12px; line-height: 1.9; letter-spacing: .04em; }
+.season-life-note button { position: absolute; right: 5px; top: 5px; display: grid; place-items: center; width: 30px; height: 30px; padding: 0; border: 0; background: transparent; color: #8b7658; font-size: 20px; cursor: pointer; }
 .motion-toggle { position: absolute; z-index: 2; right: 17px; bottom: 15px; min-height: 36px; display: flex; align-items: center; gap: 7px; padding: 7px 10px; border: 1px solid #aa94705c; background: #eee3cfeb; color: #6b583e; font-size: 11px; letter-spacing: .08em; box-shadow: 0 2px 9px #69523312; }
 .motion-toggle:hover { border-color: #8b493985; background: #f7ecda; }
 .motion-toggle svg { display: block; width: 16px; height: 16px; stroke-width: 1.3; }
@@ -29,6 +46,7 @@
 .motion-toggle[aria-pressed="false"] .motion-play-icon { display: block; }
 .painting-frame.has-motion .scroll-help { max-width: calc(100% - 160px); line-height: 1.7; }
 @media (max-width: 767px) {
+  .season-life-note { left: 14px; bottom: 58px; width: min(280px, calc(100% - 28px)); padding: 12px 31px 11px 13px; }
   .motion-toggle { right: 11px; bottom: 12px; min-height: 36px; padding: 6px 8px; gap: 5px; font-size: 10px; }
   .painting-frame.has-motion .scroll-help { max-width: calc(100% - 140px); }
 }
