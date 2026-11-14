@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#e5d7b8"><meta name="description" content="从春日长卷走入圭表庭院，在木屋、围墙和石铺地之间行走，观察二十四节气的正午日影。">
+  <title>卷中庭院 · 圭表测影</title><link rel="icon" href="data:,">
+  <link rel="stylesheet" href="courtyard.css?v=1">
+  <script type="importmap">{"imports":{"three":"./vendor/three/build/three.module.js","three/addons/":"./vendor/three/examples/jsm/"}}</script>
+  <script type="module" src="courtyard.js?v=1"></script>
+</head>
+<body>
+  <main id="courtyardStage" class="courtyard-stage" aria-busy="true" data-state="loading" data-view="walk">
+    <div id="courtyardCanvas" class="courtyard-canvas" tabindex="0" role="img" aria-label="可在院中行走的春卷三维庭院，木屋在左、灰瓦围墙在后、小棚与柳树在右，圭表立在石铺地中央偏右。" aria-describedby="walkHelp"></div>
+    <div id="courtyardLoading" class="courtyard-loading"><img src="assets/scroll/spring.png" alt="春卷中的木屋、灰瓦墙、石铺庭院与河岸"><div><span class="loading-seal" aria-hidden="true">入画</span><h2 id="loadTitle">走入春日庭院</h2><p id="loadMessage" role="status">沿石阶而上，走近画中的圭表。</p><button id="retryScene" type="button" hidden>重新进入</button></div></div>
+    <button id="gnomonHotspot" class="gnomon-hotspot" type="button" hidden aria-label="走近圭表并打开节气测影"><span class="hotspot-dot" aria-hidden="true"></span>圭表<span class="hotspot-small">测影 ↗</span></button>
+  </main>
+  <header class="court-header"><a id="backToScroll" class="back-link" href="index.html#gnomonEntry">← <span>重返长卷</span></a><div class="court-title"><p>春卷 · 村落田园</p><h1>卷中庭院<span>立表知时</span></h1></div><button id="helpToggle" class="help-toggle" type="button" aria-label="显示行走操作说明" aria-expanded="false" aria-controls="helpPanel">?</button></header>
+  <div class="compass" aria-hidden="true"><span>北</span><svg id="northNeedle" viewBox="0 0 40 40"><path d="M20 5 16 24 20 21 24 24Z"/><path class="compass-tail" d="m20 35-3-11 3-3 3 3Z"/></svg></div>
+  <section id="helpPanel" class="help-panel" hidden><h2>在画中走一走</h2><p>拖动画面环顾，使用 W A S D 或方向键行走。也可以点击石铺地，自动移步。</p><p>点击圭表，或按下“走近圭表”查看器物；切换节气，观察正午日影。</p><button id="helpClose" type="button">知道了</button></section>
+  <p id="walkHelp" class="walk-help">拖动环顾 · WASD 行走 · 点石地移步</p>
+  <nav class="court-actions" aria-label="庭院视角"><button id="walkView" type="button" aria-pressed="true" disabled>院中漫游</button><button id="overviewView" type="button" aria-pressed="false" disabled>俯看庭院</button><button id="approachGnomon" type="button" disabled>走近圭表 ↗</button></nav>
+  <div id="movementPad" class="movement-pad" role="group" aria-label="院中行走方向"><button type="button" data-move="forward" class="move-forward" aria-label="向前行走" disabled>↑</button><button type="button" data-move="left" class="move-left" aria-label="向左行走" disabled>←</button><button type="button" data-move="back" class="move-back" aria-label="向后行走" disabled>↓</button><button type="button" data-move="right" class="move-right" aria-label="向右行走" disabled>→</button></div>
+  <button id="observationToggle" class="observation-toggle" type="button" aria-expanded="false" aria-controls="courtObservation" disabled><span id="currentTermBadge">立春</span><span>正午测影 ＋</span></button>
+  <aside id="courtObservation" class="court-observation" aria-labelledby="observationTitle" hidden>
+    <div class="observation-head"><div><p>以影知时 · <span id="observationPlace">洛阳</span></p><h2 id="observationTitle">立春 · 正午</h2></div><button id="closeObservation" type="button" aria-label="收起测影面板">×</button></div>
+    <div class="shadow-number"><span>表顶中心影长</span><p><strong id="shadowLength">—</strong><small>米</small></p></div>
+    <dl class="observation-data"><div><dt>太阳高度</dt><dd id="sunAltitude">—</dd></div><div><dt>日出至日落</dt><dd id="dayLength">—</dd></div></dl>
+    <div class="observation-selects"><label>节气<select id="termSelect"></select></label><label>地点<select id="placeSelect"><option value="luoyang">洛阳</option><option value="beijing">北京</option><option value="hangzhou">杭州</option></select></label></div>
+    <details class="observation-more"><summary>观测时间与说明</summary><label>节气循环<select id="yearSelect"></select></label><p id="observationTime"></p><p id="termTime"></p><p>表高 2 米。院景沿用春卷意象；日影按所选地点、节气当天的太阳正午计算。画中刻度为科普示意。</p><p>影长 = 表高 ÷ tan（太阳高度角）。不计折射，钟表时间均为北京时间。</p><a href="https://www.hko.gov.hk/sc/gts/time/24solarterms.htm" target="_blank" rel="noopener noreferrer">节气与黄经依据 ↗</a></details>
+  </aside>
+  <p id="courtStatus" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
+  <noscript><p class="noscript">请启用 JavaScript 进入三维庭院。<a href="index.html#gnomonEntry">返回长卷</a></p></noscript>
+</body>
+</html>

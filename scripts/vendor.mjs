@@ -7,6 +7,7 @@ const files = [
   ['three', 'build/three.module.js'],
   ['three', 'build/three.core.js'],
   ['three', 'examples/jsm/controls/OrbitControls.js'],
+  ['three', 'examples/jsm/environments/RoomEnvironment.js'],
   ['three', 'examples/jsm/loaders/GLTFLoader.js'],
   ['three', 'examples/jsm/utils/BufferGeometryUtils.js'],
   ['three', 'LICENSE'],

@@ -1,0 +1,18 @@
+{
+  "version": "aged-v2-draft",
+  "source": "Blender MCP / manually modelled with procedural intrinsic PBR",
+  "heightM": 2.0,
+  "datumY": 0.12,
+  "slabLengthM": 6,
+  "slabWidthM": 0.5,
+  "parts": [
+    "Stone_Gui — flat measuring surface, chipped edges",
+    "Bronze_Mount — small worn socket",
+    "Bronze_Post — square upright",
+    "Bronze_Cap — level measuring top"
+  ],
+  "triangles": 5374,
+  "axes": "glTF: +X east, +Y up, -Z north",
+  "textures": "2k base colour; 1k metallic-roughness and tangent normal; no baked light or shadow",
+  "historicalReplica": false
+}
