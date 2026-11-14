@@ -14,7 +14,6 @@
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
   const bank = [[0,622],[120,614],[260,620],[380,643],[500,630],[620,636],[800,648],[980,635],[1150,623],[1350,636],[1530,623],[1620,608],[1760,623],[1900,613],[2050,594],[2172,578]];
   let choice = null;
-  let inView = false;
   let playing = false;
   let press = null;
   const rippleTimers = new Set();
@@ -170,35 +169,49 @@
   svg.append(defs, painting, river, hearth, wildlife);
   panel.insertBefore(svg, panel.querySelector('.study-entry'));
   svg.pauseAnimations();
+  const scenes = [
+    { panel, svg, ripples, onWater },
+    ...[...document.querySelectorAll('.scene-panel')]
+      .filter(item => item !== panel)
+      .map(item => window.ScrollWaterMotion?.create(item, { element, animate }))
+      .filter(Boolean)
+  ];
 
   function removeRipples() {
     rippleTimers.forEach(timer => window.clearTimeout(timer));
     rippleTimers.clear();
-    ripples.replaceChildren();
+    scenes.forEach(scene => scene.ripples.replaceChildren());
   }
   function sync() {
     const enabled = choice === null ? !reduced.matches : choice;
     const studying = document.documentElement.classList.contains('is-studying');
-    const loaded = panel.dataset.state === 'loaded';
-    const visible = inView && loaded;
-    const nextPlaying = enabled && visible && !studying && document.visibilityState !== 'hidden';
-    svg.classList.toggle('is-ready', visible);
-    toggle.hidden = !visible;
-    frame.classList.toggle('has-motion', visible);
+    let anyVisible = false;
+    let stopped = false;
+    scenes.forEach(scene => {
+      const visible = scene.inView && scene.panel.dataset.state === 'loaded';
+      const nextPlaying = enabled && visible && !studying && document.visibilityState !== 'hidden';
+      anyVisible ||= visible;
+      scene.svg.classList.toggle('is-ready', visible);
+      scene.svg.dataset.motionState = nextPlaying ? 'playing' : studying ? 'study' : !visible ? 'offscreen' : document.visibilityState === 'hidden' ? 'background' : 'paused';
+      if (scene.playing === nextPlaying) return;
+      stopped ||= scene.playing && !nextPlaying;
+      scene.playing = nextPlaying;
+      scene.svg.classList.toggle('is-playing', nextPlaying);
+      if (nextPlaying) scene.svg.unpauseAnimations();
+      else scene.svg.pauseAnimations();
+    });
+    playing = scenes[0].playing;
+    if (stopped) { removeRipples(); press = null; }
+    toggle.hidden = !anyVisible;
+    frame.classList.toggle('has-motion', anyVisible);
     toggle.setAttribute('aria-pressed', String(enabled));
-    toggle.setAttribute('aria-label', enabled ? '暂停春卷动景' : '播放春卷动景');
-    toggle.title = enabled ? '暂停春卷动景；点击水面、水鸭或麻雀可互动' : '播放流水、炊烟与小鸟动景';
+    toggle.setAttribute('aria-label', enabled ? '暂停画卷动景' : '播放画卷动景');
+    toggle.title = enabled ? '暂停流水、跌水、炊烟与小鸟动景' : '播放画卷动景；冬季冰面保持静止';
     label.textContent = enabled ? '动景已启' : '动景已停';
-    svg.dataset.motionState = nextPlaying ? 'playing' : studying ? 'study' : !visible ? 'offscreen' : document.visibilityState === 'hidden' ? 'background' : 'paused';
-    creatures.forEach(creature => creature.setAttribute('aria-disabled', String(!nextPlaying)));
-    if (nextPlaying === playing) return;
-    playing = nextPlaying;
-    svg.classList.toggle('is-playing', playing);
-    if (playing) svg.unpauseAnimations();
-    else { svg.pauseAnimations(); removeRipples(); press = null; }
+    creatures.forEach(creature => creature.setAttribute('aria-disabled', String(!playing)));
   }
-  function point(clientX, clientY) {
-    const bounds = panel.getBoundingClientRect();
+  function point(clientX, clientY, targetPanel = panel) {
+    const bounds = targetPanel.getBoundingClientRect();
     return { x: (clientX - bounds.left) / bounds.width * 2172, y: (clientY - bounds.top) / bounds.height * 724 };
   }
   function onWater(location) {
@@ -209,7 +222,7 @@
     const shore = a[1] + (b[1] - a[1]) * (location.x - a[0]) / (b[0] - a[0] || 1);
     return location.y > shore + 4;
   }
-  function addRipple(location) {
+  function addRipple(location, scene = scenes[0]) {
     const group = element('g');
     for (let index = 0; index < 2; index += 1) {
       const ring = element('ellipse', { class: 'motion-ripple', cx: location.x, cy: location.y, rx: 5, ry: 1.5, opacity: 0 });
@@ -219,8 +232,8 @@
       ring.append(element('animate', { attributeName: 'opacity', values: '0;.6;0', keyTimes: '0;.12;1', dur: duration, begin: 'indefinite', fill: 'freeze' }));
       group.append(ring);
     }
-    while (ripples.childElementCount >= 4) ripples.firstElementChild.remove();
-    ripples.append(group);
+    while (scene.ripples.childElementCount >= 4) scene.ripples.firstElementChild.remove();
+    scene.ripples.append(group);
     group.querySelectorAll('animate').forEach(animation => animation.beginElement());
     const timer = window.setTimeout(() => { group.remove(); rippleTimers.delete(timer); }, 2800);
     rippleTimers.add(timer);
@@ -228,31 +241,40 @@
 
   toggle.addEventListener('click', () => { choice = !(choice === null ? !reduced.matches : choice); sync(); });
   viewport.addEventListener('pointerdown', event => {
-    if (!playing || event.isPrimary === false || (event.pointerType === 'mouse' && event.button !== 0) || event.target.closest('button')) return;
-    const location = point(event.clientX, event.clientY);
-    if (onWater(location)) press = { id: event.pointerId, x: event.clientX, y: event.clientY, scroll: viewport.scrollLeft };
+    if (event.isPrimary === false || (event.pointerType === 'mouse' && event.button !== 0) || event.target.closest('button')) return;
+    const scene = [...scenes].reverse().find(item => item.playing && item.onWater(point(event.clientX, event.clientY, item.panel)));
+    if (scene) press = { scene, id: event.pointerId, x: event.clientX, y: event.clientY, scroll: viewport.scrollLeft };
   });
   viewport.addEventListener('pointerup', event => {
     if (!press || press.id !== event.pointerId) return;
     const start = press;
     press = null;
-    if (!playing || Math.hypot(event.clientX-start.x, event.clientY-start.y) > 6 || Math.abs(viewport.scrollLeft-start.scroll) > 3) return;
-    const location = point(event.clientX, event.clientY);
-    if (onWater(location)) addRipple(location);
+    if (!start.scene.playing || Math.hypot(event.clientX-start.x, event.clientY-start.y) > 6 || Math.abs(viewport.scrollLeft-start.scroll) > 3) return;
+    const location = point(event.clientX, event.clientY, start.scene.panel);
+    if (start.scene.onWater(location)) addRipple(location, start.scene);
   });
   viewport.addEventListener('pointercancel', () => { press = null; });
   window.addEventListener('blur', () => { press = null; });
   document.addEventListener('visibilitychange', sync);
   reduced.addEventListener('change', sync);
-  new MutationObserver(sync).observe(panel, { attributes: true, attributeFilter: ['data-state'] });
+  scenes.forEach(scene => new MutationObserver(sync).observe(scene.panel, { attributes: true, attributeFilter: ['data-state'] }));
   new MutationObserver(sync).observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
   if ('IntersectionObserver' in window) {
-    new IntersectionObserver(entries => { inView = entries[0].isIntersecting && entries[0].intersectionRect.width > 1; sync(); }, { threshold: 0 }).observe(panel);
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        const scene = scenes.find(item => item.panel === entry.target);
+        if (scene) scene.inView = entry.isIntersecting && entry.intersectionRect.width > 1;
+      });
+      sync();
+    }, { threshold: 0 });
+    scenes.forEach(scene => observer.observe(scene.panel));
   } else {
     const checkView = () => {
-      const bounds = panel.getBoundingClientRect();
       const visibleBounds = viewport.getBoundingClientRect();
-      inView = bounds.right > visibleBounds.left && bounds.left < visibleBounds.right && visibleBounds.bottom > 0 && visibleBounds.top < window.innerHeight;
+      scenes.forEach(scene => {
+        const bounds = scene.panel.getBoundingClientRect();
+        scene.inView = bounds.right > visibleBounds.left && bounds.left < visibleBounds.right && visibleBounds.bottom > 0 && visibleBounds.top < window.innerHeight;
+      });
       sync();
     };
     viewport.addEventListener('scroll', checkView, { passive: true });
@@ -260,6 +282,6 @@
     window.addEventListener('resize', checkView);
     checkView();
   }
-  if (help) help.setAttribute('aria-label', '左右拖动画卷，滚轮与方向键亦可浏览；动景开启时，点击水面、水鸭或墙头麻雀可互动。');
+  if (help) help.setAttribute('aria-label', '左右拖动画卷，滚轮与方向键亦可浏览；动景开启时点击未结冰的水面可泛起涟漪，春卷第一景的水鸭与墙头麻雀可点击互动。');
   sync();
 })();
