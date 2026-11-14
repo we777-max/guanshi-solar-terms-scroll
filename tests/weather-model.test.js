@@ -41,3 +41,15 @@ test('starting another shower or switching to night clears an existing rainbow',
     assert.equal(weather.snapshot().rainbow,0);
   }
 });
+test('winter keeps an already selected night in clear weather and snow, including paused selection',()=>{
+  for(const wet of [false,true]) {
+    const weather=new WeatherModel();weather.setNight(true);weather.step(4);
+    if(wet){weather.setWet(true);weather.step(10);}
+    weather.setSeason(3);
+    assert.equal(weather.snapshot().night,true);assert.equal(weather.snapshot().dark,1);
+    assert.equal(weather.snapshot().profile.kind,'snow');
+    weather.setNight(false,true);assert.equal(weather.snapshot().dark,0);
+    weather.setNight(true,true);assert.equal(weather.snapshot().dark,1);
+    weather.setSeason(0);weather.setSeason(3);assert.equal(weather.snapshot().dark,1);
+  }
+});

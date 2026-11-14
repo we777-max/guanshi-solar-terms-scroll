@@ -1,6 +1,10 @@
-.scene-motion { position: absolute; inset: 0; display: none; width: 100%; height: 100%; overflow: hidden; pointer-events: none; user-select: none; stroke: none; }
+.scene-motion { position: absolute; inset: 0; display: block; width: 100%; height: 100%; overflow: hidden; pointer-events: none; user-select: none; stroke: none; }
 .scene-motion.is-ready { display: block; }
-.scene-panel:not([data-state="loaded"]) .scene-motion { display: none; }
+.scene-motion:not(.is-ready) > :not(defs):not(.world-atmosphere) { display: none; }
+.scene-panel:not([data-state="loaded"]) .scene-motion > :not(defs):not(.world-atmosphere) { display: none; }
+.scene-panel:not([data-state="loaded"]) .world-atmosphere > :not(.world-night-wash) { display: none; }
+.scene-panel:not([data-state="loaded"]) .panel-state { z-index: 1; }
+.scene-panel:not([data-state="loaded"]):has(.scene-motion[data-night-outing="true"]) .panel-state { color: #e0d2bc; }
 .motion-glint { fill: none; stroke: #f4e4c7; stroke-width: 1.15; stroke-linecap: round; }
 .motion-glint-ink { stroke: #776e54; stroke-width: .7; }
 .motion-ripple { fill: none; stroke: #ead9b8; stroke-width: 1.2; }

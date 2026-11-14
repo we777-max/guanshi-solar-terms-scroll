@@ -16,7 +16,7 @@ function init() {
   const canvas = document.createElement('canvas'); canvas.className = 'weather-canvas'; canvas.setAttribute('aria-hidden','true'); frame.append(canvas);
   const ctx = canvas.getContext('2d');
   const fract = x => x-Math.floor(x), random = n => fract(Math.sin(n*127.1+311.7)*43758.5453);
-  let width = 1, height = 1, layouts = [], active = false;
+  let width = 1, height = 1, layouts = [], active = false, viewportVisible = false;
   let currentScene=0, rainbowOwner=null, moonOwner=0, moonAppearance, manualMoonDate=false;
   let raf = 0, previous = 0, lastDraw = 0, uiAge = 0, stormAge = 0, strikeAt = 4, flashAge = 9, flashX = .72, lightning = true, layoutTimer;
   let river = { level: 0, pan: 0, scene: -1 };
@@ -150,11 +150,14 @@ function init() {
       return {level:level*Math.max(0,1-distance*.8),pan:Math.max(-1,Math.min(1,(screen/width-.5)*2)),scene:item.index};
     }).sort((a,b)=>b.level-a.level);
     river = candidates[0] || {level:0,pan:0,scene:-1};
-    const boundsVisible = bounds.bottom > 0 && bounds.top < innerHeight;
-    active = motion.enabled && boundsVisible && !document.documentElement.classList.contains('is-studying') && document.visibilityState !== 'hidden';
+    viewportVisible = bounds.bottom > 0 && bounds.top < innerHeight;
+    active = canAdvance();
     update(); draw(model.snapshot()); wake();
   }
   function visible(item) { return Math.max(0,Math.min(width,item.x+item.w)-Math.max(0,item.x)); }
+  function canAdvance() {
+    return motion.enabled && viewportVisible && !document.documentElement.classList.contains('is-studying') && document.visibilityState !== 'hidden';
+  }
   function update() {
     const state = model.snapshot(); applyLife(state);
     $('weatherDay').setAttribute('aria-pressed',String(!state.night)); $('weatherNight').setAttribute('aria-pressed',String(state.night));
@@ -231,8 +234,11 @@ function init() {
     update();draw(model.snapshot());wake();
   }
   function choose(action) {
+    // A newly entered winter panel may not yet have an IntersectionObserver
+    // notification. Resolve viewport visibility independently of its motion.
+    measure();
     window.ScrollSeasonLife?.closeNote(); sound.unlock().then(()=>update());
-    const instant=!motion.enabled||reduced.matches; action(instant);
+    const instant=!motion.enabled||reduced.matches||!viewportVisible; action(instant);
     if(instant&&model.rainbowAge!==null)model.rainbowAge=4;
     refresh();
   }
@@ -256,7 +262,7 @@ function init() {
   document.addEventListener('pointerdown',event=>{if(!controls.hidden&&!controls.contains(event.target)&&!$('weatherToggle').contains(event.target))close();});
   const scheduleMeasure=()=>{clearTimeout(layoutTimer);layoutTimer=setTimeout(measure,70);};
   viewport.addEventListener('scroll',scheduleMeasure,{passive:true});window.addEventListener('scroll',scheduleMeasure,{passive:true});
-  document.addEventListener('scroll:motion',()=>{active=motion.enabled&&!document.documentElement.classList.contains('is-studying')&&document.visibilityState!=='hidden'&&layouts.some(item=>item.scene.inView);refresh();});
+  document.addEventListener('scroll:motion',()=>{active=canAdvance();refresh();});
   document.addEventListener('study:open',()=>{close();active=false;refresh();});
   document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden'){active=false;refresh();}else measure();});
   new ResizeObserver(measure).observe(viewport);

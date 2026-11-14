@@ -196,6 +196,7 @@
       scene.life?.update(nextPlaying, visible);
       scene.rural?.update(nextPlaying, visible);
       scene.svg.classList.toggle('is-ready', visible);
+      scene.svg.setAttribute('aria-hidden',String(!visible));
       scene.svg.dataset.motionState = nextPlaying ? 'playing' : studying ? 'study' : !visible ? 'offscreen' : document.visibilityState === 'hidden' ? 'background' : 'paused';
       if (scene.playing === nextPlaying) return;
       stopped ||= scene.playing && !nextPlaying;
