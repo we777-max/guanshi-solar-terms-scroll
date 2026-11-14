@@ -69,7 +69,7 @@ async function enterCourtyard() {
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.02;
   renderer.shadowMap.enabled = true;
-  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.shadowMap.type = THREE.PCFShadowMap;
   mount.append(renderer.domElement);
   const scene = new THREE.Scene();
   scene.background = new THREE.Color('#e5d7b8');
@@ -77,15 +77,19 @@ async function enterCourtyard() {
   const pmrem = new THREE.PMREMGenerator(renderer);
   const room = new RoomEnvironment();
   scene.environment = pmrem.fromScene(room, .05).texture;
-  scene.environmentIntensity = .35;
+  scene.environmentIntensity = .22;
   room.dispose(); pmrem.dispose();
-  scene.add(new THREE.HemisphereLight('#fff0d2', '#8c896b', 1.65));
-  const sun = new THREE.DirectionalLight('#fff0d1', 2.7);
+  // Let sunlight dominate the fill so cast shadows remain legible on pale
+  // plaster and paving, while the warm sky still reveals unlit surfaces.
+  scene.add(new THREE.HemisphereLight('#fff0d2', '#8c896b', .65));
+  const sun = new THREE.DirectionalLight('#fff0d1', 3.2);
   sun.castShadow = true;
-  sun.shadow.mapSize.set(2048, 2048);
+  const shadowSize = Math.min(renderer.capabilities.maxTextureSize, window.innerWidth < 700 ? 2048 : 4096);
+  sun.shadow.mapSize.set(shadowSize, shadowSize);
   Object.assign(sun.shadow.camera, { left: -16, right: 16, top: 16, bottom: -16, near: .1, far: 65 });
-  sun.shadow.bias = -.00008;
-  sun.shadow.normalBias = .004;
+  sun.shadow.bias = -.000035;
+  sun.shadow.normalBias = .0015;
+  sun.shadow.radius = .75;
   sun.target.position.set(GNOMON.x, GNOMON.y + GNOMON.datum, GNOMON.z - 1.7);
   scene.add(sun, sun.target);
 
@@ -98,9 +102,12 @@ async function enterCourtyard() {
   model.position.set(GNOMON.x, GNOMON.y, GNOMON.z);
   model.traverse(object => {
     if (!object.isMesh) return;
-    object.castShadow = object.userData.part === 'bronze';
+    object.castShadow = true;
     object.receiveShadow = true;
     for (const material of Array.isArray(object.material) ? object.material : [object.material]) {
+      // These closed solids were exported as double-sided. Casting their back
+      // faces avoids stippled self-shadowing on the broad stone measuring face.
+      material.shadowSide = THREE.BackSide;
       if (material.map) material.map.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy());
     }
   });
