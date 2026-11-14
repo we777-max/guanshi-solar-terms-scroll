@@ -31,25 +31,34 @@
     propButtons.forEach(button => button.setAttribute('aria-expanded', 'false'));
     if (restore && previous?.isConnected && previous.getBoundingClientRect().width) previous.focus({ preventScroll: true });
   }
-  function showNote(button, season) {
+  function showNote(button, season, details = null) {
     if (!note) {
       note = document.createElement('aside');
       note.id = 'seasonLifeNote'; note.className = 'season-life-note'; note.hidden = true;
-      note.setAttribute('role', 'region'); note.setAttribute('aria-label', '画中四时生活');
+      note.setAttribute('role', 'region'); note.setAttribute('aria-label', '画中生活与农事');
       const title = document.createElement('strong');
       const text = document.createElement('p');
+      const source = document.createElement('a'); source.className = 'season-note-source'; source.hidden = true; source.target = '_blank'; source.rel = 'noopener noreferrer';
       const close = document.createElement('button'); close.type = 'button'; close.textContent = '×';
       close.setAttribute('aria-label', '收起四时生活说明'); close.addEventListener('click', () => closeNote(true));
-      note.append(title, text, close); document.querySelector('.painting-frame').append(note);
+      note.append(title, text, source, close); document.querySelector('.painting-frame').append(note);
       document.querySelector('#scrollViewport').addEventListener('scroll', () => closeNote(), { passive: true });
       document.addEventListener('keydown', event => { if (event.key === 'Escape' && !note.hidden) { closeNote(true); event.stopPropagation(); } });
     }
     const same = selected === button && !note.hidden;
+    propButtons.add(button);
     closeNote();
     if (same) return;
     selected = button; button.setAttribute('aria-expanded', 'true');
-    note.querySelector('strong').textContent = `${seasons[season]} · ${propTitles[season]}`;
-    note.querySelector('p').textContent = propTexts[season]; note.hidden = false;
+    const bounds = button.getBoundingClientRect();
+    const frameBounds = note.parentElement.getBoundingClientRect();
+    note.classList.toggle('is-on-right', bounds.left+bounds.width/2 < frameBounds.left+frameBounds.width*.45);
+    note.querySelector('strong').textContent = details ? details.title : `${seasons[season]} · ${propTitles[season]}`;
+    note.querySelector('p').textContent = details ? details.text : propTexts[season];
+    const source = note.querySelector('a');
+    source.hidden = !details?.source;
+    if (details?.source) { source.href = details.source.url; source.textContent = details.source.title; }
+    note.hidden = false;
   }
 
   function decorate(scene, { element, animate, ripple, cancelPress }) {
@@ -234,5 +243,5 @@
       }
     };
   }
-  window.ScrollSeasonLife = { decorate };
+  window.ScrollSeasonLife = { decorate, showNote, closeNote };
 })();

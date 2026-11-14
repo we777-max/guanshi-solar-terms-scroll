@@ -173,6 +173,7 @@
         if (scene.onWater(location)) addRipple(location, scene);
       }
     });
+    scene.rural = window.ScrollRuralLife?.decorate(scene, { element, animate, cancelPress() { press = null; } });
   });
 
   function removeRipples() {
@@ -190,6 +191,7 @@
       const nextPlaying = enabled && visible && !studying && document.visibilityState !== 'hidden';
       anyVisible ||= visible;
       scene.life?.update(nextPlaying, visible);
+      scene.rural?.update(nextPlaying, visible);
       scene.svg.classList.toggle('is-ready', visible);
       scene.svg.dataset.motionState = nextPlaying ? 'playing' : studying ? 'study' : !visible ? 'offscreen' : document.visibilityState === 'hidden' ? 'background' : 'paused';
       if (scene.playing === nextPlaying) return;
@@ -205,7 +207,7 @@
     frame.classList.toggle('has-motion', anyVisible);
     toggle.setAttribute('aria-pressed', String(enabled));
     toggle.setAttribute('aria-label', enabled ? '暂停画卷动景' : '播放画卷动景');
-    toggle.title = enabled ? '暂停流水、炊烟、虫鸟、落叶与细雪' : '播放四季动景；冬季冰面保持静止';
+    toggle.title = enabled ? '暂停农事、街市人物、流水与四季动景' : '播放四季人物与动景；冬季冰面保持静止';
     label.textContent = enabled ? '动景已启' : '动景已停';
     creatures.forEach(creature => creature.setAttribute('aria-disabled', String(!playing)));
   }
@@ -281,6 +283,6 @@
     window.addEventListener('resize', checkView);
     checkView();
   }
-  if (help) help.setAttribute('aria-label', '左右拖动画卷，滚轮与方向键亦可浏览；点击屋旁陈设了解四时生活，点击蝴蝶、蜻蜓与小鸟看回应，未结冰的水面可泛起涟漪。');
+  if (help) help.setAttribute('aria-label', '左右拖动画卷，滚轮与方向键亦可浏览；点击农事人物、商铺与陈设了解古代生活，虫鸟和未结冰的水面也可互动。');
   sync();
 })();

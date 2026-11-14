@@ -34,8 +34,19 @@
 .life-snow { fill: #f9f5e8; stroke: #e6dfcb; stroke-width: .25; }
 .season-life-note { position: absolute; z-index: 5; left: 25px; bottom: 62px; width: min(310px, calc(100% - 50px)); padding: 15px 34px 14px 16px; border: 1px solid #aa947070; background: #f1e7d4f7; box-shadow: 0 6px 20px #69523318; color: #6b583e; }
 .season-life-note[hidden] { display: none; }
+.season-life-note.is-on-right { left: auto; right: 25px; }
 .season-life-note strong { font-size: 13px; font-weight: 500; letter-spacing: .14em; color: #8b4939; }
 .season-life-note p { margin: 8px 0 0; font-size: 12px; line-height: 1.9; letter-spacing: .04em; }
+.season-note-source { display: block; margin-top: 8px; color: #8b6846; font-size: 10px; line-height: 1.7; text-underline-offset: 3px; }
+.season-note-source[hidden] { display: none; }
+.rural-target { pointer-events: auto; cursor: pointer; outline: none; }
+.rural-hit { fill: transparent; stroke: none; pointer-events: all; }
+.rural-target:focus-visible > .rural-hit { fill: #f3e6cb20; stroke: #99734a; stroke-width: 1; }
+.rural-art { pointer-events: none; filter: sepia(.06) saturate(.9); }
+.rural-shadow { fill: #66553c; opacity: .18; stroke: none; }
+.market-sign-cord { fill: none; stroke: #73634b; stroke-width: .85; }
+.market-sign-cloth { fill: #dbceb1; stroke: #8c7754; stroke-width: .85; }
+.market-sign-label { fill: #75513e; stroke: none; font-family: 'Songti SC', 'SimSun', serif; font-size: 19px; }
 .season-life-note button { position: absolute; right: 5px; top: 5px; display: grid; place-items: center; width: 30px; height: 30px; padding: 0; border: 0; background: transparent; color: #8b7658; font-size: 20px; cursor: pointer; }
 .motion-toggle { position: absolute; z-index: 2; right: 17px; bottom: 15px; min-height: 36px; display: flex; align-items: center; gap: 7px; padding: 7px 10px; border: 1px solid #aa94705c; background: #eee3cfeb; color: #6b583e; font-size: 11px; letter-spacing: .08em; box-shadow: 0 2px 9px #69523312; }
 .motion-toggle:hover { border-color: #8b493985; background: #f7ecda; }
@@ -47,6 +58,7 @@
 .painting-frame.has-motion .scroll-help { max-width: calc(100% - 160px); line-height: 1.7; }
 @media (max-width: 767px) {
   .season-life-note { left: 14px; bottom: 58px; width: min(280px, calc(100% - 28px)); padding: 12px 31px 11px 13px; }
+  .season-life-note.is-on-right { left: auto; right: 14px; }
   .motion-toggle { right: 11px; bottom: 12px; min-height: 36px; padding: 6px 8px; gap: 5px; font-size: 10px; }
   .painting-frame.has-motion .scroll-help { max-width: calc(100% - 140px); }
 }
