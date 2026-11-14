@@ -9,10 +9,10 @@
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="styles.css?v=0.2.1">
   <link rel="stylesheet" href="study.css">
-  <link rel="stylesheet" href="motion.css">
+  <link rel="stylesheet" href="motion.css?v=2">
   <script src="app.js" defer></script>
   <script src="study.js" defer></script>
-  <script src="motion.js" defer></script>
+  <script src="motion.js?v=2" defer></script>
   <script src="courtyard-portal.js?v=1" defer></script>
 </head>
 <body>
@@ -132,9 +132,9 @@
         <span class="frame-shade frame-shade-left" aria-hidden="true"></span>
         <span class="frame-shade frame-shade-right" aria-hidden="true"></span>
         <div class="scene-caption" aria-hidden="true"><span id="seasonCaption">春</span><span class="caption-line"></span><span id="termCaption">立春</span><span id="sceneCaption" class="caption-location">村落田园</span></div>
-        <p id="scrollHelp" class="scroll-help">左右拖动画卷<span aria-hidden="true"> · </span>滚轮与方向键亦可浏览</p>
+        <p id="scrollHelp" class="scroll-help">左右拖动画卷<span aria-hidden="true"> · </span>点水泛涟漪，点鸟看回应</p>
         <button id="motionToggle" class="motion-toggle" type="button" aria-label="暂停春卷动景" aria-pressed="true" aria-describedby="motionHelp" hidden><svg class="motion-pause-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14"/></svg><svg class="motion-play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7Z"/></svg><span id="motionToggleLabel">动景已启</span></button>
-        <p id="motionHelp" class="sr-only">春卷第一景的流水与炊烟动态示范。树木和建筑保持静止。开启时点击水面可泛涟漪，拖动仍用于浏览画卷。</p>
+        <p id="motionHelp" class="sr-only">春卷第一景有流水、炊烟、墙头麻雀与水鸭动景。树木和建筑保持静止。点击水面或水鸭可泛起涟漪，点击麻雀可轻跳；拖动仍用于浏览画卷。</p>
         <button id="previousView" class="edge-button previous-view" type="button" aria-label="向左浏览长卷" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 5-7 7 7 7"/></svg></button>
         <button id="nextView" class="edge-button next-view" type="button" aria-label="向右浏览长卷"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10 5 7 7-7 7"/></svg></button>
       </div>

@@ -6,6 +6,12 @@
 .motion-smoke path { fill: none; stroke: #b8b7aa; stroke-linecap: round; }
 .motion-chimney { fill: #b3a286; stroke: #756850; stroke-width: .8; stroke-linejoin: round; }
 .motion-ripple { fill: none; stroke: #ead9b8; stroke-width: 1.2; }
+.motion-creature { pointer-events: auto; cursor: pointer; outline: none; }
+.motion-creature[aria-disabled="true"] { cursor: default; }
+.motion-creature .motion-hit { pointer-events: all; stroke: none; }
+.motion-creature:focus-visible .motion-hit { fill: #f3e6cb30; stroke: #99734a; stroke-width: 1; }
+.motion-bird-art { pointer-events: none; filter: sepia(.12) saturate(.72); }
+.motion-duck-wake { fill: none; stroke: #e9dbc1; stroke-width: .9; stroke-linecap: round; }
 .motion-toggle { position: absolute; z-index: 2; right: 17px; bottom: 15px; min-height: 36px; display: flex; align-items: center; gap: 7px; padding: 7px 10px; border: 1px solid #aa94705c; background: #eee3cfeb; color: #6b583e; font-size: 11px; letter-spacing: .08em; box-shadow: 0 2px 9px #69523312; }
 .motion-toggle:hover { border-color: #8b493985; background: #f7ecda; }
 .motion-toggle svg { display: block; width: 16px; height: 16px; stroke-width: 1.3; }
