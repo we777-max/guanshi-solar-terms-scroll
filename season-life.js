@@ -167,7 +167,7 @@
     propAnchor.append(prop); layer.append(propAnchor);
 
     function flying(kind, x, y, size, number) {
-      const anchor = element('g', { transform: `translate(${x} ${y})` });
+      const anchor = element('g', { transform: `translate(${x} ${y})`, class: 'weather-wildlife' });
       const flight = element('g');
       const name = kind === 'dragonfly' ? '蜻蜓' : '蝴蝶';
       const insect = target(`${name}，点击看它振翅`, 80, 72, () => report(scene.playing ? `${name}振翅飞过院边。` : '动景已暂停，开启后可看振翅回应。'));
@@ -187,7 +187,7 @@
 
     function bird(kind, x,y,size, number) {
       const duck = kind === 'duck';
-      const anchor = element('g', { transform: `translate(${x} ${y})` });
+      const anchor = element('g', { transform: `translate(${x} ${y})`, class: duck ? 'weather-duck' : 'weather-wildlife' });
       const mover = element('g');
       const label = duck ? '夏日水鸭，点击泛起水纹' : `${seasons[season]}卷麻雀，点击看它轻跳`;
       const creature = target(label, 78, 62, node => {

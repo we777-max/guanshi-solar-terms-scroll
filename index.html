@@ -9,13 +9,15 @@
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="styles.css?v=0.2.1">
   <link rel="stylesheet" href="study.css">
-  <link rel="stylesheet" href="motion.css?v=5">
+  <link rel="stylesheet" href="motion.css?v=6">
+  <link rel="stylesheet" href="weather.css?v=1">
   <script src="app.js" defer></script>
   <script src="study.js" defer></script>
   <script src="water-motion.js?v=1" defer></script>
-  <script src="season-life.js?v=2" defer></script>
-  <script src="rural-life.js?v=1" defer></script>
-  <script src="motion.js?v=5" defer></script>
+  <script src="season-life.js?v=3" defer></script>
+  <script src="rural-life.js?v=2" defer></script>
+  <script src="motion.js?v=6" defer></script>
+  <script src="weather.js?v=2" type="module"></script>
   <script src="courtyard-portal.js?v=1" defer></script>
 </head>
 <body>
@@ -41,6 +43,7 @@
           <button type="button" data-season="3"><span>冬</span><small>藏</small></button>
         </nav>
         <div class="toolbar-actions">
+          <button id="weatherToggle" class="text-button" type="button" aria-expanded="false" aria-controls="weatherControls">天候 <span id="weatherSummary">日 · 晴</span></button>
           <a class="gnomon-portal" href="#gnomonEntry">寻圭表 <span aria-hidden="true">↘</span></a>
           <button id="overviewToggle" class="text-button" type="button" aria-expanded="true" aria-controls="scrollOverview"><span class="overview-toggle-label">全卷总览</span> <span class="toggle-mark" aria-hidden="true">－</span></button>
           <button id="termsToggle" class="text-button" type="button" aria-expanded="false" aria-controls="termsDrawer">节气目录 <span aria-hidden="true">＋</span></button>
@@ -49,6 +52,16 @@
           </button>
         </div>
       </div>
+
+      <aside id="weatherControls" class="weather-controls" aria-label="昼夜与天气" hidden>
+        <div class="weather-heading"><strong>观天候</strong><button id="weatherClose" class="weather-close" type="button" aria-label="收起天气设置">×</button></div>
+        <fieldset class="weather-group"><legend>昼夜</legend><div class="weather-options"><button id="weatherDay" type="button" aria-pressed="true">白天</button><button id="weatherNight" type="button" aria-pressed="false">夜晚</button></div></fieldset>
+        <fieldset class="weather-group"><legend>随四时而变</legend><div class="weather-options"><button id="weatherClear" type="button" aria-pressed="true">晴 / 渐停</button><button id="weatherWet" type="button" aria-pressed="false">下春雨</button></div></fieldset>
+        <div class="weather-audio"><button id="weatherSound" type="button" aria-pressed="true">环境声 · 开</button><button id="weatherLightning" type="button" aria-pressed="true">闪电 · 开</button></div>
+        <label class="weather-volume" for="weatherVolume">音量<input id="weatherVolume" type="range" min="0" max="100" value="45" aria-label="环境声音量"></label>
+        <p id="weatherStatus" class="weather-status" role="status" aria-live="polite">春雨轻细，夏雨急骤，冬日落雪。</p>
+        <p class="weather-note">雨雪约十秒渐起，约九秒渐歇。雨势与昼夜可自由组合。夏季白天雨霁后可见彩虹。</p>
+      </aside>
 
       <aside id="dialDock" class="dial-dock" aria-label="节气圆盘导航">
         <button id="dialToggle" class="dial-toggle" type="button" aria-expanded="false" aria-controls="dialPanel" aria-label="当前立春，展开节气圆盘" title="展开节气圆盘">

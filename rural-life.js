@@ -110,24 +110,31 @@
       parent.append(element('image', { href: source, width: 2172, height: 724, preserveAspectRatio: 'none', 'clip-path': `url(#${id})`, 'aria-hidden': 'true', 'pointer-events': 'none' }));
     }
     function sprite(parent, config) {
+      const rainy = new Set(['field-hoeing','spring-ox-plough','summer-rice-planter','autumn-rice-harvester','grain-carrier','village-walker','market-shopper']);
+      function frame(file, scale, foot, className) {
+        const width = (config.width || config.size)*scale, height = (config.height || config.size)*scale;
+        const id = makeId('frame');
+        const clip = element('clipPath', { id, clipPathUnits: 'userSpaceOnUse' });
+        clip.append(element('rect', { width, height })); defs.append(clip);
+        const anchor = element('g', { class: className, transform: `translate(${-width/2} ${-height*foot})`, 'aria-hidden': 'true' });
+        const window = element('g', { 'clip-path': `url(#${id})` });
+        const image = element('image', { class: 'rural-art', href: `assets/villagers/${file}.png`, width: width*2, height, preserveAspectRatio: 'none' });
+        animate(image, { attributeName: 'x', values: `0;${-width};0`, keyTimes: '0;.5;1', calcMode: 'discrete', dur: `${config.period || 3.5}s`, begin: `${-(config.phase || 0)}s` });
+        window.append(image); anchor.append(window); parent.append(anchor);
+      }
       const width = config.width || config.size;
       const height = config.height || config.size;
       const foot = config.foot || footAnchors[config.key] || .9;
-      const id = makeId('frame');
-      const clip = element('clipPath', { id, clipPathUnits: 'userSpaceOnUse' });
-      clip.append(element('rect', { width, height })); defs.append(clip);
-      const anchor = element('g', { transform: `translate(${-width/2} ${-height*foot})`, 'aria-hidden': 'true' });
-      const window = element('g', { 'clip-path': `url(#${id})` });
-      const image = element('image', { class: 'rural-art', href: `assets/villagers/${config.key}-v1.png`, width: width*2, height, preserveAspectRatio: 'none' });
-      // The frames are a small limb/implement movement; buildings, tools on
-      // tables and crop rows never rock or scale with a figure's motion.
-      animate(image, { attributeName: 'x', values: `0;${-width};0`, keyTimes: '0;.5;1', calcMode: 'discrete', dur: `${config.period || 3.5}s`, begin: `${-(config.phase || 0)}s` });
-      window.append(image); anchor.append(window); parent.append(anchor);
+      frame(`${config.key}-v1`, 1, foot, rainy.has(config.key) ? 'weather-dry-art' : '');
+      if (rainy.has(config.key)) {
+        const umbrella = config.key === 'village-walker' || config.key === 'market-shopper';
+        frame(`${config.key}-rain-v1`, umbrella ? config.key==='market-shopper'?1.08:1.1 : 1, umbrella ? config.key==='market-shopper'?.967:.98 : foot, 'weather-rain-art');
+      }
       return { width, height };
     }
     function actor(config) {
       const width = config.width || config.size, height = config.height || config.size;
-      const anchor = element('g', { transform: `translate(${config.x} ${config.y})`, 'data-rural-actor': config.key });
+      const anchor = element('g', { transform: `translate(${config.x} ${config.y})`, 'data-rural-actor': config.key, 'data-rural-story': config.story });
       const travel = element('g');
       const facing = element('g', config.flip ? { transform: 'scale(-1 1)' } : {});
       const target = button(config.story, [-width*.44,-height*.86,width*.88,height*.9]);
@@ -150,6 +157,7 @@
       const group = button(config.key, [config.x-77,config.y-114,159,121]);
       group.setAttribute('data-market-shop', config.key);
       const display = element('g', { 'aria-hidden': 'true' });
+      display.setAttribute('data-market-display',config.key);
       const keeper = element('g', { transform: `translate(${config.x} ${config.y})` });
       const facing = element('g', config.flip ? { transform: 'scale(-1 1)' } : {});
       sprite(facing, { key: 'market-shopkeeper', size: config.size, period: 5.8, phase: config.x / 110 });

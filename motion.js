@@ -125,7 +125,8 @@
   animate(sparrowArt.image, { attributeName: 'x', values: '0;-34;0;0;-34;0;0', keyTimes: '0;.18;.26;.65;.69;.73;1', calcMode: 'discrete', dur: sparrowDuration, begin: sparrowBegin });
   sparrowArt.image.append(element('animate', { attributeName: 'x', values: '0;-34;0;0', keyTimes: '0;.15;.8;1', calcMode: 'discrete', dur: '.85s', begin: 'indefinite', 'data-reaction': 'wings' }));
   sparrowReaction.append(sparrowArt.anchor); sparrowFacing.append(sparrowReaction); sparrow.bird.append(sparrowFacing);
-  const perchShadow = element('g', { transform: 'translate(1690 325)', 'aria-hidden': 'true' });
+  const perchShadow = element('g', { transform: 'translate(1690 325)', 'aria-hidden': 'true', class: 'weather-wildlife' });
+  sparrow.anchor.classList.add('weather-wildlife');
   const shadowMover = element('g');
   shadowMover.append(element('ellipse', { cx: 0, cy: 1, rx: 5, ry: .8, fill: '#6f5c3c', opacity: .15 }));
   animate(shadowMover, { attributeName: 'transform', type: 'translate', values: '0 0;0 0;7 0;14 0;14 0;7 0;0 0;0 0', keyTimes: hopTimes, dur: sparrowDuration, begin: sparrowBegin }, true);
@@ -134,6 +135,7 @@
   function duck(x, y, size, begin) {
     const width = 60 * size, height = 48 * size;
     const item = interactiveBird('duck', x > 1000 ? '院前水鸭，点击泛起水纹' : '田边水鸭，点击泛起水纹', x, y, width, height);
+    item.anchor.classList.add('weather-duck');
     const duration = '38s';
     animate(item.mover, { attributeName: 'transform', type: 'translate', values: '0 0;85 -1;0 0', keyTimes: '0;.5;1', calcMode: 'spline', keySplines: '.4 0 .6 1;.4 0 .6 1', dur: duration, begin }, true);
     const facing = element('g');
@@ -162,6 +164,7 @@
       .filter(Boolean)
   ];
   scenes.forEach(scene => {
+    scene.waterAnimations = [...scene.svg.querySelectorAll('animate,animateTransform')].filter(node => !node.closest('.motion-wildlife'));
     scene.life = window.ScrollSeasonLife?.decorate(scene, {
       element, animate,
       cancelPress() { press = null; },
@@ -210,6 +213,7 @@
     toggle.title = enabled ? '暂停农事、街市人物、流水与四季动景' : '播放四季人物与动景；冬季冰面保持静止';
     label.textContent = enabled ? '动景已启' : '动景已停';
     creatures.forEach(creature => creature.setAttribute('aria-disabled', String(!playing)));
+    document.dispatchEvent(new CustomEvent('scroll:motion', { detail: { enabled, studying } }));
   }
   function point(clientX, clientY, targetPanel = panel) {
     const bounds = targetPanel.getBoundingClientRect();
@@ -284,5 +288,6 @@
     checkView();
   }
   if (help) help.setAttribute('aria-label', '左右拖动画卷，滚轮与方向键亦可浏览；点击农事人物、商铺与陈设了解古代生活，虫鸟和未结冰的水面也可互动。');
+  window.ScrollMotion = { scenes, get enabled() { return choice === null ? !reduced.matches : choice; } };
   sync();
 })();
