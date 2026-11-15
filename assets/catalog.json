@@ -43,6 +43,8 @@
         "docs/scroll/春卷样段-v1-生成记录.md",
         "docs/scroll/春卷样段制作方案.md",
         "docs/scroll/春卷水烟动景-v1-实现说明.md",
+        "docs/scroll/村落交互-v9-制作与验证.md",
+        "docs/scroll/村落交互-v9-素材与提示词.json",
         "docs/scroll/节气圆盘实现说明.md"
       ],
       "screenshots": [
@@ -76,7 +78,9 @@
         "docs/scroll/天候-v6-雨后彩虹.jpg",
         "docs/scroll/春卷动景-v2-立春.jpg",
         "docs/scroll/春卷动景-v2-院前.jpg",
-        "docs/scroll/春卷水烟动景-v1.jpg"
+        "docs/scroll/春卷水烟动景-v1.jpg",
+        "docs/scroll/村落交互-v9-冬居年俗.jpg",
+        "docs/scroll/村落交互-v9-水车.jpg"
       ]
     },
     {
@@ -232,7 +236,8 @@
       "usage": "已接入当前页面",
       "consumers": [
         "index.html",
-        "placement.js"
+        "placement.js",
+        "village-interactions.js"
       ],
       "sha256": "7f558367256cd962b2e41fd52c1ade5efba8271ca06142be24b597156b2d4287"
     },
@@ -319,6 +324,51 @@
         "placement.js"
       ],
       "sha256": "067b9f4431cf9b6ca6fb3377d29e911b50de45bd70a56e297f6dc84333a3345c"
+    },
+    {
+      "module": "scroll",
+      "name": "年俗灯笼与爆竹透明图集",
+      "file": "assets/scroll/effects/festival/newyear-props-v1.png",
+      "type": "PNG",
+      "bytes": 872771,
+      "width": 1774,
+      "height": 887,
+      "alpha": true,
+      "usage": "已接入当前页面",
+      "consumers": [
+        "village-interactions.js"
+      ],
+      "sha256": "6576959146369aed8dfd6bf2d5e87641d0b780e24f6afabc297bbe4b9e9775be"
+    },
+    {
+      "module": "scroll",
+      "name": "水磨背景：移除转轮的局部修补图",
+      "file": "assets/scroll/effects/mechanical/watermill-clean-v1.png",
+      "type": "PNG",
+      "bytes": 3276543,
+      "width": 2172,
+      "height": 724,
+      "alpha": false,
+      "usage": "已接入当前页面",
+      "consumers": [
+        "village-interactions.js"
+      ],
+      "sha256": "ed307943dee5eeb457d7f104c1fe2c07c7de0c03af13984ba02720fe58784a18"
+    },
+    {
+      "module": "scroll",
+      "name": "可独立转动的木水轮",
+      "file": "assets/scroll/effects/mechanical/waterwheel-rotor-v1.png",
+      "type": "PNG",
+      "bytes": 2036550,
+      "width": 1254,
+      "height": 1254,
+      "alpha": true,
+      "usage": "已接入当前页面",
+      "consumers": [
+        "village-interactions.js"
+      ],
+      "sha256": "0b5aed184b89bd472dce5802d38e767e8bf24a793c76645cc1fbcb56f3176ead"
     },
     {
       "module": "scroll",

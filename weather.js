@@ -1,5 +1,5 @@
 import { WeatherModel } from './src/weather-model.js?v=2';
-import { WeatherAudio } from './src/weather-audio.js?v=2';
+import { WeatherAudio } from './src/weather-audio.js?v=4';
 import { createWorldAtmosphere } from './src/weather-world.js?v=7';
 import { getMoonAppearance, MOON_ANCHORS } from './src/sky-model.js?v=7';
 import { getCycle, TERMS } from './src/solar-model.js';
@@ -11,6 +11,20 @@ if (motion && frame) init();
 function init() {
   const $ = id => document.getElementById(id);
   const model = new WeatherModel(), sound = new WeatherAudio();
+  sound.onCrackersEnded=()=>update();
+  let crackerRequest=0;
+  document.addEventListener('village:stop-firecrackers',()=>{crackerRequest++;sound.stopFirecrackers();});
+  document.addEventListener('village:firecrackers',event=>{
+    const request=++crackerRequest;
+    sound.unlock().then(()=>{
+      const scene=motion.scenes[event.detail.scene];
+      if(request!==crackerRequest||!scene?.playing||!sound.enabled)return;
+      const bounds=scene.panel.getBoundingClientRect(),view=frame.getBoundingClientRect();
+      const x=bounds.left+bounds.width*event.detail.x/2172;
+      sound.firecrackers(Math.max(-1,Math.min(1,(x-view.left)/view.width*2-1)));
+      update();
+    });
+  });
   const viewport = $('scrollViewport'), controls = $('weatherControls');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const canvas = document.createElement('canvas'); canvas.className = 'weather-canvas'; canvas.setAttribute('aria-hidden','true'); frame.append(canvas);
@@ -178,6 +192,7 @@ function init() {
     frame.dataset.audioScene = String(sound.levels.scene); frame.dataset.audioRain = sound.levels.rain.toFixed(3); frame.dataset.audioRiver = sound.levels.river.toFixed(3);
     frame.dataset.audioState = sound.context?.state || 'awaiting-gesture';
     frame.dataset.audioThunders = String(sound.thunders.size); frame.dataset.audioRms = sound.meter().toFixed(5);
+    frame.dataset.audioCrackers=String(Boolean(sound.crackers));
   }
   function draw(state) {
     ctx.clearRect(0,0,width,height);

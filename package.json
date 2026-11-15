@@ -8,7 +8,7 @@
     "assets:index": "node scripts/build-asset-catalog.mjs",
     "assets:check": "node scripts/build-asset-catalog.mjs --check",
     "vendor": "node scripts/vendor.mjs",
-    "test": "node --test tests/solar-model.test.js tests/courtyard-navigation.test.js tests/weather-model.test.js tests/weather-audio.test.js tests/sky-model.test.js && node tests/dial-check.cjs",
+    "test": "node --test tests/solar-model.test.js tests/courtyard-navigation.test.js tests/weather-model.test.js tests/weather-audio.test.js tests/sky-model.test.js tests/village-model.test.js && node tests/dial-check.cjs",
     "preview": "python -m http.server 8771 --bind 127.0.0.1"
   },
   "dependencies": {

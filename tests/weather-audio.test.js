@@ -40,6 +40,10 @@ test('soundstage reuses two ambience loops across scenes and cancels pending thu
     assert.equal(audio.thunders.size,0);assert.equal(audio.levels.rain,0);assert.equal(audio.levels.river,0);assert.equal(audio.context.sources[2].stopped,true);
     audio.update(rain,true,{level:.1,pan:.8,scene:1});assert.ok(audio.levels.rain>0);assert.equal(audio.pan.pan.value,.8);
     audio.enabled=false;audio.update(rain,true,{level:.1,pan:0,scene:1});assert.equal(audio.master.gain.value,0);assert.equal(audio.levels.rain,0);assert.equal(audio.levels.river,0);
+    assert.equal(audio.firecrackers(),false);
+    let crackerEnds=0;audio.onCrackersEnded=()=>crackerEnds++;
+    audio.enabled=true;audio.update(rain,true,{level:.1,pan:0,scene:6});assert.equal(audio.firecrackers(.3),true);assert.equal(audio.firecrackers(),false);
+    const crackers=audio.crackers;audio.update(rain,false,{level:0,pan:0,scene:1});assert.equal(audio.crackers,null);assert.equal(crackers.stopped,true);assert.equal(crackerEnds,1);
     audio.close();
   }finally{globalThis.window=previous;}
 });

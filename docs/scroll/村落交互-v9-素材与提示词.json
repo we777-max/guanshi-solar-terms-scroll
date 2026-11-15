@@ -1,0 +1,36 @@
+{
+  "date": "2026-11-15",
+  "mode": "builtin image_gen",
+  "assets": [
+    {
+      "key": "watermill-clean",
+      "transparent": false,
+      "refs": [
+        "D:/杂/项目/计算机设计大赛/assets/scroll/backgrounds/spring-bridge.png"
+      ],
+      "prompt": "Use case: precise-object-edit. EDIT TARGET is the supplied exact 2172x724 spring bridge Chinese handscroll. Create a clean background plate for an animated waterwheel. Remove ONLY the wooden ROTATING WATERWHEEL at x=663..804,y=337..528: all outer circular wheel rims, spokes and paddles. Reconstruct the small exposed portion of the warm plaster mill wall and dark foundation behind it. KEEP the axle at its original x=756,y=428, the FIXED stone bearing support at x=735..792,y=452..526, and the falling water at x=811..894,y=437..527 exactly unchanged. Everything outside x=660..809,y=333..532 must remain pixel-aligned with the input: no shift of house, bridge, river, rocks, trees, smoke, sky. Identical crop and 3:1 aspect ratio, 2172x724 if possible. Match antique tan silk, fine warm-grey ink lines and restrained mineral washes. No new objects, text, UI, borders or watermark. This is a local mechanical layer extraction, not a redesign of the village.",
+      "workspacePath": "assets/scroll/effects/mechanical/watermill-clean-v1.png",
+      "original": "C:/Users/魏志宇/.codex/generated_images/01a1ced6-33da-7253-9636-e503972d7f9d/exec-d9c69273-07ec-4843-a6db-70c9a6088e6f.png"
+    },
+    {
+      "key": "waterwheel-rotor",
+      "transparent": true,
+      "refs": [
+        "D:/杂/项目/计算机设计大赛/assets/scroll/backgrounds/spring-bridge.png"
+      ],
+      "prompt": "Use case: historical-scene / supporting animation sprite. Supplied handscroll is STYLE REFERENCE ONLY. Generate ONE isolated ancient Chinese WOODEN WATER MILL WHEEL ROTOR, on true alpha transparency, with no ground, water, house, axle supports, shadow or backdrop. For correct rotational animation the wheel MUST be exact straight-on orthographic FRONT VIEW, a PERFECT CIRCLE centered at canvas 50%,50%, outer radius 43% of the SQUARE canvas. 16 evenly distributed slender wooden spokes, two concentric slender segmented wood rims, small circular wooden hub at exact center, 16 shallow paddle/bucket ends spaced evenly around perimeter. All parts are within the circle; authentic interlocking wood joinery. No perspective angle, ellipse, tilt or side view. Circle will be compressed by code later to fit the exact original wheel perspective. Style matches existing painted wheel: intricate fine grey-brown ink contours, warm muted aged honey-brown wood, pale ochre highlights, softly weathered timber grain, restrained hand-painted antique silk texture INSIDE WOOD ONLY. Open spaces between all spokes, all corners and all exterior space must be fully transparent. Not photorealistic, not 3D CGI, not a vector icon. No huge thick cartoon rim. No text, labels or watermark.",
+      "workspacePath": "assets/scroll/effects/mechanical/waterwheel-rotor-v1.png",
+      "original": "C:/Users/魏志宇/.codex/generated_images/01a1ced6-33da-7253-9636-e503972d7f9d/exec-455b1acc-0324-4f77-8d5e-0000fa3bea99.png"
+    },
+    {
+      "key": "newyear-props",
+      "transparent": true,
+      "refs": [
+        "D:/杂/项目/计算机设计大赛/assets/scroll/backgrounds/winter.png"
+      ],
+      "prompt": "Use case: historical-scene. Asset type: TWO-CELL transparent sprite atlas for the supplied antique Chinese winter handscroll; image is a STYLE REFERENCE only, not an edit. Landscape canvas exactly 2:1, two equal square cells in ONE ROW, both complete isolated objects with 12% transparent margins and same muted fine-ink painted style. LEFT CELL: one modest old vermilion-red PAPER LANTERN with thin dark bamboo ribs, small bronze-brown caps top and bottom, a short hanging string above and short subdued tassel below; traditional rural household size, subtle softly shaded paper, no written character. RIGHT CELL: one short hanging STRING OF TRADITIONAL RED PAPER FIRECRACKERS, two alternating columns of about 12 small faded-red paper cylinders on a central tan fuse, a short top loop, tiny muted ochre end rims. Whole string in frame, no lit sparks, no smoke. Muted cinnabar red, warm worn paper grain, fine sepia outlines, restrained mineral watercolor matching the reference, rather than bright modern New Year clipart. NO scenery, shelf, wall, people, hands, text, label, calligraphy, logo, watermark, floor, cast shadow or painted background. Genuine alpha transparency in all exterior and between objects. No couplets in this atlas; those will be readable text added by code.",
+      "workspacePath": "assets/scroll/effects/festival/newyear-props-v1.png",
+      "original": "C:/Users/魏志宇/.codex/generated_images/01a1ced6-33da-7253-9636-e503972d7f9d/exec-386c73ed-69d0-4075-81f1-f2d2fcaa8b1c.png"
+    }
+  ]
+}

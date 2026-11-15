@@ -15,6 +15,8 @@
 | `effects/wildlife/` | 麻雀、水鸭、蝴蝶、蜻蜓动作图集 | `motion.js`、`season-life.js` |
 | `effects/seasonal/` | 四季檐下装饰、秋收与冬藏道具 | `season-life.js` |
 | `effects/weather/` | 七幅无烟覆盖图，降水时遮去底图中静止的炊烟 | `weather.js` |
+| `effects/mechanical/` | 水车无轮修补图、独立透明木轮 | `village-interactions.js`，仅局部覆盖原轮位置 |
+| `effects/festival/` | 红灯笼与爆竹两列透明图集 | 冬日庭院年俗；春联由可读网页文字绘制 |
 | `villagers/` | 耕作、收获、赶集、店家与货物，含雨具、夜间提灯版本 | `rural-life.js`、`weather.js` |
 | `props/` | 春耕农具与秋收器具 | 目前用于 `placement.html` 试摆 |
 

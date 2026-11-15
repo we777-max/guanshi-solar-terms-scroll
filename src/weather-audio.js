@@ -61,6 +61,7 @@ export class WeatherAudio {
     this.ramp(this.river.gain.gain, water, .9);
     if (this.pan.pan) this.ramp(this.pan.pan, river.pan, .8);
     if (!audible || !state.storm || !state.wet) this.cancelThunder();
+    if (!audible) this.stopFirecrackers();
   }
   thunder(delay, pan = 0) {
     if (!this.context || !this.enabled || this.context.state !== 'running') return;
@@ -81,8 +82,25 @@ export class WeatherAudio {
     for (const item of this.thunders) { try { item.source.stop(); } catch {} }
     this.thunders.clear();
   }
+  firecrackers(pan=0) {
+    if(!this.context||!this.enabled||this.context.state!=='running'||this.crackers)return false;
+    const ctx=this.context,seconds=2.6,length=Math.ceil(ctx.sampleRate*seconds);
+    const buffer=ctx.createBuffer(1,length,ctx.sampleRate),data=buffer.getChannelData(0);
+    // Short paper-cracker impulses, never a new ambience loop or AudioContext.
+    for(let n=0;n<14;n++){
+      const at=Math.floor((.07+n*.165+(n%3)*.012)*ctx.sampleRate),duration=Math.ceil(.065*ctx.sampleRate);
+      for(let i=0;i<duration&&at+i<length;i++)data[at+i]+=(Math.random()*2-1)*Math.exp(-i/(ctx.sampleRate*.012))*.5;
+    }
+    const source=ctx.createBufferSource();source.buffer=buffer;
+    const gain=ctx.createGain();gain.gain.value=.42;
+    const panner=ctx.createStereoPanner?ctx.createStereoPanner():ctx.createGain();if(panner.pan)panner.pan.value=Math.max(-1,Math.min(1,pan));
+    source.connect(gain);gain.connect(panner);panner.connect(this.master);this.crackers=source;
+    source.onended=()=>{if(this.crackers===source)this.crackers=null;source.disconnect();gain.disconnect();panner.disconnect();this.onCrackersEnded?.();};
+    source.start();source.stop(ctx.currentTime+seconds);return true;
+  }
+  stopFirecrackers(){if(this.crackers){const source=this.crackers;this.crackers=null;try{source.stop();}catch{}}}
   close() {
-    this.cancelThunder(); this.rain?.source.stop(); this.river?.source.stop(); this.context?.close();
+    this.cancelThunder(); this.stopFirecrackers(); this.rain?.source.stop(); this.river?.source.stop(); this.context?.close();
   }
   meter() {
     if (!this.analyser || this.context.state !== 'running') return 0;

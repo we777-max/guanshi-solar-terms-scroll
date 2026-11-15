@@ -22,6 +22,7 @@ const modules = [
   { id:'references', name:'原始参考与概念稿', directory:'素材', docs:null, note:'用户提供的豳风图局部、早期立春概念画和前期清单。均不作为当前长卷底图。', entry:null }
 ];
 const titles = {
+  'watermill-clean-v1':'水磨背景：移除转轮的局部修补图', 'waterwheel-rotor-v1':'可独立转动的木水轮', 'newyear-props-v1':'年俗灯笼与爆竹透明图集',
   'interior-v1':'书房室内背景', 'books-v1':'四册古籍图集', 'stationery-v1':'文房用具：笔、墨、砚等', 'books-content':'四册古籍的摘读内容与书架位置',
   spring:'春 · 村落田园', 'spring-bridge':'春 · 溪桥水磨', summer:'夏 · 荷塘亭榭', 'summer-street':'夏 · 水乡长街', autumn:'秋 · 秋收晒场', 'autumn-terraces':'秋 · 山麓梯田', winter:'冬 · 冬日庭院', 'winter-ferry':'冬 · 古渡雪岸',
   'spring-tools-v1':'春耕农具试摆', 'harvest-v1':'秋收器具试摆', 'spring-porch-v1':'春季檐下装饰', 'summer-porch-v1':'夏季纳凉用具', 'autumn-harvest-v1':'秋季收成道具', 'winter-storage-v1':'冬藏柴薪与陶罐',
