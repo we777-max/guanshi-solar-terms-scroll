@@ -12,6 +12,14 @@ export class WaterwheelState {
   step(seconds,playing){if(playing&&this.enabled)this.angle=(this.angle+Math.max(0,Math.min(seconds,.1))*18)%360;}
 }
 
+// A vertical wheel with a horizontal axle. Perspective narrows the circle;
+// it must not shear the upright wheel or change height between axle ends.
+export const MILL_WHEEL=Object.freeze({x:754,y:433,radius:89,scaleX:.56,depth:22});
+export function projectWheelPoint(angle,depth=0){
+  const radians=angle*Math.PI/180;
+  return [MILL_WHEEL.x+depth+Math.cos(radians)*MILL_WHEEL.radius*MILL_WHEEL.scaleX,MILL_WHEEL.y+Math.sin(radians)*MILL_WHEEL.radius];
+}
+
 export class FestivalState {
   constructor(){this.setStage('eve');this.coupletVersion=0;}
   setStage(stage){

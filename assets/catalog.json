@@ -45,6 +45,7 @@
         "docs/scroll/春卷水烟动景-v1-实现说明.md",
         "docs/scroll/村落交互-v9-制作与验证.md",
         "docs/scroll/村落交互-v9-素材与提示词.json",
+        "docs/scroll/水车-v10-扶正与引水说明.md",
         "docs/scroll/节气圆盘实现说明.md"
       ],
       "screenshots": [
@@ -80,7 +81,8 @@
         "docs/scroll/春卷动景-v2-院前.jpg",
         "docs/scroll/春卷水烟动景-v1.jpg",
         "docs/scroll/村落交互-v9-冬居年俗.jpg",
-        "docs/scroll/村落交互-v9-水车.jpg"
+        "docs/scroll/村落交互-v9-水车.jpg",
+        "docs/scroll/水车-v10-扶正与引水.jpg"
       ]
     },
     {

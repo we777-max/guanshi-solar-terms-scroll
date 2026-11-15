@@ -1,4 +1,4 @@
-import { WaterwheelState, FestivalState, FESTIVAL_STAGES } from './src/village-model.js?v=1';
+import { WaterwheelState, FestivalState, FESTIVAL_STAGES, MILL_WHEEL, projectWheelPoint } from './src/village-model.js?v=2';
 
 const motion=window.ScrollMotion, frame=document.querySelector('.painting-frame');
 if(motion&&frame)init();
@@ -29,7 +29,8 @@ function init(){
   const millLayer=el('g',{class:'village-mill','data-wheel-ready':'false',visibility:'hidden'});
   const patchClip=clip(mill,'mill-clean-region',el('path',{d:'M665 335H808V535H665Z'}));
   millLayer.append(image('assets/scroll/effects/mechanical/watermill-clean-v1.png',{width:2172,height:724,'clip-path':patchClip}));
-  const back=el('g',{transform:'matrix(.61 -.05 .15 1 726 433)'}),front=el('g',{transform:'matrix(.61 -.05 .15 1 750 433)'});
+  const wheelPlane=offset=>`matrix(${MILL_WHEEL.scaleX} 0 0 1 ${MILL_WHEEL.x+offset} ${MILL_WHEEL.y})`;
+  const back=el('g',{transform:wheelPlane(-MILL_WHEEL.depth)}),front=el('g',{transform:wheelPlane(0)});
   const backSpin=el('g'),frontSpin=el('g');
   const rotor='assets/scroll/effects/mechanical/waterwheel-rotor-v1.png';
   for(const [parent,spin]of[[back,backSpin],[front,frontSpin]]){spin.append(image(rotor,{x:-96,y:-96,width:192,height:192}));parent.append(spin);}
@@ -37,10 +38,32 @@ function init(){
   const paddles=el('g',{'pointer-events':'none'});const boards=[];
   for(let i=0;i<16;i++){const board=el('path',{fill:i%2?'#9e7e4e':'#b39463',stroke:'#685a40','stroke-width':.9});boards.push(board);paddles.append(board);}
   millLayer.append(back,paddles,front);
+  // Divert a small branch of the existing millrace onto the right-hand rim.
+  // The original stepped spillway remains visible beside it at all times.
+  const trough=el('g',{'aria-hidden':'true','pointer-events':'none',class:'mill-trough'});
+  trough.append(el('path',{d:'M806 419L852 417 860 423 808 429Z',fill:'#b49a70',stroke:'#766448','stroke-width':1.1}),el('path',{d:'M808 429L860 423V428L809 434Z',fill:'#927b56',stroke:'#6d5c43','stroke-width':'.9'}));
+  const waterInlet=el('g',{'aria-hidden':'true','pointer-events':'none',class:'mill-inlet-water'});
+  waterInlet.append(el('path',{d:'M811 420L851 419 857 422 811 427Z',fill:'#9ca28b',opacity:'.88'}));
+  const waterTraces=[];
+  function stream(d,width){
+    waterInlet.append(el('path',{d,fill:'none',stroke:'#859481','stroke-width':width+2,opacity:'.55','stroke-linecap':'round'}),el('path',{d,fill:'none',stroke:'#dedfcc','stroke-width':width,opacity:'.92','stroke-linecap':'round'}));
+    const line=el('path',{d,class:'mill-flow-highlight',fill:'none',stroke:'#f3ecd9','stroke-width':Math.max(1.3,width*.32),'stroke-dasharray':'9 19','stroke-linecap':'round'});waterInlet.append(line);waterTraces.push(line);
+  }
+  stream('M852 421L824 424 808 425Q802 427 803 439',5.2);
+  stream('M803 437Q809 466 794 499Q791 521 812 532Q828 538 851 537',4.2);
+  stream('M799 449Q800 475 786 497',1.9);
+  const drops=[];
+  for(let i=0;i<16;i++){const drop=el('path',{d:'M0 0l1 3.2',fill:'none',stroke:'#efe8d2','stroke-width':1.4,'stroke-linecap':'round'});drops.push(drop);waterInlet.append(drop);}
+  const splash=[];
+  for(let i=0;i<3;i++){const ring=el('ellipse',{cx:849+i*3,cy:538+i*.9,rx:4,ry:1.5,fill:'none',stroke:'#eee5cc','stroke-width':1.2});splash.push(ring);waterInlet.append(ring);}
+  const gate=el('g',{'aria-hidden':'true','pointer-events':'none'});
+  gate.append(el('path',{d:'M825 416V433M835 415V432',fill:'none',stroke:'#705d42','stroke-width':1.7}));
+  const shutter=el('path',{d:'M826 0H834V9H826Z',fill:'#8c704c',stroke:'#67563e','stroke-width':'.8'});gate.append(shutter);
+  millLayer.append(trough,waterInlet,gate);
   const bearing=clip(mill,'mill-fixed-bearing',el('path',{d:'M746 419Q760 410 774 427V448H783L791 474 797 523 740 532 735 503 737 466 742 454Z'}));
   millLayer.append(image('assets/scroll/backgrounds/spring-bridge.png',{width:2172,height:724,'clip-path':bearing}));
   const millButton=target('水车正在转动，点击停下',[662,334,148,200],()=>{
-    wheel.toggle();sync();say(wheel.enabled?(mill.playing?'水轮继续转动，溪水沿石阶汇流。':'水车已开启；画卷动景暂停，恢复播放后再转动。'):'水轮已停，溪水仍沿旁侧水道流下。');
+    wheel.toggle();sync();say(wheel.enabled?(mill.playing?'提闸进水，水流冲上轮缘，沿水轮落入溪中。':'水车已开启；画卷动景暂停，恢复播放后再转动。'):'关闸停轮，进轮水流停下，旁侧跌水与溪流继续流动。');
   });
   millButton.append(el('ellipse',{cx:735,cy:434,rx:65,ry:95,fill:'transparent'}));millLayer.append(millButton);underneathPeople(mill,millLayer);
 
@@ -128,9 +151,13 @@ function init(){
   }
   function drawWheel(){
     for(const spin of[backSpin,frontSpin])spin.setAttribute('transform',`rotate(${wheel.angle.toFixed(2)})`);
-    const project=(angle,offset)=>{const a=angle*Math.PI/180,x=Math.cos(a)*89,y=Math.sin(a)*89;return [750+offset+x*.61+y*.15,433-x*.05+y];};
-    boards.forEach((board,i)=>{const a=i*22.5+wheel.angle,p=[project(a,-24),project(a+4,-24),project(a+4,0),project(a,0)];board.setAttribute('d',`M${p.map(v=>v.join(' ')).join('L')}Z`);});
+    boards.forEach((board,i)=>{const a=i*22.5+wheel.angle,p=[projectWheelPoint(a,-MILL_WHEEL.depth),projectWheelPoint(a+4,-MILL_WHEEL.depth),projectWheelPoint(a+4),projectWheelPoint(a)];board.setAttribute('d',`M${p.map(v=>v.join(' ')).join('L')}Z`);});
+    waterInlet.setAttribute('opacity',wheel.enabled?'1':'0');shutter.setAttribute('transform',`translate(0 ${wheel.enabled?407:423})`);
+    waterTraces.forEach((line,i)=>line.setAttribute('stroke-dashoffset',(-wheel.angle/360*280-i*7).toFixed(2)));
+    drops.forEach((drop,i)=>{const angle=(wheel.angle+i*22.5)%360,t=(wheel.angle/360*8+i*.137)%1;const [x,y]=projectWheelPoint(angle);drop.setAttribute('opacity',angle>6&&angle<78?String((1-t)*.8):'0');drop.setAttribute('transform',`translate(${x+2+t*3} ${y+t*13})`);});
+    splash.forEach((ring,i)=>{const t=(wheel.angle/360*12+i/3)%1;ring.setAttribute('rx',(4+t*10).toFixed(2));ring.setAttribute('ry',(1+t*2).toFixed(2));ring.setAttribute('opacity',String(.65*(1-t)));});
     millLayer.dataset.wheelAngle=wheel.angle.toFixed(2);millLayer.dataset.wheelEnabled=String(wheel.enabled);millLayer.dataset.wheelRunning=String(Boolean(mill.playing&&wheel.enabled));
+    millLayer.dataset.wheelPlane='vertical';millLayer.dataset.millWater=wheel.enabled?(mill.playing?'flowing':'paused'):'closed';
     millButton.setAttribute('aria-pressed',String(wheel.enabled));millButton.setAttribute('aria-label',wheel.enabled?(mill.playing?'水车正在转动，点击停下':'水车已开启（动景暂停），点击关闭'):'水车已停止，点击开启');
     millButton.querySelector('title').textContent=millButton.getAttribute('aria-label');
   }

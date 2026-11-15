@@ -1,6 +1,16 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { WaterwheelState, FestivalState, FESTIVAL_STAGES } from '../src/village-model.js';
+import { WaterwheelState, FestivalState, FESTIVAL_STAGES, MILL_WHEEL, projectWheelPoint } from '../src/village-model.js';
+
+test('waterwheel stays upright and its axle is level across both faces',()=>{
+  const top=projectWheelPoint(270),bottom=projectWheelPoint(90),left=projectWheelPoint(180),right=projectWheelPoint(0);
+  assert.ok(Math.abs(top[0]-bottom[0])<1e-8);
+  assert.ok(Math.abs(left[1]-right[1])<1e-8);
+  for(let angle=0;angle<360;angle+=15){
+    const front=projectWheelPoint(angle),back=projectWheelPoint(angle,-MILL_WHEEL.depth);
+    assert.equal(front[1],back[1]);assert.ok(Math.abs(front[0]-back[0]-MILL_WHEEL.depth)<1e-8);
+  }
+});
 
 test('waterwheel starts enabled, keeps its angle on stop, pause and offscreen, and resumes from it',()=>{
   const wheel=new WaterwheelState();assert.equal(wheel.enabled,true);
