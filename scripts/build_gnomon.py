@@ -13,7 +13,7 @@ from pathlib import Path
 from mathutils import Vector
 
 ROOT = Path(__file__).resolve().parents[1]
-OUTPUT = ROOT / 'assets' / 'gnomon'
+OUTPUT = ROOT / 'assets' / 'guibiao' / 'lab'
 OUTPUT.mkdir(parents=True, exist_ok=True)
 DATUM = 0.30
 HEIGHT = 2.0

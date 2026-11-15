@@ -95,7 +95,7 @@ async function enterCourtyard() {
 
   const [courtyard, gltf] = await Promise.all([
     createCourtyard(renderer),
-    new GLTFLoader().loadAsync('assets/courtyard/guibiao-aged-v2.glb'),
+    new GLTFLoader().loadAsync('assets/guibiao/courtyard/guibiao-aged-v2.glb'),
   ]);
   scene.add(courtyard.group);
   const model = gltf.scene;

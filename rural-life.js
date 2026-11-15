@@ -119,7 +119,7 @@
         clip.append(element('rect', { width, height })); defs.append(clip);
         const anchor = element('g', { class: className, transform: `translate(${-width/2} ${-height*foot})`, 'aria-hidden': 'true' });
         const window = element('g', { 'clip-path': `url(#${id})` });
-        const image = element('image', { class: 'rural-art', href: `assets/villagers/${file}.png`, width: width*2, height, preserveAspectRatio: 'none' });
+        const image = element('image', { class: 'rural-art', href: `assets/scroll/villagers/${file}.png`, width: width*2, height, preserveAspectRatio: 'none' });
         if(lantern) {
           const glowId=makeId('lantern-glow');
           const gradient=element('radialGradient',{id:glowId});
@@ -185,7 +185,7 @@
       display.append(keeper);
       foreground(display, config.counter);
       const [x,y,width,height] = config.goods;
-      display.append(element('image', { class: 'rural-art', href: `assets/villagers/market-${config.key}-goods-v1.png`, x: x-width/2, y: y-height*.88, width, height, preserveAspectRatio: 'none', 'aria-hidden': 'true' }));
+      display.append(element('image', { class: 'rural-art', href: `assets/scroll/villagers/market-${config.key}-goods-v1.png`, x: x-width/2, y: y-height*.88, width, height, preserveAspectRatio: 'none', 'aria-hidden': 'true' }));
       const flag = element('g', { transform: `translate(${config.sign.join(' ')})`, 'aria-hidden': 'true' });
       const sway = element('g');
       sway.append(element('path', { class: 'market-sign-cord', d: 'M0-12V0' }), element('path', { class: 'market-sign-cloth', d: 'M-12 0H12V39L5 36 0 39-6 36-12 39Z' }));

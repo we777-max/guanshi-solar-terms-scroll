@@ -2,29 +2,54 @@
 
 二十四节气项目的交互长卷预览。八张环境画作横向排列，每季两景，依次为村落田园、溪桥水磨、荷塘亭榭、水乡长街、秋收晒场、山麓梯田、冬日庭院、古渡雪岸。春卷第一景现可进入书斋，并可进入独立的三维圭表测影庭院。
 
+## 查找素材
+
+双击根目录的 [素材总览.html](素材总览.html) 即可按中文模块看缩略图、用途、文件位置和效果截图，也可通过本地服务访问。默认打开书房素材，不导出 ZIP。
+
+| 模块 | 素材文件夹 | 制作记录与截图 |
+| --- | --- | --- |
+| 书房 | `assets/study/` | `docs/study/` |
+| 长卷与四季生活 | `assets/scroll/` | `docs/scroll/` |
+| 圭表测影 | `assets/guibiao/` | `docs/guibiao/` |
+| 道具试摆 | `assets/placement/` | `docs/placement/` |
+| 原始参考与概念稿 | `素材/` | `docs/scroll/` 中的前期方案 |
+
+每个模块内有中文 `README.md`；完整清单在 `assets/素材索引.csv`，可用 Excel 打开。添加或替换图片后运行 `npm run assets:index`，运行 `npm run assets:check` 检查索引与引用。人物样稿继续保留在 `assets/characters/`，尚未接入主卷。
+
 ## 本地预览
 
 在项目目录打开终端，运行：
 
 ```powershell
-python -m http.server 8765
+python -m http.server 8771 --bind 127.0.0.1
 ```
 
-浏览器访问 <http://localhost:8765>，三维圭表为 <http://localhost:8765/gnomon.html?v=0.2.0>。网页由原生 HTML、CSS 和 JavaScript 构成。运行资源已保存在 `vendor/`，首次预览无需 npm 安装或外网 CDN。请通过 HTTP 服务打开，三维页面使用 ES 模块。
+浏览器访问 <http://127.0.0.1:8771/index.html>。保持终端窗口开着，按 `Ctrl+C` 停止服务。也可运行 `npm run preview` 启动同一个服务；两种命令选一种即可。网页由原生 HTML、CSS 和 JavaScript 构成，运行资源已保存在 `vendor/`，预览无需 npm 安装或外网 CDN。
+
+| 要看什么 | 启动后的入口 |
+| --- | --- |
+| 素材总览 | <http://127.0.0.1:8771/素材总览.html>，也可直接双击根目录同名文件 |
+| 交互长卷 | <http://127.0.0.1:8771/index.html> |
+| 书房取书 | 进入长卷，点击春季第一景的“入室阅书”；没有单独的书房 HTML |
+| 当前三维圭表庭院 | <http://127.0.0.1:8771/courtyard.html>，也可点击画中的二维圭表 |
+| 道具试摆 | <http://127.0.0.1:8771/placement.html> |
+| 早期测影样段 | <http://127.0.0.1:8771/gnomon.html>，与当前庭院分开保留 |
+
+长卷和三维页面请通过 HTTP 服务打开，三维页面使用 ES 模块。若 `python` 无法识别，可尝试 `py -m http.server 8771 --bind 127.0.0.1`。如果提示端口被占用，先打开上面的入口检查是否已有服务；需要另启时把端口改成 `8772`，网址也使用 `8772`。更新文件后按 `Ctrl+F5` 刷新。
 
 需要更新本地依赖副本时运行 `npm ci --ignore-scripts`、`npm run vendor`；科学计算与导航检查运行 `npm test`。依赖版本固定，保留原始许可证。
 
 画作路径：
 
 ```text
-assets/scroll/spring.png
-assets/scroll/spring-bridge.png
-assets/scroll/summer.png
-assets/scroll/summer-street.png
-assets/scroll/autumn.png
-assets/scroll/autumn-terraces.png
-assets/scroll/winter.png
-assets/scroll/winter-ferry.png
+assets/scroll/backgrounds/spring.png
+assets/scroll/backgrounds/spring-bridge.png
+assets/scroll/backgrounds/summer.png
+assets/scroll/backgrounds/summer-street.png
+assets/scroll/backgrounds/autumn.png
+assets/scroll/backgrounds/autumn-terraces.png
+assets/scroll/backgrounds/winter.png
+assets/scroll/backgrounds/winter-ferry.png
 ```
 
 ## 浏览方式
@@ -52,11 +77,11 @@ assets/scroll/winter-ferry.png
 - `gnomon.html`、`gnomon.css`、`gnomon.js`：三维圭表页面。
 - `src/solar-model.js`：交节、当地正午、影长及昼长计算。
 - `scripts/build_gnomon.py`：Blender 模型生成与渲染脚本。
-- `assets/gnomon/`：可编辑 `.blend`、网页 `.glb`、模型预览和尺寸清单。
+- `assets/guibiao/lab/`：可编辑 `.blend`、网页 `.glb`、模型预览和尺寸清单。
 - `tests/`：科学计算检查及原有导航事件模拟。
 - `study.css`、`study.js`：室内布局、书籍动画、书页及原典摘读。
-- `motion.css`、`motion.js`、`assets/motion/`：春卷流水、炊烟、涟漪及暂停控制；实现范围见 `docs/春卷水烟动景-v1-实现说明.md`。
-- `assets/study/`：书斋背景与独立书册图集；完整提示词与内容来源见 `docs/书斋取书样段-v1-制作记录.md`。
+- `motion.css`、`motion.js`、`assets/scroll/effects/`：流水、炊烟、涟漪、四季道具、鸟虫及天气动景；实现范围见 `docs/scroll/春卷水烟动景-v1-实现说明.md`。
+- `assets/study/`：书斋背景与独立书册图集；完整提示词与内容来源见 `docs/study/书斋取书样段-v1-制作记录.md`。
 - `docs/` 与 `素材/`：前期方案、素材清单及制作记录。
 
 ## 模型重建
@@ -65,7 +90,7 @@ assets/scroll/winter-ferry.png
 & 'D:\app1\blender\blender.exe' --background --factory-startup --python-exit-code 1 --python scripts/build_gnomon.py -- --render
 ```
 
-产物保存在 `assets/gnomon/`。`--factory-startup` 仅作用于该独立后台进程。请在项目根目录运行；其他电脑可使用本机 Blender 可执行文件路径。当前模型为科普示意，并非特定历史文物的精确复原。更多计算约定与验证见 `docs/圭表测影-v1-实现说明.md`。
+产物保存在 `assets/guibiao/lab/`。`--factory-startup` 仅作用于该独立后台进程。请在项目根目录运行；其他电脑可使用本机 Blender 可执行文件路径。当前模型为科普示意，并非特定历史文物的精确复原。更多计算约定与验证见 `docs/guibiao/圭表测影-v1-实现说明.md`。
 
 ## Git 管理
 

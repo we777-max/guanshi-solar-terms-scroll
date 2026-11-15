@@ -61,7 +61,7 @@ function init() {
       const mask=document.createElementNS(ns,'mask');mask.id=id;mask.setAttribute('maskUnits','userSpaceOnUse');
       const ellipse=document.createElementNS(ns,'ellipse');ellipse.setAttribute('cx',x+w/2);ellipse.setAttribute('cy',y+h/2);ellipse.setAttribute('rx',w/2);ellipse.setAttribute('ry',h/2);ellipse.setAttribute('fill','white');
       const soft=document.createElementNS(ns,'filter');soft.id=`${id}-soft`;const blur=document.createElementNS(ns,'feGaussianBlur');blur.setAttribute('stdDeviation','3');soft.append(blur);ellipse.setAttribute('filter',`url(#${soft.id})`);mask.append(ellipse);scene.svg.querySelector('defs').append(mask,soft);
-      const patch=document.createElementNS(ns,'image');patch.setAttribute('href',`assets/weather/${['spring','spring-bridge','summer','summer-street','autumn','autumn-terraces','winter','winter-ferry'][index]}-smokeless-v1.png`);patch.setAttribute('width','2172');patch.setAttribute('height','724');patch.setAttribute('preserveAspectRatio','none');patch.setAttribute('mask',`url(#${id})`);patch.setAttribute('class','weather-smoke-cover');patch.setAttribute('aria-hidden','true');scene.svg.append(patch);
+      const patch=document.createElementNS(ns,'image');patch.setAttribute('href',`assets/scroll/effects/weather/${['spring','spring-bridge','summer','summer-street','autumn','autumn-terraces','winter','winter-ferry'][index]}-smokeless-v1.png`);patch.setAttribute('width','2172');patch.setAttribute('height','724');patch.setAttribute('preserveAspectRatio','none');patch.setAttribute('mask',`url(#${id})`);patch.setAttribute('class','weather-smoke-cover');patch.setAttribute('aria-hidden','true');scene.svg.append(patch);
     }
     const shelter = document.createElementNS(ns,'g'); shelter.dataset.weatherPerson = 'shelter'; shelter.dataset.weatherHidden = 'true'; shelter.setAttribute('aria-hidden','true');
     const site = [[965,465],[1650,420],[1076,446],[465,470],[1092,414],[1169,412],[589,416],[665,451]][index];
@@ -69,7 +69,7 @@ function init() {
     const clip = document.createElementNS(ns,'clipPath'); clip.id = `weather-shelter-${index}`;
     const rect = document.createElementNS(ns,'rect'); rect.setAttribute('width',size); rect.setAttribute('height',size); clip.append(rect); scene.svg.querySelector('defs').append(clip);
     const box = document.createElementNS(ns,'g'); box.setAttribute('transform',`translate(${site[0]-size/2} ${site[1]-size*.965})`); box.setAttribute('clip-path',`url(#${clip.id})`);
-    const img = document.createElementNS(ns,'image'); img.setAttribute('href','assets/villagers/market-shopkeeper-v1.png'); img.setAttribute('width',size*2); img.setAttribute('height',size); img.setAttribute('class','rural-art'); box.append(img); shelter.append(box); scene.svg.append(shelter);
+    const img = document.createElementNS(ns,'image'); img.setAttribute('href','assets/scroll/villagers/market-shopkeeper-v1.png'); img.setAttribute('width',size*2); img.setAttribute('height',size); img.setAttribute('class','rural-art'); box.append(img); shelter.append(box); scene.svg.append(shelter);
     const world=createWorldAtmosphere(scene,index,{windows:windows[index],eaves:eaveLines[index]});
     return {scene,index,actors,wildlife,water,shops,shelter,world,waterBand:-1};
   });

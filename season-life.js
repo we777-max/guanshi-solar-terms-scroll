@@ -103,7 +103,7 @@
       const anchor = element('g', { transform: `translate(${-size/2} ${-size*foot})`, 'aria-hidden': 'true' });
       const window = element('g', { 'clip-path': `url(#${clipId})` });
       const source = kind === 'sparrow' || kind === 'duck' ? `spring-${kind}-frames-v1` : `${kind}-frames-v1`;
-      const image = element('image', { class: 'life-sprite', href: `assets/motion/${source}.png`, width: size * 2, height: size, preserveAspectRatio: 'none' });
+      const image = element('image', { class: 'life-sprite', href: `assets/scroll/effects/wildlife/${source}.png`, width: size * 2, height: size, preserveAspectRatio: 'none' });
       window.append(image); anchor.append(window); parent.append(anchor);
       return image;
     }
@@ -163,7 +163,7 @@
     prop.setAttribute('aria-controls', 'seasonLifeNote'); prop.setAttribute('aria-expanded', 'false'); propButtons.add(prop);
     // Shadow stays on the ground; the illustrated props themselves stay still.
     prop.append(element('ellipse', { cx: 0, cy: 0, rx: propSize*.29, ry: propSize*.026, fill: '#625037', opacity: .17, 'aria-hidden': 'true' }));
-    prop.append(element('image', { class: 'life-prop-art', href: `assets/motion/${propKinds[season]}-v1.png`, x: -propSize/2, y: -propSize*.88, width: propSize, height: propSize, preserveAspectRatio: 'none', 'aria-hidden': 'true' }));
+    prop.append(element('image', { class: 'life-prop-art', href: `assets/scroll/effects/seasonal/${propKinds[season]}-v1.png`, x: -propSize/2, y: -propSize*.88, width: propSize, height: propSize, preserveAspectRatio: 'none', 'aria-hidden': 'true' }));
     propAnchor.append(prop); layer.append(propAnchor);
 
     function flying(kind, x, y, size, number) {

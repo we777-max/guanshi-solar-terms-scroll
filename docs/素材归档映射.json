@@ -1,0 +1,821 @@
+{
+  "date": "2026-11-15",
+  "files": [
+    {
+      "before": "assets/scroll/autumn-terraces.png",
+      "after": "assets/scroll/backgrounds/autumn-terraces.png",
+      "sha256Before": "0612535c208f6fe4bccdfae49efcca16a98a29577f45a59513b398f585d9f93b",
+      "sha256After": "0612535c208f6fe4bccdfae49efcca16a98a29577f45a59513b398f585d9f93b"
+    },
+    {
+      "before": "assets/scroll/autumn.png",
+      "after": "assets/scroll/backgrounds/autumn.png",
+      "sha256Before": "da2d8aa339749653adc74f5732c3f822052c4d3b61e77a3e6d4f549b6ffc03fd",
+      "sha256After": "da2d8aa339749653adc74f5732c3f822052c4d3b61e77a3e6d4f549b6ffc03fd"
+    },
+    {
+      "before": "assets/scroll/spring-bridge.png",
+      "after": "assets/scroll/backgrounds/spring-bridge.png",
+      "sha256Before": "7f558367256cd962b2e41fd52c1ade5efba8271ca06142be24b597156b2d4287",
+      "sha256After": "7f558367256cd962b2e41fd52c1ade5efba8271ca06142be24b597156b2d4287"
+    },
+    {
+      "before": "assets/scroll/spring.png",
+      "after": "assets/scroll/backgrounds/spring.png",
+      "sha256Before": "abf43126dce5225d94995688d8e7bda672c87818488834b06eb4d44e7991339b",
+      "sha256After": "abf43126dce5225d94995688d8e7bda672c87818488834b06eb4d44e7991339b"
+    },
+    {
+      "before": "assets/scroll/summer-street.png",
+      "after": "assets/scroll/backgrounds/summer-street.png",
+      "sha256Before": "4483443d2d2b798fc57dc9981c0d38b9463fda1eec954db5504b326599fba5d4",
+      "sha256After": "4483443d2d2b798fc57dc9981c0d38b9463fda1eec954db5504b326599fba5d4"
+    },
+    {
+      "before": "assets/scroll/summer.png",
+      "after": "assets/scroll/backgrounds/summer.png",
+      "sha256Before": "dfb6a1a87f5fc968949a604da9592fff5d3453a37e9de5acee1d710756e63a73",
+      "sha256After": "dfb6a1a87f5fc968949a604da9592fff5d3453a37e9de5acee1d710756e63a73"
+    },
+    {
+      "before": "assets/scroll/winter-ferry.png",
+      "after": "assets/scroll/backgrounds/winter-ferry.png",
+      "sha256Before": "2899580875f8849963208f9c4a29f6d6cb29624537fd8060aa3bafe1aa0f0c47",
+      "sha256After": "2899580875f8849963208f9c4a29f6d6cb29624537fd8060aa3bafe1aa0f0c47"
+    },
+    {
+      "before": "assets/scroll/winter.png",
+      "after": "assets/scroll/backgrounds/winter.png",
+      "sha256Before": "067b9f4431cf9b6ca6fb3377d29e911b50de45bd70a56e297f6dc84333a3345c",
+      "sha256After": "067b9f4431cf9b6ca6fb3377d29e911b50de45bd70a56e297f6dc84333a3345c"
+    },
+    {
+      "before": "assets/villagers/autumn-rice-harvester-rain-v1.png",
+      "after": "assets/scroll/villagers/autumn-rice-harvester-rain-v1.png",
+      "sha256Before": "d54a725b5d6576fc66b0c7088d11604edb868b205a81ec815b278876eb92857f",
+      "sha256After": "d54a725b5d6576fc66b0c7088d11604edb868b205a81ec815b278876eb92857f"
+    },
+    {
+      "before": "assets/villagers/autumn-rice-harvester-v1.png",
+      "after": "assets/scroll/villagers/autumn-rice-harvester-v1.png",
+      "sha256Before": "7125e931e1fb34d18e04e2a9f57d1d05776aa861f7c2a76119018fb5f18b0558",
+      "sha256After": "7125e931e1fb34d18e04e2a9f57d1d05776aa861f7c2a76119018fb5f18b0558"
+    },
+    {
+      "before": "assets/villagers/autumn-winnower-v1.png",
+      "after": "assets/scroll/villagers/autumn-winnower-v1.png",
+      "sha256Before": "0b01a2596c4f07948a3bf7b95187b66c1bec1c741352b2da9b1cf312e8d93d5f",
+      "sha256After": "0b01a2596c4f07948a3bf7b95187b66c1bec1c741352b2da9b1cf312e8d93d5f"
+    },
+    {
+      "before": "assets/villagers/field-hoeing-rain-v1.png",
+      "after": "assets/scroll/villagers/field-hoeing-rain-v1.png",
+      "sha256Before": "aa5db0dba49a7fe7f68700c03df26e26f97ddde447ca4bebadf0e10af07d68fd",
+      "sha256After": "aa5db0dba49a7fe7f68700c03df26e26f97ddde447ca4bebadf0e10af07d68fd"
+    },
+    {
+      "before": "assets/villagers/field-hoeing-v1.png",
+      "after": "assets/scroll/villagers/field-hoeing-v1.png",
+      "sha256Before": "5a34ba2ed71b28980a815053da8a2b2667552a19f55e6aa868eb2cc6386bff39",
+      "sha256After": "5a34ba2ed71b28980a815053da8a2b2667552a19f55e6aa868eb2cc6386bff39"
+    },
+    {
+      "before": "assets/villagers/grain-carrier-rain-v1.png",
+      "after": "assets/scroll/villagers/grain-carrier-rain-v1.png",
+      "sha256Before": "94ef3961ceb8dee5c79e771998c9e1b808463726188c6cd60cfba0bfe0146e90",
+      "sha256After": "94ef3961ceb8dee5c79e771998c9e1b808463726188c6cd60cfba0bfe0146e90"
+    },
+    {
+      "before": "assets/villagers/grain-carrier-v1.png",
+      "after": "assets/scroll/villagers/grain-carrier-v1.png",
+      "sha256Before": "7ddb0bcbe035418fd0b94b5fac0b5e459c970905bd1621444dc32b9f299c0b58",
+      "sha256After": "7ddb0bcbe035418fd0b94b5fac0b5e459c970905bd1621444dc32b9f299c0b58"
+    },
+    {
+      "before": "assets/villagers/market-cloth-goods-v1.png",
+      "after": "assets/scroll/villagers/market-cloth-goods-v1.png",
+      "sha256Before": "1ba587169bff25791d68b5c2ae21546d785ea79728bf31b4c69c40bf06f6190a",
+      "sha256After": "1ba587169bff25791d68b5c2ae21546d785ea79728bf31b4c69c40bf06f6190a"
+    },
+    {
+      "before": "assets/villagers/market-grain-goods-v1.png",
+      "after": "assets/scroll/villagers/market-grain-goods-v1.png",
+      "sha256Before": "ecc7e6f33b08939028584f8c94c017db829e1888cf27d5344fc3ec0be7dfcd0e",
+      "sha256After": "ecc7e6f33b08939028584f8c94c017db829e1888cf27d5344fc3ec0be7dfcd0e"
+    },
+    {
+      "before": "assets/villagers/market-shopkeeper-v1.png",
+      "after": "assets/scroll/villagers/market-shopkeeper-v1.png",
+      "sha256Before": "b76c77a7e941080707ecda3005b8feb3cea931fa85ab6e05921dab93a6e4905d",
+      "sha256After": "b76c77a7e941080707ecda3005b8feb3cea931fa85ab6e05921dab93a6e4905d"
+    },
+    {
+      "before": "assets/villagers/market-shopper-rain-v1.png",
+      "after": "assets/scroll/villagers/market-shopper-rain-v1.png",
+      "sha256Before": "7115ad58fd7bced2da5464d46e2cb1caf8a9dd1f89cd2765ad1ee6096990de2a",
+      "sha256After": "7115ad58fd7bced2da5464d46e2cb1caf8a9dd1f89cd2765ad1ee6096990de2a"
+    },
+    {
+      "before": "assets/villagers/market-shopper-v1.png",
+      "after": "assets/scroll/villagers/market-shopper-v1.png",
+      "sha256Before": "78ec3ad7da21fdbe56b176b9d6ab8a25f5a260a4825a0d8aa42a2df743c9352f",
+      "sha256After": "78ec3ad7da21fdbe56b176b9d6ab8a25f5a260a4825a0d8aa42a2df743c9352f"
+    },
+    {
+      "before": "assets/villagers/market-tea-goods-v1.png",
+      "after": "assets/scroll/villagers/market-tea-goods-v1.png",
+      "sha256Before": "43c7dadb2e002027c896d0a5aba968a1a18df26d9369bf72914989306d29d885",
+      "sha256After": "43c7dadb2e002027c896d0a5aba968a1a18df26d9369bf72914989306d29d885"
+    },
+    {
+      "before": "assets/villagers/spring-ox-plough-rain-v1.png",
+      "after": "assets/scroll/villagers/spring-ox-plough-rain-v1.png",
+      "sha256Before": "2bb8bb6ad2e7b883d70e5f862df3621c12863e5b0bfc0b6eb59499b0b4bfd747",
+      "sha256After": "2bb8bb6ad2e7b883d70e5f862df3621c12863e5b0bfc0b6eb59499b0b4bfd747"
+    },
+    {
+      "before": "assets/villagers/spring-ox-plough-v1.png",
+      "after": "assets/scroll/villagers/spring-ox-plough-v1.png",
+      "sha256Before": "c166f6ea1099b97722be8f854b79812461ecc92cc06e9ea8658a0f8a466cf4d1",
+      "sha256After": "c166f6ea1099b97722be8f854b79812461ecc92cc06e9ea8658a0f8a466cf4d1"
+    },
+    {
+      "before": "assets/villagers/summer-rice-planter-rain-v1.png",
+      "after": "assets/scroll/villagers/summer-rice-planter-rain-v1.png",
+      "sha256Before": "3e6655bc486f9e0a615f9d213336acb09a54ac8666d5af92ef4b5f5bf8b617e9",
+      "sha256After": "3e6655bc486f9e0a615f9d213336acb09a54ac8666d5af92ef4b5f5bf8b617e9"
+    },
+    {
+      "before": "assets/villagers/summer-rice-planter-v1.png",
+      "after": "assets/scroll/villagers/summer-rice-planter-v1.png",
+      "sha256Before": "aa7baeee98d16761be0768ff2c8346a258548e9ae4f89de140e1ac347ef1586a",
+      "sha256After": "aa7baeee98d16761be0768ff2c8346a258548e9ae4f89de140e1ac347ef1586a"
+    },
+    {
+      "before": "assets/villagers/village-walker-lantern-rain-v1.png",
+      "after": "assets/scroll/villagers/village-walker-lantern-rain-v1.png",
+      "sha256Before": "274e042b20a63cdb44da0ab6b0e6297d9e4e7f024d44a3eb5d43b5d456337f94",
+      "sha256After": "274e042b20a63cdb44da0ab6b0e6297d9e4e7f024d44a3eb5d43b5d456337f94"
+    },
+    {
+      "before": "assets/villagers/village-walker-lantern-v1.png",
+      "after": "assets/scroll/villagers/village-walker-lantern-v1.png",
+      "sha256Before": "413543649d81af71d4e5faeda8c3fc98c2bdced1a6bcf934fbc0db0e52da99d4",
+      "sha256After": "413543649d81af71d4e5faeda8c3fc98c2bdced1a6bcf934fbc0db0e52da99d4"
+    },
+    {
+      "before": "assets/villagers/village-walker-rain-v1.png",
+      "after": "assets/scroll/villagers/village-walker-rain-v1.png",
+      "sha256Before": "51144d7a431f90fa65abe77159cde29b68c42125ac4f75417c741970fb5ebc96",
+      "sha256After": "51144d7a431f90fa65abe77159cde29b68c42125ac4f75417c741970fb5ebc96"
+    },
+    {
+      "before": "assets/villagers/village-walker-v1.png",
+      "after": "assets/scroll/villagers/village-walker-v1.png",
+      "sha256Before": "f0c4375591d70ec3d64c1fbd428d7dad713c41fcb41c5fc410269999928c5e9f",
+      "sha256After": "f0c4375591d70ec3d64c1fbd428d7dad713c41fcb41c5fc410269999928c5e9f"
+    },
+    {
+      "before": "assets/villagers/winter-chopping-v1.png",
+      "after": "assets/scroll/villagers/winter-chopping-v1.png",
+      "sha256Before": "8fbfd677cab48c480a6f2a5ba6e6fe14f0da22f03869b0c6d8d3fc42808577d9",
+      "sha256After": "8fbfd677cab48c480a6f2a5ba6e6fe14f0da22f03869b0c6d8d3fc42808577d9"
+    },
+    {
+      "before": "assets/villagers/winter-villager-lantern-v1.png",
+      "after": "assets/scroll/villagers/winter-villager-lantern-v1.png",
+      "sha256Before": "19255d4514bdd957fea5fe4ce1ce8a4dd16ed1703880fd5d27abd85f0e17b562",
+      "sha256After": "19255d4514bdd957fea5fe4ce1ce8a4dd16ed1703880fd5d27abd85f0e17b562"
+    },
+    {
+      "before": "assets/villagers/winter-villager-v1.png",
+      "after": "assets/scroll/villagers/winter-villager-v1.png",
+      "sha256Before": "967ccbf1482afd86f6fc5014d41bc9ec80c0953f61426e7c860a7de4bf6e0f73",
+      "sha256After": "967ccbf1482afd86f6fc5014d41bc9ec80c0953f61426e7c860a7de4bf6e0f73"
+    },
+    {
+      "before": "assets/weather/autumn-smokeless-v1.png",
+      "after": "assets/scroll/effects/weather/autumn-smokeless-v1.png",
+      "sha256Before": "ab50f72fa3d6c148046b8de22266d9c7296ac6ea723a755e0c772908d6bab869",
+      "sha256After": "ab50f72fa3d6c148046b8de22266d9c7296ac6ea723a755e0c772908d6bab869"
+    },
+    {
+      "before": "assets/weather/spring-bridge-smokeless-v1.png",
+      "after": "assets/scroll/effects/weather/spring-bridge-smokeless-v1.png",
+      "sha256Before": "c69b62066bd85f952d0e77163e9968a4e00d5a04c876baa43f466a77e6a6e28a",
+      "sha256After": "c69b62066bd85f952d0e77163e9968a4e00d5a04c876baa43f466a77e6a6e28a"
+    },
+    {
+      "before": "assets/weather/spring-smokeless-v1.png",
+      "after": "assets/scroll/effects/weather/spring-smokeless-v1.png",
+      "sha256Before": "f8c3c80d4a3b2cf6d87aee9fb2b1db551004fc4f5c161b68b4ec30e2d932a3c6",
+      "sha256After": "f8c3c80d4a3b2cf6d87aee9fb2b1db551004fc4f5c161b68b4ec30e2d932a3c6"
+    },
+    {
+      "before": "assets/weather/summer-smokeless-v1.png",
+      "after": "assets/scroll/effects/weather/summer-smokeless-v1.png",
+      "sha256Before": "61b6ed33fe5b5e95754148ef3bcdb3ae591fbf2c93cf019dd3f55e83e238b6ab",
+      "sha256After": "61b6ed33fe5b5e95754148ef3bcdb3ae591fbf2c93cf019dd3f55e83e238b6ab"
+    },
+    {
+      "before": "assets/weather/summer-street-smokeless-v1.png",
+      "after": "assets/scroll/effects/weather/summer-street-smokeless-v1.png",
+      "sha256Before": "b4cecc86d1021549208bc5e1d1274f9fb7e1648b5f47a7ecec8016e9a4af1127",
+      "sha256After": "b4cecc86d1021549208bc5e1d1274f9fb7e1648b5f47a7ecec8016e9a4af1127"
+    },
+    {
+      "before": "assets/weather/winter-ferry-smokeless-v1.png",
+      "after": "assets/scroll/effects/weather/winter-ferry-smokeless-v1.png",
+      "sha256Before": "4a587f8e8de583be54d5aa3f050f882a25f3027944153385708d43b466bca01e",
+      "sha256After": "4a587f8e8de583be54d5aa3f050f882a25f3027944153385708d43b466bca01e"
+    },
+    {
+      "before": "assets/weather/winter-smokeless-v1.png",
+      "after": "assets/scroll/effects/weather/winter-smokeless-v1.png",
+      "sha256Before": "686469ed9b44b4acaf4c7758336d49aee9199aee964e1d72da5c36b0ccc29855",
+      "sha256After": "686469ed9b44b4acaf4c7758336d49aee9199aee964e1d72da5c36b0ccc29855"
+    },
+    {
+      "before": "assets/courtyard/guibiao-aged-v2-source.blend",
+      "after": "assets/guibiao/courtyard/guibiao-aged-v2-source.blend",
+      "sha256Before": "032bd4c5b060706c72e30dc5f74c2cf314fb28e644f3bf23dab78faf4892b5db",
+      "sha256After": "032bd4c5b060706c72e30dc5f74c2cf314fb28e644f3bf23dab78faf4892b5db"
+    },
+    {
+      "before": "assets/courtyard/guibiao-aged-v2.glb",
+      "after": "assets/guibiao/courtyard/guibiao-aged-v2.glb",
+      "sha256Before": "1b432c43252c33d2c75747edcfe2bde0a8246d8ee8b3d3554581fd3c81ac320a",
+      "sha256After": "1b432c43252c33d2c75747edcfe2bde0a8246d8ee8b3d3554581fd3c81ac320a"
+    },
+    {
+      "before": "assets/courtyard/guibiao-preview-v2.png",
+      "after": "assets/guibiao/courtyard/guibiao-preview-v2.png",
+      "sha256Before": "ff83236a14c6ec8e4ef120b3208ea3d5d72035305bef3d8a912a4178b577b193",
+      "sha256After": "ff83236a14c6ec8e4ef120b3208ea3d5d72035305bef3d8a912a4178b577b193"
+    },
+    {
+      "before": "assets/courtyard/material-atlas-v1.png",
+      "after": "assets/guibiao/courtyard/material-atlas-v1.png",
+      "sha256Before": "d0c7188ff830052ea129bcbbf6af58d1cf0251cf72889efd21014e7e03d4de13",
+      "sha256After": "d0c7188ff830052ea129bcbbf6af58d1cf0251cf72889efd21014e7e03d4de13"
+    },
+    {
+      "before": "assets/courtyard/model-info.json",
+      "after": "assets/guibiao/courtyard/model-info.json",
+      "sha256Before": "b4a456dcece6e309fdaad0341dcac89553060117a77da30c4de1fd41eb963848",
+      "sha256After": "03f03c37cb8a4b4fa928a5c2f188eeb1e57b89e8137b67a187785cb28a22afab"
+    },
+    {
+      "before": "assets/motion/autumn-harvest-v1.png",
+      "after": "assets/scroll/effects/seasonal/autumn-harvest-v1.png",
+      "sha256Before": "c161421df4cb6f783d3eaf11702b6c82965339fdd27d64bbecd445d81d67d274",
+      "sha256After": "c161421df4cb6f783d3eaf11702b6c82965339fdd27d64bbecd445d81d67d274"
+    },
+    {
+      "before": "assets/motion/butterfly-frames-v1.png",
+      "after": "assets/scroll/effects/wildlife/butterfly-frames-v1.png",
+      "sha256Before": "68c1059d66e4fd90cb2a05386f95b74284e394d255abd38027ec089f51ee6b1d",
+      "sha256After": "68c1059d66e4fd90cb2a05386f95b74284e394d255abd38027ec089f51ee6b1d"
+    },
+    {
+      "before": "assets/motion/dragonfly-frames-v1.png",
+      "after": "assets/scroll/effects/wildlife/dragonfly-frames-v1.png",
+      "sha256Before": "0613de2b322d0d31eef102ec4432e4884990711fdcf8150b7b5f4f2a84639422",
+      "sha256After": "0613de2b322d0d31eef102ec4432e4884990711fdcf8150b7b5f4f2a84639422"
+    },
+    {
+      "before": "assets/motion/spring-duck-frames-v1.png",
+      "after": "assets/scroll/effects/wildlife/spring-duck-frames-v1.png",
+      "sha256Before": "a8751b1d4b9dc4235976686c5b4645ec3607a04b9591fa327518586a2a37a783",
+      "sha256After": "a8751b1d4b9dc4235976686c5b4645ec3607a04b9591fa327518586a2a37a783"
+    },
+    {
+      "before": "assets/motion/spring-porch-v1.png",
+      "after": "assets/scroll/effects/seasonal/spring-porch-v1.png",
+      "sha256Before": "76f3e3bb3d6253f31f78bf8c31a06ce8a9ceb160deb1c1ee2d89d3b6848fbec4",
+      "sha256After": "76f3e3bb3d6253f31f78bf8c31a06ce8a9ceb160deb1c1ee2d89d3b6848fbec4"
+    },
+    {
+      "before": "assets/motion/spring-sparrow-frames-v1.png",
+      "after": "assets/scroll/effects/wildlife/spring-sparrow-frames-v1.png",
+      "sha256Before": "1110668637f999a2e373db92493b79d978d6c2085cdae26e8b87208eda4910ab",
+      "sha256After": "1110668637f999a2e373db92493b79d978d6c2085cdae26e8b87208eda4910ab"
+    },
+    {
+      "before": "assets/motion/spring-water-mask.svg",
+      "after": "assets/scroll/effects/water/spring-water-mask.svg",
+      "sha256Before": "a9d95a394913e17f15675c9537f2a76d352873fe45f24db92229c05c9bd296e8",
+      "sha256After": "a9d95a394913e17f15675c9537f2a76d352873fe45f24db92229c05c9bd296e8"
+    },
+    {
+      "before": "assets/motion/summer-porch-v1.png",
+      "after": "assets/scroll/effects/seasonal/summer-porch-v1.png",
+      "sha256Before": "5bd6f7f45e74dcf2c9e7a3cf5c2c12bce6633e431b0570b5ed833b95c0ef5121",
+      "sha256After": "5bd6f7f45e74dcf2c9e7a3cf5c2c12bce6633e431b0570b5ed833b95c0ef5121"
+    },
+    {
+      "before": "assets/motion/winter-ferry-ice-v1.png",
+      "after": "assets/scroll/effects/water/winter-ferry-ice-v1.png",
+      "sha256Before": "366883d4611e4de8f009c0747c5d190a7fbce1e701ee37c021ede9b157275bad",
+      "sha256After": "366883d4611e4de8f009c0747c5d190a7fbce1e701ee37c021ede9b157275bad"
+    },
+    {
+      "before": "assets/motion/winter-ice-v1.png",
+      "after": "assets/scroll/effects/water/winter-ice-v1.png",
+      "sha256Before": "33b8eee217f7d1ec5d248e82f754c9f60a70aabab8222637b9c5bd4e3f40fc8f",
+      "sha256After": "33b8eee217f7d1ec5d248e82f754c9f60a70aabab8222637b9c5bd4e3f40fc8f"
+    },
+    {
+      "before": "assets/motion/winter-storage-v1.png",
+      "after": "assets/scroll/effects/seasonal/winter-storage-v1.png",
+      "sha256Before": "4ac5c248c15db6e42b4ed2a75bd8c9f0581e74b9685ebbeb21ccf7f3863e03d2",
+      "sha256After": "4ac5c248c15db6e42b4ed2a75bd8c9f0581e74b9685ebbeb21ccf7f3863e03d2"
+    },
+    {
+      "before": "assets/gnomon/gnomon-preview.png",
+      "after": "assets/guibiao/lab/gnomon-preview.png",
+      "sha256Before": "c44574d5682df5629a45e2bbe3073ca6937bb042126eadcb29d6d51cdf2af266",
+      "sha256After": "c44574d5682df5629a45e2bbe3073ca6937bb042126eadcb29d6d51cdf2af266"
+    },
+    {
+      "before": "assets/gnomon/gnomon-scroll-v1.png",
+      "after": "assets/guibiao/scroll/gnomon-scroll-v1.png",
+      "sha256Before": "d8db8ba9c54eea2d14e32c48484e9f6bfe35dbb0f1f80329030a745c304954fa",
+      "sha256After": "d8db8ba9c54eea2d14e32c48484e9f6bfe35dbb0f1f80329030a745c304954fa"
+    },
+    {
+      "before": "assets/gnomon/gnomon-v1.blend",
+      "after": "assets/guibiao/lab/gnomon-v1.blend",
+      "sha256Before": "f179aea1f46413a813a4d4d1dc61c3d584d4c4d3e3a0c464df6de6256279a970",
+      "sha256After": "f179aea1f46413a813a4d4d1dc61c3d584d4c4d3e3a0c464df6de6256279a970"
+    },
+    {
+      "before": "assets/gnomon/gnomon-v1.blend1",
+      "after": "assets/guibiao/lab/gnomon-v1.blend1",
+      "sha256Before": "34cbff4bc5d8212bcc2a17bec35e4082057b1971505d48e9bd196a258d68b20f",
+      "sha256After": "34cbff4bc5d8212bcc2a17bec35e4082057b1971505d48e9bd196a258d68b20f"
+    },
+    {
+      "before": "assets/gnomon/gnomon-v1.glb",
+      "after": "assets/guibiao/lab/gnomon-v1.glb",
+      "sha256Before": "200d9a69e9669c88372b81e843be4aaa51b75305db827b07937de28e3bb6ee4b",
+      "sha256After": "200d9a69e9669c88372b81e843be4aaa51b75305db827b07937de28e3bb6ee4b"
+    },
+    {
+      "before": "assets/gnomon/model-info.json",
+      "after": "assets/guibiao/lab/model-info.json",
+      "sha256Before": "47d686dcc1d92bffe299c74e2f71238ee9794da9f6f48882c6291534d0a1190d",
+      "sha256After": "79dca4b3fdc3bd199c41d5a53e83cfc2e23053944e5fe3d7b520ab06c282ef91"
+    },
+    {
+      "before": "assets/gnomon/references/guibiao-three-views-v1.png",
+      "after": "assets/guibiao/references/guibiao-three-views-v1.png",
+      "sha256Before": "743b0d81941997101dcc500693af989874a2f80bc8f7649c39004731d5d0b5d2",
+      "sha256After": "743b0d81941997101dcc500693af989874a2f80bc8f7649c39004731d5d0b5d2"
+    },
+    {
+      "before": "assets/gnomon/references/guibiao-tripo-single-v1.png",
+      "after": "assets/guibiao/references/guibiao-tripo-single-v1.png",
+      "sha256Before": "0b6b3dcc7a093fad5e82652b64a878412e272d17cfeafae6d2acf3b68b1ebc76",
+      "sha256After": "0b6b3dcc7a093fad5e82652b64a878412e272d17cfeafae6d2acf3b68b1ebc76"
+    },
+    {
+      "before": "assets/props/harvest-v1.png",
+      "after": "assets/scroll/props/harvest-v1.png",
+      "sha256Before": "7201a855f27179869046554d0889c45326be240d638c2d60426945c0b8689f01",
+      "sha256After": "7201a855f27179869046554d0889c45326be240d638c2d60426945c0b8689f01"
+    },
+    {
+      "before": "assets/props/placement-v1.json",
+      "after": "assets/placement/placement-v1.json",
+      "sha256Before": "44f82262f8b849349103f2c4f84d63170e647edc1cd2149397519b5d6509fce3",
+      "sha256After": "bff9f241f30c5dfbb5807fadcbf82e160394a1eaa3c3e3f401b1ecfda353b33d"
+    },
+    {
+      "before": "assets/props/spring-tools-v1.png",
+      "after": "assets/scroll/props/spring-tools-v1.png",
+      "sha256Before": "34ee90f920b6d4e8346b34dfaf5552ac1e69c7183880f4fd58f4ef07fb1e170a",
+      "sha256After": "34ee90f920b6d4e8346b34dfaf5552ac1e69c7183880f4fd58f4ef07fb1e170a"
+    },
+    {
+      "before": "assets/props/stationery-v1.png",
+      "after": "assets/study/stationery-v1.png",
+      "sha256Before": "5ab4afb4a000313553cd636729c0665a1fb2db681cf877bdea9e737e7fd774ed",
+      "sha256After": "5ab4afb4a000313553cd636729c0665a1fb2db681cf877bdea9e737e7fd774ed"
+    },
+    {
+      "before": "s58de111df1552.jpg",
+      "after": "素材/原始参考/豳风图局部-s58de111df1552.jpg",
+      "sha256Before": "989c0609f7e4bcfd39ecfbbe21ebeda8a0ed85eef95b407512aff1a47f257536",
+      "sha256After": "989c0609f7e4bcfd39ecfbbe21ebeda8a0ed85eef95b407512aff1a47f257536"
+    },
+    {
+      "before": "素材/春卷/立春样卷-视觉概念-v1.png",
+      "after": "素材/概念草稿/立春样卷-视觉概念-v1.png",
+      "sha256Before": "e78b90660b4eef50f0875f982fa9b46b9e3cd93ba1e046e24773803c6c8929c9",
+      "sha256After": "e78b90660b4eef50f0875f982fa9b46b9e3cd93ba1e046e24773803c6c8929c9"
+    },
+    {
+      "before": "素材/春卷素材清单.csv",
+      "after": "素材/概念草稿/春卷素材清单.csv",
+      "sha256Before": "1bd17dffa70bfea244af8403948382d52d4695b624fb41eb53a08371dc22e5a9",
+      "sha256After": "7000295aa0eeda52a7be62f757554748b111ea8cf90b0c671ad5cfd311c217f8"
+    },
+    {
+      "before": "docs/书斋书架-v1.jpg",
+      "after": "docs/study/书斋书架-v1.jpg",
+      "sha256Before": "c96634a2644a71c3513134a3ef00b95ea5b7538108b246a1d882039e8a63ba84",
+      "sha256After": "c96634a2644a71c3513134a3ef00b95ea5b7538108b246a1d882039e8a63ba84"
+    },
+    {
+      "before": "docs/书斋取书-v1.jpg",
+      "after": "docs/study/书斋取书-v1.jpg",
+      "sha256Before": "b41a03d61efea5e71e835f347d45daae8316316aae199e557d19ea6f3506df85",
+      "sha256After": "b41a03d61efea5e71e835f347d45daae8316316aae199e557d19ea6f3506df85"
+    },
+    {
+      "before": "docs/书斋取书样段-v1-制作记录.md",
+      "after": "docs/study/书斋取书样段-v1-制作记录.md",
+      "sha256Before": "6e3239f4d6f940d316afbdfe57cfcf8e52c125a1005a12d596576061676e8687",
+      "sha256After": "6e3239f4d6f940d316afbdfe57cfcf8e52c125a1005a12d596576061676e8687"
+    },
+    {
+      "before": "docs/书斋窄屏-v1.jpg",
+      "after": "docs/study/书斋窄屏-v1.jpg",
+      "sha256Before": "7be1c4686799862f952831a2417254f3e0b3bb015f789ad54769f582d92958a3",
+      "sha256After": "7be1c4686799862f952831a2417254f3e0b3bb015f789ad54769f582d92958a3"
+    },
+    {
+      "before": "docs/书斋翻阅-v1.jpg",
+      "after": "docs/study/书斋翻阅-v1.jpg",
+      "sha256Before": "d72c4a2456d0335791e97d2678bd76419359618efde84857e1b732a5b5f93f1a",
+      "sha256After": "d72c4a2456d0335791e97d2678bd76419359618efde84857e1b732a5b5f93f1a"
+    },
+    {
+      "before": "docs/农事街市-v5-冬藏.jpg",
+      "after": "docs/scroll/农事街市-v5-冬藏.jpg",
+      "sha256Before": "7ece5f4990e6285e905c888e5a8196bfe43af3feb3bc5e1cfef1b3b47814e8b3",
+      "sha256After": "7ece5f4990e6285e905c888e5a8196bfe43af3feb3bc5e1cfef1b3b47814e8b3"
+    },
+    {
+      "before": "docs/农事街市-v5-制作与验证.md",
+      "after": "docs/scroll/农事街市-v5-制作与验证.md",
+      "sha256Before": "2919b28d55d60d4af9dea6c256957195e3523d5391722525fcd0d79f65d95148",
+      "sha256After": "12735c1655ff9bb7d72d3043c120c832acf4b160cf2dfef57c725c4bb01eda4b"
+    },
+    {
+      "before": "docs/农事街市-v5-夏种.jpg",
+      "after": "docs/scroll/农事街市-v5-夏种.jpg",
+      "sha256Before": "4f32c6c06d2b50c1b20b5789dc2527e41b2fe1a62bfede161a88bcd0ddbfeede",
+      "sha256After": "4f32c6c06d2b50c1b20b5789dc2527e41b2fe1a62bfede161a88bcd0ddbfeede"
+    },
+    {
+      "before": "docs/农事街市-v5-春耕.jpg",
+      "after": "docs/scroll/农事街市-v5-春耕.jpg",
+      "sha256Before": "c9798407a6971b3b75439ce7d783d0e526fd3e0ae02871cb9f66bd5c0cde2431",
+      "sha256After": "c9798407a6971b3b75439ce7d783d0e526fd3e0ae02871cb9f66bd5c0cde2431"
+    },
+    {
+      "before": "docs/农事街市-v5-秋收.jpg",
+      "after": "docs/scroll/农事街市-v5-秋收.jpg",
+      "sha256Before": "837c26e6e65c4ce6036abc609bd0e32e9d5dcbbd67c8f4f4fae748220f8e5df3",
+      "sha256After": "837c26e6e65c4ce6036abc609bd0e32e9d5dcbbd67c8f4f4fae748220f8e5df3"
+    },
+    {
+      "before": "docs/农事街市-v5-街市.jpg",
+      "after": "docs/scroll/农事街市-v5-街市.jpg",
+      "sha256Before": "ab819efa627f7975d732001ee718cd1b193ac48227215c9d2bebc1a7ab3a378c",
+      "sha256After": "ab819efa627f7975d732001ee718cd1b193ac48227215c9d2bebc1a7ab3a378c"
+    },
+    {
+      "before": "docs/冬夜-v8-修正与验证.md",
+      "after": "docs/scroll/冬夜-v8-修正与验证.md",
+      "sha256Before": "2b93126e37eda81ab8a442dc5273244e058e003bede764b231cb392856659484",
+      "sha256After": "2b93126e37eda81ab8a442dc5273244e058e003bede764b231cb392856659484"
+    },
+    {
+      "before": "docs/冬夜-v8-古渡雪岸.jpg",
+      "after": "docs/scroll/冬夜-v8-古渡雪岸.jpg",
+      "sha256Before": "fce20f0d7762803c13fe451039b14eb1171a7e96eb27567bb130d3e070a4440d",
+      "sha256After": "fce20f0d7762803c13fe451039b14eb1171a7e96eb27567bb130d3e070a4440d"
+    },
+    {
+      "before": "docs/冬夜-v8-庭院.jpg",
+      "after": "docs/scroll/冬夜-v8-庭院.jpg",
+      "sha256Before": "4c22b05fdc07a6d3146063fc241097bce21669497e4b929ec01b2e6c92a98156",
+      "sha256After": "4c22b05fdc07a6d3146063fc241097bce21669497e4b929ec01b2e6c92a98156"
+    },
+    {
+      "before": "docs/冬夜-v8-暂停仍保持夜色.jpg",
+      "after": "docs/scroll/冬夜-v8-暂停仍保持夜色.jpg",
+      "sha256Before": "accb44b3a219778753064ade1a0df11367e92cd8600686a9777f193f1b4f2078",
+      "sha256After": "accb44b3a219778753064ade1a0df11367e92cd8600686a9777f193f1b4f2078"
+    },
+    {
+      "before": "docs/冬夜-v8-雪夜.jpg",
+      "after": "docs/scroll/冬夜-v8-雪夜.jpg",
+      "sha256Before": "700887277ffa9cf7f30a64ff2fe9525cc7c1965d70551376a589492fe1c5b251",
+      "sha256After": "700887277ffa9cf7f30a64ff2fe9525cc7c1965d70551376a589492fe1c5b251"
+    },
+    {
+      "before": "docs/四季流水-v3-冬日庭院.jpg",
+      "after": "docs/scroll/四季流水-v3-冬日庭院.jpg",
+      "sha256Before": "d7ed26cbd9cdb5b5f3348bd51218e3eb44644713797e81c1ea0ef504356ac9c2",
+      "sha256After": "d7ed26cbd9cdb5b5f3348bd51218e3eb44644713797e81c1ea0ef504356ac9c2"
+    },
+    {
+      "before": "docs/四季流水-v3-制作与验证.md",
+      "after": "docs/scroll/四季流水-v3-制作与验证.md",
+      "sha256Before": "b8136f2b5560f6417af47a71057ba7a309d75c9cd99b6657c7d670b111f9423e",
+      "sha256After": "882fdf124e71d728ed1215aaee30c6b1a102c2db36820e8a9e31ca97954f9dad"
+    },
+    {
+      "before": "docs/四季流水-v3-古渡覆冰.jpg",
+      "after": "docs/scroll/四季流水-v3-古渡覆冰.jpg",
+      "sha256Before": "d437ed803fd22e6e031fac2131cd9eaedaaa32a6856a7de6f74fa4353cbed33e",
+      "sha256After": "d437ed803fd22e6e031fac2131cd9eaedaaa32a6856a7de6f74fa4353cbed33e"
+    },
+    {
+      "before": "docs/四季流水-v3-溪桥水磨.jpg",
+      "after": "docs/scroll/四季流水-v3-溪桥水磨.jpg",
+      "sha256Before": "af573e4fcabb9d7fcc134ae2bd15e3f937fe0b95befdc23fc743de7acc350832",
+      "sha256After": "af573e4fcabb9d7fcc134ae2bd15e3f937fe0b95befdc23fc743de7acc350832"
+    },
+    {
+      "before": "docs/四季流水-v3-秋溪汇流.jpg",
+      "after": "docs/scroll/四季流水-v3-秋溪汇流.jpg",
+      "sha256Before": "09c02288650dfe74b062cae7941e2ee9884ab1f674ed277619f73213af5876fc",
+      "sha256After": "09c02288650dfe74b062cae7941e2ee9884ab1f674ed277619f73213af5876fc"
+    },
+    {
+      "before": "docs/四季环境长卷-v1-制作记录.md",
+      "after": "docs/scroll/四季环境长卷-v1-制作记录.md",
+      "sha256Before": "5b6f949afe8870e2a5e5ca302ce72d024b3eb4839d3c44f231957477036e2515",
+      "sha256After": "0034352b0d14bd060e5b93e60c33993bb1bce4587492ea5328fcf43e5a892989"
+    },
+    {
+      "before": "docs/四季环境长卷-v2-八景扩展记录.md",
+      "after": "docs/scroll/四季环境长卷-v2-八景扩展记录.md",
+      "sha256Before": "a3325d5d9f55cb06d7188221db3c7fd5fe09f2529b54e91813a09b610b294e36",
+      "sha256After": "c56ce0ae6c9a3053c02d11ac6555873dccd35d69cb33c87a3f55ab95969fcbf4"
+    },
+    {
+      "before": "docs/四时生活-v4-冬日庭院.jpg",
+      "after": "docs/scroll/四时生活-v4-冬日庭院.jpg",
+      "sha256Before": "919c6517f29649603786e89a3417685accc89783da68a40f9766decf240a2b47",
+      "sha256After": "919c6517f29649603786e89a3417685accc89783da68a40f9766decf240a2b47"
+    },
+    {
+      "before": "docs/四时生活-v4-制作与验证.md",
+      "after": "docs/scroll/四时生活-v4-制作与验证.md",
+      "sha256Before": "d34dac204fff7ef780e154adc7493c349b6ddb9b026e93e31aedf033b3a3257b",
+      "sha256After": "a482d1cd64f132a0384ff49ef360ed6285b436260fefaaddaeeb35125a3dd6c8"
+    },
+    {
+      "before": "docs/四时生活-v4-夏季纳凉.jpg",
+      "after": "docs/scroll/四时生活-v4-夏季纳凉.jpg",
+      "sha256Before": "da734b5a65ed74237e6776751b117da37a7e157408dcd2ce220443ef71bcd45f",
+      "sha256After": "da734b5a65ed74237e6776751b117da37a7e157408dcd2ce220443ef71bcd45f"
+    },
+    {
+      "before": "docs/四时生活-v4-春日院落.jpg",
+      "after": "docs/scroll/四时生活-v4-春日院落.jpg",
+      "sha256Before": "2774c42d68f1143dfba634878cc409a098ae79931b7cdae659f4635451194d79",
+      "sha256After": "2774c42d68f1143dfba634878cc409a098ae79931b7cdae659f4635451194d79"
+    },
+    {
+      "before": "docs/四时生活-v4-秋收晒场.jpg",
+      "after": "docs/scroll/四时生活-v4-秋收晒场.jpg",
+      "sha256Before": "f1d4a1f18dbbcb056d501db4e00ad22755eb58c91f3877a730e92bdaf225d3f6",
+      "sha256After": "f1d4a1f18dbbcb056d501db4e00ad22755eb58c91f3877a730e92bdaf225d3f6"
+    },
+    {
+      "before": "docs/圭表三视图-Tripo参考-v1.md",
+      "after": "docs/guibiao/圭表三视图-Tripo参考-v1.md",
+      "sha256Before": "b38b18492f22e19628a0a93a1547570f79777c5764bea95ba0ccba3a82a50be8",
+      "sha256After": "fdebea8dba553d2e2abe01792486961af76167e36fa246ca6d97f9d8e1386672"
+    },
+    {
+      "before": "docs/圭表庭院-v1-二维入口.jpg",
+      "after": "docs/guibiao/圭表庭院-v1-二维入口.jpg",
+      "sha256Before": "1922b80c900bcb304028595434c6104dda5c1b8fcdde0103b44d67b3ed81395d",
+      "sha256After": "1922b80c900bcb304028595434c6104dda5c1b8fcdde0103b44d67b3ed81395d"
+    },
+    {
+      "before": "docs/圭表庭院-v1-全院.jpg",
+      "after": "docs/guibiao/圭表庭院-v1-全院.jpg",
+      "sha256Before": "745c65003ad116df6d7ffb775d11df03050a365610e93c56287768e9b624db0a",
+      "sha256After": "745c65003ad116df6d7ffb775d11df03050a365610e93c56287768e9b624db0a"
+    },
+    {
+      "before": "docs/圭表庭院-v1-实现记录.md",
+      "after": "docs/guibiao/圭表庭院-v1-实现记录.md",
+      "sha256Before": "e924183cd38e6ba582a7517ffaadbf29f235064f556ea05e45b13649f9215e8d",
+      "sha256After": "5bcec1aa981878789b8774be4ec9d531b781b4774e33aab10550eb945e1f9b76"
+    },
+    {
+      "before": "docs/圭表庭院-v1-阴影增强-全院.jpg",
+      "after": "docs/guibiao/圭表庭院-v1-阴影增强-全院.jpg",
+      "sha256Before": "407ebde728346877aecba50627188bd65d548a0a2a3c6b4c5114b241f22d5323",
+      "sha256After": "407ebde728346877aecba50627188bd65d548a0a2a3c6b4c5114b241f22d5323"
+    },
+    {
+      "before": "docs/圭表庭院-v1-阴影增强-近景.jpg",
+      "after": "docs/guibiao/圭表庭院-v1-阴影增强-近景.jpg",
+      "sha256Before": "c6bd210ebef2cb92bed67be8a09a1a45b9e75739285f5fbb5475c01a104e2f62",
+      "sha256After": "c6bd210ebef2cb92bed67be8a09a1a45b9e75739285f5fbb5475c01a104e2f62"
+    },
+    {
+      "before": "docs/圭表庭院-v1-阴影增强.md",
+      "after": "docs/guibiao/圭表庭院-v1-阴影增强.md",
+      "sha256Before": "4a6cc815cfd2985d2183e864b5aab243424e8c061188ae5da30236b2bf39355b",
+      "sha256After": "4a6cc815cfd2985d2183e864b5aab243424e8c061188ae5da30236b2bf39355b"
+    },
+    {
+      "before": "docs/圭表庭院-v1-院中.jpg",
+      "after": "docs/guibiao/圭表庭院-v1-院中.jpg",
+      "sha256Before": "92c4d3258be2ba5787aadbe1801618191d261186998b65036df79b30a01df1ef",
+      "sha256After": "92c4d3258be2ba5787aadbe1801618191d261186998b65036df79b30a01df1ef"
+    },
+    {
+      "before": "docs/圭表测影-v1-实现说明.md",
+      "after": "docs/guibiao/圭表测影-v1-实现说明.md",
+      "sha256Before": "f434b194afe959b6ea24b9412aa4ebb2f1c3014247e83474c27482cae43d4a1d",
+      "sha256After": "e63593939fef4de6e305de24bef88a0aac2e78a55419bfb15f4533963dec9e9d"
+    },
+    {
+      "before": "docs/圭表测影-v1.jpg",
+      "after": "docs/guibiao/圭表测影-v1.jpg",
+      "sha256Before": "a740ab963bdf25b4b2f71a4f1799da53aa569ec8544217f83e74a56e6b173d90",
+      "sha256After": "a740ab963bdf25b4b2f71a4f1799da53aa569ec8544217f83e74a56e6b173d90"
+    },
+    {
+      "before": "docs/夜景-v7-冬夜提灯.jpg",
+      "after": "docs/scroll/夜景-v7-冬夜提灯.jpg",
+      "sha256Before": "a2e6439e84c567adbffed5588a9929fd4cb03edd5cb4238d56cb88522c1cc091",
+      "sha256After": "a2e6439e84c567adbffed5588a9929fd4cb03edd5cb4238d56cb88522c1cc091"
+    },
+    {
+      "before": "docs/夜景-v7-制作与验证.md",
+      "after": "docs/scroll/夜景-v7-制作与验证.md",
+      "sha256Before": "3b4ae33573aa3eb3f2e3988c33c3f85e1974cd4cfe08b8d30715adf005b63ad6",
+      "sha256After": "6adce514c6baa4a18ad95fcdfa0a35ea4e94556974214aba1946e2ac2f7fef83"
+    },
+    {
+      "before": "docs/夜景-v7-彩虹固定场景.jpg",
+      "after": "docs/scroll/夜景-v7-彩虹固定场景.jpg",
+      "sha256Before": "21a4a4ba4cc1876373da8c7324064a0c667351558b9670a095f53cffd90211d1",
+      "sha256After": "21a4a4ba4cc1876373da8c7324064a0c667351558b9670a095f53cffd90211d1"
+    },
+    {
+      "before": "docs/夜景-v7-提灯与遮挡.jpg",
+      "after": "docs/scroll/夜景-v7-提灯与遮挡.jpg",
+      "sha256Before": "5f9fe005c56392b32fe3c8220f338b0262bb6783f8bec1c0fd3e474045512faa",
+      "sha256After": "5f9fe005c56392b32fe3c8220f338b0262bb6783f8bec1c0fd3e474045512faa"
+    },
+    {
+      "before": "docs/夜景-v7-灯笼素材与提示词.json",
+      "after": "docs/scroll/夜景-v7-灯笼素材与提示词.json",
+      "sha256Before": "6e7c4658bc22375484a66db7f7315b1e90cbcefcde679334c096514c244761b6",
+      "sha256After": "6dc4a82b464f825bdaa9066593fc1b2d2bd7c89fd12e0d2995b30f41dd8344c4"
+    },
+    {
+      "before": "docs/夜景-v7-观月设置窄屏.jpg",
+      "after": "docs/scroll/夜景-v7-观月设置窄屏.jpg",
+      "sha256Before": "c5d6823506f541cffa147002a1abc5eaf35c4461ee6d6df79927cc64bac6cdaa",
+      "sha256After": "c5d6823506f541cffa147002a1abc5eaf35c4461ee6d6df79927cc64bac6cdaa"
+    },
+    {
+      "before": "docs/夜景-v7-雨夜撑伞提灯.jpg",
+      "after": "docs/scroll/夜景-v7-雨夜撑伞提灯.jpg",
+      "sha256Before": "54111a56a65864feb443ce84b5e70d3cd28f6f9171f9b934875f0115fd31eeee",
+      "sha256After": "54111a56a65864feb443ce84b5e70d3cd28f6f9171f9b934875f0115fd31eeee"
+    },
+    {
+      "before": "docs/天候-v6-冬夜落雪.jpg",
+      "after": "docs/scroll/天候-v6-冬夜落雪.jpg",
+      "sha256Before": "724c8d09ecebaaa29362d28959c902d27133ad02f8d2ba364df0c96fbd77de74",
+      "sha256After": "724c8d09ecebaaa29362d28959c902d27133ad02f8d2ba364df0c96fbd77de74"
+    },
+    {
+      "before": "docs/天候-v6-制作与验证.md",
+      "after": "docs/scroll/天候-v6-制作与验证.md",
+      "sha256Before": "ab49bc008353fd936647ccb363b8e60db57246980912e68b9ce368e02376c544",
+      "sha256After": "7b00126ed26e61a804384e08b4f88cbed778fcd7c8c3bc38e9b9de820b065987"
+    },
+    {
+      "before": "docs/天候-v6-夏季暴雨.jpg",
+      "after": "docs/scroll/天候-v6-夏季暴雨.jpg",
+      "sha256Before": "202e56ad95de3a0261a0e09af5bba7f7da385126302b43f501881881c8036747",
+      "sha256After": "202e56ad95de3a0261a0e09af5bba7f7da385126302b43f501881881c8036747"
+    },
+    {
+      "before": "docs/天候-v6-夜间雷雨.jpg",
+      "after": "docs/scroll/天候-v6-夜间雷雨.jpg",
+      "sha256Before": "3c94b78b2c4b67b8b09fcbf25d84d04b68fc4832b10388c1f2de079d07ac4140",
+      "sha256After": "3c94b78b2c4b67b8b09fcbf25d84d04b68fc4832b10388c1f2de079d07ac4140"
+    },
+    {
+      "before": "docs/天候-v6-春雨.jpg",
+      "after": "docs/scroll/天候-v6-春雨.jpg",
+      "sha256Before": "23dab55f48e0eb9f71b906816ebdecacdd6c1e7dc3a0cb7d01dfc585b344b508",
+      "sha256After": "23dab55f48e0eb9f71b906816ebdecacdd6c1e7dc3a0cb7d01dfc585b344b508"
+    },
+    {
+      "before": "docs/天候-v6-窄屏控制.jpg",
+      "after": "docs/scroll/天候-v6-窄屏控制.jpg",
+      "sha256Before": "98730379e7e3515497f2d69fad574caaf77b0e9d34d6b4e2204177a031c2c945",
+      "sha256After": "98730379e7e3515497f2d69fad574caaf77b0e9d34d6b4e2204177a031c2c945"
+    },
+    {
+      "before": "docs/天候-v6-素材清单.json",
+      "after": "docs/scroll/天候-v6-素材清单.json",
+      "sha256Before": "b83c84ceb3837828cb569e6e8d1a5d71b568b1404c08769c298e395cacd3f885",
+      "sha256After": "2e1c6066e5ab73f9ba2667ac0032b368d71504ac46b83bbe58c774a14d018b25"
+    },
+    {
+      "before": "docs/天候-v6-雨后彩虹.jpg",
+      "after": "docs/scroll/天候-v6-雨后彩虹.jpg",
+      "sha256Before": "ab5ab4342d439e00f26f319c3d0bb817434bb288291334c9f44f247177c22809",
+      "sha256After": "ab5ab4342d439e00f26f319c3d0bb817434bb288291334c9f44f247177c22809"
+    },
+    {
+      "before": "docs/春卷动景-v2-小鸟与水鸭.md",
+      "after": "docs/scroll/春卷动景-v2-小鸟与水鸭.md",
+      "sha256Before": "098e932f0ebfae8a076e260d94771b40c2da0df098a80f5e5a35742c8c0e0297",
+      "sha256After": "00be3962f44a31b223e63855f6bb0d97fdaa42295c9976f33739eea03512c871"
+    },
+    {
+      "before": "docs/春卷动景-v2-立春.jpg",
+      "after": "docs/scroll/春卷动景-v2-立春.jpg",
+      "sha256Before": "23283c5b01c7fd0cf56e419c5ae52538fd437475e2e43e492458f0a41e2c7767",
+      "sha256After": "23283c5b01c7fd0cf56e419c5ae52538fd437475e2e43e492458f0a41e2c7767"
+    },
+    {
+      "before": "docs/春卷动景-v2-院前.jpg",
+      "after": "docs/scroll/春卷动景-v2-院前.jpg",
+      "sha256Before": "2f8535b6453a0fde08d9694589b4de5ee1bafc91ab396e98fe00adc305ab849b",
+      "sha256After": "2f8535b6453a0fde08d9694589b4de5ee1bafc91ab396e98fe00adc305ab849b"
+    },
+    {
+      "before": "docs/春卷样段-v1-生成记录.md",
+      "after": "docs/scroll/春卷样段-v1-生成记录.md",
+      "sha256Before": "4b2bfff8a2baac866173af546f9691deda5666af7c7bed950908a1f6dc1646ba",
+      "sha256After": "6e6cba109d68d9474fca8ff36fc2e0331aa46b1f5a8a22941aade03c23da36b9"
+    },
+    {
+      "before": "docs/春卷样段制作方案.md",
+      "after": "docs/scroll/春卷样段制作方案.md",
+      "sha256Before": "5ce11a3bf5377b2d27578638845cd8048c643c87e219b48bc539e938b8dbb1f9",
+      "sha256After": "5e1f856dbd0fad58ed3cfd75be1cfb1c7989efc9d60e2899108ebc7422d34637"
+    },
+    {
+      "before": "docs/春卷水烟动景-v1-实现说明.md",
+      "after": "docs/scroll/春卷水烟动景-v1-实现说明.md",
+      "sha256Before": "fa39e3a31e2d39a1daad38f4865ec2b06fe1e4158f54fedf1886c46edf96335d",
+      "sha256After": "aaeaa6accf7fdf436a584346c1324812455e36d19d10b3cd5c8ff752c147fbac"
+    },
+    {
+      "before": "docs/春卷水烟动景-v1.jpg",
+      "after": "docs/scroll/春卷水烟动景-v1.jpg",
+      "sha256Before": "6734a6c22ff6b69ca9836aed1dc66b2edd68e2d4bfaed5c2b98049231491c60f",
+      "sha256After": "6734a6c22ff6b69ca9836aed1dc66b2edd68e2d4bfaed5c2b98049231491c60f"
+    },
+    {
+      "before": "docs/画中圭表-v1-制作记录.md",
+      "after": "docs/guibiao/画中圭表-v1-制作记录.md",
+      "sha256Before": "352b6b2f20b7153f1b4ce927afb7031b064753b70c10de04bf42ab25a20e07a3",
+      "sha256After": "4e20ba773f6fda606bf3d9f01ce441a1b9c1a7f59c1bc36415c5f415d8ec399b"
+    },
+    {
+      "before": "docs/画中圭表-v1.jpg",
+      "after": "docs/guibiao/画中圭表-v1.jpg",
+      "sha256Before": "28d2ee92bb8af422f35cb620ad613c11305a71da372c2414616448f7dae70b16",
+      "sha256After": "28d2ee92bb8af422f35cb620ad613c11305a71da372c2414616448f7dae70b16"
+    },
+    {
+      "before": "docs/节气圆盘实现说明.md",
+      "after": "docs/scroll/节气圆盘实现说明.md",
+      "sha256Before": "8064faf7320569e2f59aad64618b6700faabbd562c08d15d22af1ba5dae3321a",
+      "sha256After": "8064faf7320569e2f59aad64618b6700faabbd562c08d15d22af1ba5dae3321a"
+    },
+    {
+      "before": "docs/道具试摆-v1-书房.jpg",
+      "after": "docs/placement/道具试摆-v1-书房.jpg",
+      "sha256Before": "11ef8a14df740ccaab80be04bc2ecf5013b7a0881a532f05209da96dab527a33",
+      "sha256After": "11ef8a14df740ccaab80be04bc2ecf5013b7a0881a532f05209da96dab527a33"
+    },
+    {
+      "before": "docs/道具试摆-v1-制作记录.md",
+      "after": "docs/placement/道具试摆-v1-制作记录.md",
+      "sha256Before": "e766157c6284b754e386c09c36c7ede2258e51435d3cc55a0431a451fd3f5fbb",
+      "sha256After": "2eaf932c22b846f752335a9c0e422714234bb88013b58bf2739f801936eaf7ed"
+    },
+    {
+      "before": "docs/道具试摆-v1-秋收.jpg",
+      "after": "docs/placement/道具试摆-v1-秋收.jpg",
+      "sha256Before": "014a31ea0f97ec0adb732834ace5218d5a33d2bbe497685ee9a05302461a21b7",
+      "sha256After": "014a31ea0f97ec0adb732834ace5218d5a33d2bbe497685ee9a05302461a21b7"
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>观时 · 项目素材总览</title><link rel="icon" href="data:,">
+  <style>
+    *{box-sizing:border-box}body{margin:0;background:#f4efe5;color:#332d26;font:15px/1.7 system-ui,"Microsoft YaHei",sans-serif}main{max-width:1360px;margin:auto;padding:36px 28px 64px}a{color:#775330;text-underline-offset:4px}h1{font-family:serif;font-size:32px;margin:0}header p{margin:8px 0}nav{display:flex;gap:8px;flex-wrap:wrap;margin:26px 0 16px}button,input{font:inherit}button{border:1px solid #cdbfa8;background:#fcf9f2;border-radius:5px;color:inherit;padding:8px 15px;cursor:pointer}button[aria-pressed=true]{background:#6c5038;color:white;border-color:#6c5038}input{padding:10px 12px;border:1px solid #cdbfa8;border-radius:5px;background:#fffdf8;width:min(100%,470px)}.summary{margin:16px 0 26px;color:#6e6252}.group{margin-top:28px}.group h2{font-family:serif;font-size:25px;margin:0}.group-intro{margin:6px 0 16px}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(245px,1fr));gap:18px}.card{border:1px solid #dacebb;border-radius:7px;overflow:hidden;background:#fffdf7;min-width:0}.preview{display:flex;align-items:center;justify-content:center;height:174px;background:repeating-conic-gradient(#e7e1d6 0 25%,#f4efe5 0 50%) 0/18px 18px;text-decoration:none}.preview img{max-width:100%;max-height:100%;object-fit:contain}.file-icon{font-size:27px;letter-spacing:3px;color:#806c51}.info{padding:15px}.info h3{font-size:16px;margin:0 0 5px}.meta{font-size:12px;color:#72644f}.info p{margin:7px 0;font-size:13px}.path{overflow-wrap:anywhere;font-size:12px;color:#84755f}details{margin:18px 0 32px;border-top:1px solid #dacebb;padding-top:12px}summary{cursor:pointer}.records{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:12px}.shot{display:inline-flex;flex-direction:column;max-width:180px;font-size:12px}.shot img{width:180px;height:110px;object-fit:contain;background:#e7e1d6}.empty{padding:32px 0;color:#76664f}.note{padding:12px 16px;background:#eae2d4;margin:22px 0}a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid #a67c45;outline-offset:3px}@media(max-width:600px){main{padding:22px 16px}.grid{grid-template-columns:1fr 1fr;gap:10px}.preview{height:120px}.info{padding:10px}.info h3{font-size:14px}}@media(max-width:380px){.grid{grid-template-columns:1fr}}
+  </style>
+  <script src="assets/catalog.js" defer></script>
+</head>
+<body><main>
+  <header><h1>观时 · 项目素材总览</h1><p>按模块找图、看用途。点击缩略图查看原图，点击文件路径打开对应素材。</p><p><a href="index.html">进入长卷</a> · <a href="placement.html">道具试摆</a> · <a href="assets/素材索引.csv">Excel 素材清单</a> · <a href="docs/README.md">制作记录目录</a></p></header>
+  <nav id="modules" aria-label="选择素材模块"></nav>
+  <label for="search">查找素材　</label><input id="search" type="search" placeholder="输入名称、文件名或用途，例如：书、雨具、冰面">
+  <p id="count" class="summary" role="status" aria-live="polite"></p>
+  <div id="content"></div>
+  <p class="note">雨雪、炊烟、星月、日影和音效中有一部分由代码实时生成，没有独立图片或音频文件。书册题签由网页文字叠加，文房用具目前只用于试摆。</p>
+</main>
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  const catalog=globalThis.SCROLL_ASSETS;if(!catalog)return;
+  const nav=document.querySelector('#modules'),content=document.querySelector('#content'),search=document.querySelector('#search');
+  let selected='study';
+  const el=(tag,text,className)=>{const node=document.createElement(tag);if(text)node.textContent=text;if(className)node.className=className;return node;};
+  const link=(text,file)=>{const node=el('a',text);node.href=file;node.target='_blank';node.rel='noopener';return node;};
+  for(const module of [{id:'all',name:'全部素材'},...catalog.modules]){
+    const count=catalog.files.filter(file=>module.id==='all'||file.module===module.id).length;
+    const button=el('button',`${module.name} · ${count}`);button.type='button';button.dataset.module=module.id;button.addEventListener('click',()=>{selected=module.id;render();});nav.append(button);
+  }
+  function render(){
+    content.replaceChildren();nav.querySelectorAll('button').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.module===selected)));
+    const query=search.value.trim().toLowerCase();let total=0;
+    for(const module of catalog.modules){
+      if(selected!=='all'&&selected!==module.id)continue;
+      const files=catalog.files.filter(file=>file.module===module.id&&`${file.name} ${file.file} ${file.usage}`.toLowerCase().includes(query));
+      if(!files.length)continue;total+=files.length;
+      const section=el('section',null,'group');section.append(el('h2',module.name),el('p',module.note,'group-intro'),link('打开模块文件夹',module.directory+'/'));
+      const grid=el('div',null,'grid');
+      for(const file of files){
+        const card=el('article',null,'card'),preview=link('',file.file);preview.className='preview';preview.setAttribute('aria-label',`打开${file.name}`);
+        if(['PNG','JPG','SVG'].includes(file.type)){const image=el('img');image.src=file.file;image.alt=file.name;image.loading='lazy';preview.append(image);}else preview.append(el('span',file.type,'file-icon'));
+        const info=el('div',null,'info'),meta=[file.type,`${(file.bytes/1024/1024).toFixed(2)} MB`];if(file.width)meta.push(`${file.width} × ${file.height}`,file.alpha?'含透明通道':'不透明');
+        info.append(el('h3',file.name),el('div',meta.join(' · '),'meta'),el('p',file.usage));const fileLink=link(file.file,file.file);fileLink.className='path';info.append(fileLink);card.append(preview,info);grid.append(card);
+      }
+      section.append(grid);
+      if(module.records.length||module.screenshots.length){const details=el('details');details.append(el('summary',`制作记录与效果截图 · ${module.records.length+module.screenshots.length} 项`));const records=el('div',null,'records');for(const file of module.records)records.append(link(file.split('/').pop(),file));details.append(records);const shots=el('div',null,'records');for(const file of module.screenshots){const a=link('',file);a.className='shot';const image=el('img');image.src=file;image.loading='lazy';image.alt=file.split('/').pop();a.append(image,el('span',image.alt));shots.append(a);}details.append(shots);section.append(details);}
+      content.append(section);
+    }
+    document.querySelector('#count').textContent=`当前显示 ${total} 项素材 · 项目共 ${catalog.files.length} 项 · 点击下方“制作记录与效果截图”可展开查看。`;
+    if(!total)content.append(el('p','没有找到匹配素材。','empty'));
+  }
+  search.addEventListener('input',render);render();
+});
+</script></body></html>

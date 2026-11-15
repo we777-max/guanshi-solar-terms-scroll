@@ -101,7 +101,7 @@ function boot(screenWidth, screenHeight, reducedMotion) {
     const panel = new Element('figure');
     panel.dataset = { season: match[1], title: match[2], state: 'loading' };
     const image = new Element('img');
-    image.setAttribute('src', 'assets/scroll/spring.png');
+    image.setAttribute('src', 'assets/scroll/backgrounds/spring.png');
     const label = new Element('span');
     const retry = new Element('button');
     panel.parts = { img: image, '.panel-state > span': label, '.retry-button': retry };

@@ -125,7 +125,7 @@ async function createScene() {
   sun.target.position.set(0,DATUM_Y,0); scene.add(sun,sun.target);
   const floor=new THREE.Mesh(new THREE.PlaneGeometry(160,160),new THREE.MeshStandardMaterial({color:'#dce0ce',roughness:1}));
   floor.rotation.x=-Math.PI/2; floor.position.y=-.005; floor.receiveShadow=true; scene.add(floor);
-  const gltf=await new GLTFLoader().loadAsync('assets/gnomon/gnomon-v1.glb');
+  const gltf=await new GLTFLoader().loadAsync('assets/guibiao/lab/gnomon-v1.glb');
   gltf.scene.traverse(object=> {
     if (!object.isMesh) return;
     // The measuring instrument casts the teaching shadow; the flush platform

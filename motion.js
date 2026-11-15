@@ -35,7 +35,7 @@
   const defs = element('defs', { 'aria-hidden': 'true' });
   const filter = element('filter', { id: 'spring-live-field', x: 0, y: 560, width: 2172, height: 164, filterUnits: 'userSpaceOnUse', primitiveUnits: 'userSpaceOnUse', 'color-interpolation-filters': 'sRGB' });
   const neutral = element('feFlood', { 'flood-color': 'rgb(50%,50%,50%)', result: 'still-field' });
-  const waterMask = element('feImage', { href: 'assets/motion/spring-water-mask.svg', x: 0, y: 0, width: 2172, height: 724, preserveAspectRatio: 'none', result: 'water-mask' });
+  const waterMask = element('feImage', { href: 'assets/scroll/effects/water/spring-water-mask.svg', x: 0, y: 0, width: 2172, height: 724, preserveAspectRatio: 'none', result: 'water-mask' });
   const noise = element('feTurbulence', { type: 'fractalNoise', baseFrequency: '.009 .11', numOctaves: '1', seed: '12', stitchTiles: 'stitch', result: 'water-noise' });
   animate(noise, { attributeName: 'baseFrequency', values: '.009 .11;.011 .135;.009 .11', dur: '13s' });
   const water = element('feColorMatrix', { in: 'water-noise', type: 'matrix', values: '.16 0 0 0 .42  0 .75 0 0 .125  0 0 1 0 0  0 0 0 1 0', result: 'water-color' });
@@ -48,7 +48,7 @@
   waterClip.append(element('path', { d: `M${bank.map(point => point.join(' ')).join(' ')}V724H0Z`, fill: 'white', stroke: 'none' }));
   defs.append(filter, waterClip);
   // Only the river is redrawn. Trees, architecture and land remain the original static image.
-  const painting = element('image', { href: 'assets/scroll/spring.png', width: 2172, height: 724, preserveAspectRatio: 'none', filter: 'url(#spring-live-field)', 'clip-path': 'url(#spring-river-clip)', 'aria-hidden': 'true' });
+  const painting = element('image', { href: 'assets/scroll/backgrounds/spring.png', width: 2172, height: 724, preserveAspectRatio: 'none', filter: 'url(#spring-live-field)', 'clip-path': 'url(#spring-river-clip)', 'aria-hidden': 'true' });
   const river = element('g', { 'clip-path': 'url(#spring-river-clip)', 'aria-hidden': 'true' });
   const glints = [[120,675,62],[345,700,45],[585,663,52],[855,693,70],[1115,666,48],[1380,705,64],[1615,656,55],[1885,687,72],[2060,634,40]];
   glints.forEach(([x,y,width], index) => {
@@ -73,7 +73,7 @@
     defs.append(clip);
     const anchor = element('g', { transform: `translate(${-width * (kind === 'sparrow' ? .58 : .5)} ${-height * (kind === 'sparrow' ? .735 : .715)})`, 'aria-hidden': 'true' });
     const window = element('g', { 'clip-path': `url(#${id})` });
-    const image = element('image', { class: 'motion-bird-art', href: `assets/motion/spring-${kind}-frames-v1.png`, width: width * 2, height, preserveAspectRatio: 'none', x: 0, y: 0 });
+    const image = element('image', { class: 'motion-bird-art', href: `assets/scroll/effects/wildlife/spring-${kind}-frames-v1.png`, width: width * 2, height, preserveAspectRatio: 'none', x: 0, y: 0 });
     window.append(image); anchor.append(window);
     return { anchor, image };
   }

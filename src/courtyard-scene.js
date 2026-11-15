@@ -6,8 +6,8 @@ import { GROUND_Y } from './courtyard-layout.js';
 export async function createCourtyard(renderer) {
   const loader = new THREE.TextureLoader();
   const [atlas, landscape] = await Promise.all([
-    loader.loadAsync('assets/courtyard/material-atlas-v1.png'),
-    loader.loadAsync('assets/scroll/spring.png'),
+    loader.loadAsync('assets/guibiao/courtyard/material-atlas-v1.png'),
+    loader.loadAsync('assets/scroll/backgrounds/spring.png'),
   ]);
   atlas.colorSpace = THREE.SRGBColorSpace;
   const group = new THREE.Group();

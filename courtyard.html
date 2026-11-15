@@ -6,12 +6,12 @@
   <title>卷中庭院 · 圭表测影</title><link rel="icon" href="data:,">
   <link rel="stylesheet" href="courtyard.css?v=1">
   <script type="importmap">{"imports":{"three":"./vendor/three/build/three.module.js","three/addons/":"./vendor/three/examples/jsm/"}}</script>
-  <script type="module" src="courtyard.js?v=2"></script>
+  <script type="module" src="courtyard.js?v=assets-20261115"></script>
 </head>
 <body>
   <main id="courtyardStage" class="courtyard-stage" aria-busy="true" data-state="loading" data-view="walk">
     <div id="courtyardCanvas" class="courtyard-canvas" tabindex="0" role="img" aria-label="可在院中行走的春卷三维庭院，木屋在左、灰瓦围墙在后、小棚与柳树在右，圭表立在石铺地中央偏右。" aria-describedby="walkHelp"></div>
-    <div id="courtyardLoading" class="courtyard-loading"><img src="assets/scroll/spring.png" alt="春卷中的木屋、灰瓦墙、石铺庭院与河岸"><div><span class="loading-seal" aria-hidden="true">入画</span><h2 id="loadTitle">走入春日庭院</h2><p id="loadMessage" role="status">沿石阶而上，走近画中的圭表。</p><button id="retryScene" type="button" hidden>重新进入</button></div></div>
+    <div id="courtyardLoading" class="courtyard-loading"><img src="assets/scroll/backgrounds/spring.png" alt="春卷中的木屋、灰瓦墙、石铺庭院与河岸"><div><span class="loading-seal" aria-hidden="true">入画</span><h2 id="loadTitle">走入春日庭院</h2><p id="loadMessage" role="status">沿石阶而上，走近画中的圭表。</p><button id="retryScene" type="button" hidden>重新进入</button></div></div>
     <button id="gnomonHotspot" class="gnomon-hotspot" type="button" hidden aria-label="走近圭表并打开节气测影"><span class="hotspot-dot" aria-hidden="true"></span>圭表<span class="hotspot-small">测影 ↗</span></button>
   </main>
   <header class="court-header"><a id="backToScroll" class="back-link" href="index.html#gnomonEntry">← <span>重返长卷</span></a><div class="court-title"><p>春卷 · 村落田园</p><h1>卷中庭院<span>立表知时</span></h1></div><button id="helpToggle" class="help-toggle" type="button" aria-label="显示行走操作说明" aria-expanded="false" aria-controls="helpPanel">?</button></header>

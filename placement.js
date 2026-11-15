@@ -2,20 +2,20 @@
   'use strict';
   const $=selector=>document.querySelector(selector);
   const assets={
-    tools:{name:'春耕农具',image:'assets/props/spring-tools-v1.png',size:[1536,1024],crop:[411,35,714,967],advice:'锄柄约为门洞高度的一半至三分之二。种子篓落在田边路肩，保留通行宽度。',use:'锄头、种子篓；一组作为一个入口。'},
-    harvest:{name:'秋收器具',image:'assets/props/harvest-v1.png',size:[1774,887],crop:[49,100,1675,702],advice:'放在晒场右侧平地，远离石阶和院墙；粮筐高度明显低于门洞。',use:'簸箕、粮筐、稻束；集中在晒场。'},
-    stationery:{name:'文房用具',image:'assets/props/stationery-v1.png',size:[1774,887],crop:[85,370,1592,241],advice:'集中放书案左侧。案面中央和右侧留给取书、展卷；小件不散放到室外。',use:'砚台、墨锭、毛笔笔架、砚滴；一组放案头。'},
-    gnomon:{name:'圭表',image:'assets/gnomon/gnomon-scroll-v1.png',size:[1536,1024],crop:[0,0,1536,1024],ratio:3,advice:'沿用当前长卷的浅透视。表脚和尺端留在院内铺砖范围，门洞与石阶保持畅通。',use:'沿用已有二维圭表，庭院只保留一件大器物。'}
+    tools:{name:'春耕农具',image:'assets/scroll/props/spring-tools-v1.png',size:[1536,1024],crop:[411,35,714,967],advice:'锄柄约为门洞高度的一半至三分之二。种子篓落在田边路肩，保留通行宽度。',use:'锄头、种子篓；一组作为一个入口。'},
+    harvest:{name:'秋收器具',image:'assets/scroll/props/harvest-v1.png',size:[1774,887],crop:[49,100,1675,702],advice:'放在晒场右侧平地，远离石阶和院墙；粮筐高度明显低于门洞。',use:'簸箕、粮筐、稻束；集中在晒场。'},
+    stationery:{name:'文房用具',image:'assets/study/stationery-v1.png',size:[1774,887],crop:[85,370,1592,241],advice:'集中放书案左侧。案面中央和右侧留给取书、展卷；小件不散放到室外。',use:'砚台、墨锭、毛笔笔架、砚滴；一组放案头。'},
+    gnomon:{name:'圭表',image:'assets/guibiao/scroll/gnomon-scroll-v1.png',size:[1536,1024],crop:[0,0,1536,1024],ratio:3,advice:'沿用当前长卷的浅透视。表脚和尺端留在院内铺砖范围，门洞与石阶保持畅通。',use:'沿用已有二维圭表，庭院只保留一件大器物。'}
   };
   const scenes=[
-    {id:'spring',name:'村落田园',image:'assets/scroll/spring.png',size:[2172,724],note:'田边一组农具，庭院一件圭表；屋门前留出通路。',zones:[{name:'田边路肩',x:10.5,y:52,w:7.5,h:21.2},{name:'院内观测',x:68,y:50,w:18,h:19.5}],items:[{id:'tools',x:12.6,y:55.8,w:4},{id:'gnomon',x:69,y:53,w:16}]},
-    {id:'spring-bridge',name:'溪桥水磨',image:'assets/scroll/spring-bridge.png',size:[2172,724],note:'桥头和水磨是视觉重点，先保留通行空间。',zones:[],items:[]},
-    {id:'summer',name:'荷塘亭榭',image:'assets/scroll/summer.png',size:[2172,724],note:'亭面、台阶与水岸保持完整，第一批不新增器物。',zones:[],items:[]},
-    {id:'summer-street',name:'水乡长街',image:'assets/scroll/summer-street.png',size:[2172,724],note:'沿街门洞和码头密集，先保留街面留白。',zones:[],items:[]},
-    {id:'autumn',name:'秋收晒场',image:'assets/scroll/autumn.png',size:[2172,724],note:'右侧有连续平地，先集中试放一组收获器具。',zones:[{name:'晒场平地',x:57.3,y:56.8,w:14.2,h:11.5}],items:[{id:'harvest',x:61.8,y:59,w:7}]},
-    {id:'autumn-terraces',name:'山麓梯田',image:'assets/scroll/autumn-terraces.png',size:[2172,724],note:'田埂与台阶高差明显，先保留农田层次和行走路线。',zones:[],items:[]},
-    {id:'winter',name:'冬日庭院',image:'assets/scroll/winter.png',size:[2172,724],note:'可作为后续冬藏器物的候选场所，第一批先看原有庭院。',zones:[],items:[]},
-    {id:'winter-ferry',name:'古渡雪岸',image:'assets/scroll/winter-ferry.png',size:[2172,724],note:'码头和石阶需要保持上下船通道，先不添加器物。',zones:[],items:[]},
+    {id:'spring',name:'村落田园',image:'assets/scroll/backgrounds/spring.png',size:[2172,724],note:'田边一组农具，庭院一件圭表；屋门前留出通路。',zones:[{name:'田边路肩',x:10.5,y:52,w:7.5,h:21.2},{name:'院内观测',x:68,y:50,w:18,h:19.5}],items:[{id:'tools',x:12.6,y:55.8,w:4},{id:'gnomon',x:69,y:53,w:16}]},
+    {id:'spring-bridge',name:'溪桥水磨',image:'assets/scroll/backgrounds/spring-bridge.png',size:[2172,724],note:'桥头和水磨是视觉重点，先保留通行空间。',zones:[],items:[]},
+    {id:'summer',name:'荷塘亭榭',image:'assets/scroll/backgrounds/summer.png',size:[2172,724],note:'亭面、台阶与水岸保持完整，第一批不新增器物。',zones:[],items:[]},
+    {id:'summer-street',name:'水乡长街',image:'assets/scroll/backgrounds/summer-street.png',size:[2172,724],note:'沿街门洞和码头密集，先保留街面留白。',zones:[],items:[]},
+    {id:'autumn',name:'秋收晒场',image:'assets/scroll/backgrounds/autumn.png',size:[2172,724],note:'右侧有连续平地，先集中试放一组收获器具。',zones:[{name:'晒场平地',x:57.3,y:56.8,w:14.2,h:11.5}],items:[{id:'harvest',x:61.8,y:59,w:7}]},
+    {id:'autumn-terraces',name:'山麓梯田',image:'assets/scroll/backgrounds/autumn-terraces.png',size:[2172,724],note:'田埂与台阶高差明显，先保留农田层次和行走路线。',zones:[],items:[]},
+    {id:'winter',name:'冬日庭院',image:'assets/scroll/backgrounds/winter.png',size:[2172,724],note:'可作为后续冬藏器物的候选场所，第一批先看原有庭院。',zones:[],items:[]},
+    {id:'winter-ferry',name:'古渡雪岸',image:'assets/scroll/backgrounds/winter-ferry.png',size:[2172,724],note:'码头和石阶需要保持上下船通道，先不添加器物。',zones:[],items:[]},
     {id:'study',name:'书房室内',image:'assets/study/interior-v1.png',size:[1659,948],note:'小件集中在案头左侧，右侧保留原来的展卷位置。',zones:[{name:'案面左侧',x:34,y:68,w:21,h:7}],items:[{id:'stationery',x:37,y:70,w:15}]}
   ];
   const initial=scenes.map(scene=>scene.items.map(item=>({...item})));

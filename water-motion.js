@@ -132,7 +132,7 @@
       // A painted ice variant supplies paper grain, frost, trapped bubbles and
       // fractured reflections. Only water is revealed; the original land and
       // architecture remain underneath, and the ice has no animated filter.
-      sheet.append(element('image', { href: `assets/motion/${index === 6 ? 'winter' : 'winter-ferry'}-ice-v1.png`, width: 2172, height: 724, preserveAspectRatio: 'none' }));
+      sheet.append(element('image', { href: `assets/scroll/effects/water/${index === 6 ? 'winter' : 'winter-ferry'}-ice-v1.png`, width: 2172, height: 724, preserveAspectRatio: 'none' }));
       const rim = element('path', { class: 'motion-ice-edge', d: opening });
       sheet.append(rim);
       // Intersect with the real shoreline: even-odd subtraction on its own
