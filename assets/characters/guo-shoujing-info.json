@@ -1,0 +1,24 @@
+{
+  "character": "Guo Shoujing-inspired handscroll guide",
+  "artisticInterpretation": true,
+  "heightM": 1.82,
+  "meshCount": 87,
+  "bones": 17,
+  "triangles": 30826,
+  "actions": [
+    "Idle | standing",
+    "Walk | calm 24-frame loop"
+  ],
+  "walkFrames": 24,
+  "walkFps": 24,
+  "blender": "5.3.0",
+  "forwardAxis": "Blender -Y, +Z up",
+  "spriteAtlas": {
+    "file": "guo-shoujing-walk.png",
+    "columns": 8,
+    "width": 2048,
+    "height": 640,
+    "frameWidth": 256,
+    "frameHeight": 640
+  }
+}

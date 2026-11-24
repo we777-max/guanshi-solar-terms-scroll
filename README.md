@@ -80,6 +80,8 @@ assets/scroll/backgrounds/winter-ferry.png
 - `src/solar-model.js`：交节、当地正午、影长及昼长计算。
 - `scripts/build_gnomon.py`：Blender 模型生成与渲染脚本。
 - `assets/guibiao/lab/`：可编辑 `.blend`、网页 `.glb`、模型预览和尺寸清单。
+- `character.html`、`character.css`、`character.js`：郭守敬人物造型和行走样稿预览，尚未接入主长卷。
+- `scripts/build_guo_shoujing.py`、`assets/characters/`：人物可编辑模型、站立/行走动作与透明二维素材；见 `docs/郭守敬人物-v1-制作记录.md`。
 - `tests/`：科学计算检查及原有导航事件模拟。
 - `study.css`、`study.js`：室内布局、书籍动画、书页及原典摘读。
 - `motion.css`、`motion.js`、`assets/scroll/effects/`：流水、炊烟、涟漪、四季道具、鸟虫及天气动景；实现范围见 `docs/scroll/春卷水烟动景-v1-实现说明.md`。
